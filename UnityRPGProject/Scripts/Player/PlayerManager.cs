@@ -8,8 +8,6 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     //REFERENCES
-    public InputManager InputManager { get; private set; }
-    //public PlayerLocomotion PlayerLocomotion { get; private set; }
     public PlayerAnimator PlayerAnimator { get; private set; }
     public PlayerAttack PlayerAttack { get; private set; }
     public InventoryHolder InventoryHolder { get; private set; }
@@ -20,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     
     private void Awake()
     {
-        InputManager = GetComponent<InputManager>();
+        // InputManager = GetComponent<InputManager>();
         PlayerAnimator = GetComponent<PlayerAnimator>();
         PlayerAttack = GetComponent<PlayerAttack>();
         InventoryHolder = GetComponent<InventoryHolder>();

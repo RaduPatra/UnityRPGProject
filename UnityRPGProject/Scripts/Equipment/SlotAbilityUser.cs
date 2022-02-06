@@ -5,31 +5,25 @@ using UnityEngine.PlayerLoop;
 
 public class SlotAbilityUser : MonoBehaviour
 {
-    private InputManager inputManager;
+    [SerializeField] private InputManager inputManager;
     private EquipmentManager equipmentManager;
     private EffectManager effectManager;
 
-    [SerializeField]
-    private Inventory hotbarInventory;
+    [SerializeField] private Inventory hotbarInventory;
     public ItemSlotEventChannel itemUseEventChannel;
 
     private void Awake()
     {
-        inputManager = GetComponent<InputManager>();
+        // inputManager = GetComponent<InputManager>();
         equipmentManager = GetComponent<EquipmentManager>();
         effectManager = GetComponent<EffectManager>();
         itemUseEventChannel.Listeners += UseItem;
+        inputManager.hotbarUseAction += HotbarUseStarted;
     }
 
-    private void Update()
+    private void HotbarUseStarted(int slotIndex)
     {
-        GetHotbarInput();
-    }
-
-    private void GetHotbarInput()
-    {
-        if (inputManager.hotbarInput < 0 || inputManager.hotbarInput >= hotbarInventory.ItemList.Count) return;
-        var slot = hotbarInventory.ItemList[inputManager.hotbarInput];
+        var slot = hotbarInventory.ItemList[slotIndex];
         UseItem(slot);
     }
 

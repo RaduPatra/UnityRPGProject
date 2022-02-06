@@ -1,18 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
-
-enum ActionItemType
-{
-    Weapon,
-    Shield
-}
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -23,58 +10,49 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private Transform equipBootsLocation;
     [SerializeField] private Transform equipShieldLocation;
 
-    //todo - make equipable inventory so with key=type,value = invslot and in here delete equip info and just make key=type,val = transform
-
-
     private readonly Dictionary<ItemType, Transform> equipmentLocations = new Dictionary<ItemType, Transform>();
 
-    // private readonly Dictionary<ItemType, ItemStack> equippedActionItems = new Dictionary<ItemType, ItemStack>();
-
-    
-
-    public Dictionary<ItemType, Transform> EquipmentLocations => equipmentLocations;
-
     public EquipmentInventory equipmentInventory;
+    public Inventory hotbarInventory;
+    public Inventory mainInventory;
 
     // public ItemEventChannel equipItemEventChannel;
-
 
     private void Awake()
     {
         SetupSlots();
     }
-
     private void Start()
     {
+        //todo - ? move equip/unequip event in inventory instead of slot? (no need for many to one)
         foreach (var slot in equipmentInventory.EquipmentSlots)
         {
             slot.Value.OnSlotEquip += EquipItem;
             slot.Value.OnSlotUnequip += UnequipItem;
             EquipItem(slot.Value);
         }
+        
+        foreach (var slot in hotbarInventory.ItemList)
+        {
+            slot.OnSlotUnequip += UnequipActionItem;
+        }
+        
+        foreach (var slot in mainInventory.ItemList)
+        {
+            slot.OnSlotUnequip += UnequipActionItem;
+        }
 
         EquipActions();
-        /*foreach (var slot in equipmentInventory.equippedActionItems)
-        {
-            // EquipItem(slot);
-        }*/
     }
 
     private void SetupSlots()
     {
-        EquipmentLocations.Add(ItemType.Helm, equipHelmLocation);
-        EquipmentLocations.Add(ItemType.Chest, equipChestLocation);
-        EquipmentLocations.Add(ItemType.Pants, equipPantsLocation);
-        EquipmentLocations.Add(ItemType.Boots, equipBootsLocation);
-        EquipmentLocations.Add(ItemType.Weapon, equipWeaponLocation);
-        EquipmentLocations.Add(ItemType.Shield, equipShieldLocation);
-
-        /*equippedActionItems.Add(ItemType.Weapon, new ItemStack());
-        equippedActionItems.Add(ItemType.Shield, new ItemStack());*/
-
-
-        /*equipmentInventory.equippedActionSlots.Add(ItemType.Weapon, null);
-        equipmentInventory.equippedActionSlots.Add(ItemType.Shield, null);*/
+        equipmentLocations.Add(ItemType.Helm, equipHelmLocation);
+        equipmentLocations.Add(ItemType.Chest, equipChestLocation);
+        equipmentLocations.Add(ItemType.Pants, equipPantsLocation);
+        equipmentLocations.Add(ItemType.Boots, equipBootsLocation);
+        equipmentLocations.Add(ItemType.Weapon, equipWeaponLocation);
+        equipmentLocations.Add(ItemType.Shield, equipShieldLocation);
     }
 
     public void EquipItem(InventorySlot slot)
@@ -89,27 +67,42 @@ public class EquipmentManager : MonoBehaviour
         slot.SwapContentsWith(equipSlot);
     }
 
-    public void UnequipItem(ItemType itemType)
+    private void UnequipItem(ItemType itemType)
     {
+        Debug.Log("unequip item");
         equipmentInventory.EquipmentSlots[itemType].ResetSlot();
         UnEquipSlotOnCharacter(itemType);
     }
 
-    void EquipActions()
+    private void UnequipActionItem(ItemType itemType)
+    {
+        Debug.Log("unequip action item");
+        var equippedActionItems = equipmentInventory.equippedActionItems;
+        if (equippedActionItems.ContainsKey(itemType))
+        {
+            //unequip old slot
+            var oldSlot = equippedActionItems[itemType]?.OwnerSlot;
+            if (oldSlot != null)
+                oldSlot.IsEquipped = false;
+        }
+        UnEquipSlotOnCharacter(itemType);
+    }
+
+    private void EquipActions()
     {
         foreach (var stack in equipmentInventory.equippedActionItems)
         {
             if (stack.Value == null || stack.Value.item == null) continue;
             var equipable = stack.Value.item as EquipableItem;
             if (equipable is null) continue;
-            var equipLocation = EquipmentLocations[equipable.itemType];
+            var equipLocation = equipmentLocations[equipable.itemType];
             Instantiate(equipable.itemPrefab, equipLocation);
         }
     }
     private void EquipItemOnCharacter(InventorySlot slot)
     {
         if (!(slot.itemStack.item is EquipableItem item)) return;
-        var equipLocation = EquipmentLocations[item.itemType];
+        var equipLocation = equipmentLocations[item.itemType];
 
         //unequip old item
         UnEquipSlotOnCharacter(item.itemType);
@@ -119,10 +112,8 @@ public class EquipmentManager : MonoBehaviour
         if (equippedActionItems.ContainsKey(item.itemType))
         {
             //unequip old slot
-            var oldSlot = equippedActionItems[item.itemType]?.OwnerSlot;
-            if (oldSlot != null)
-                oldSlot.IsEquipped = false;
-            
+            UnequipActionItem(item.itemType);
+
             //unequip if same item
             if (equippedActionItems[item.itemType] == slot.itemStack)
             {
@@ -138,10 +129,9 @@ public class EquipmentManager : MonoBehaviour
         Instantiate(item.itemPrefab, equipLocation);
     }
     
-
     private void UnEquipSlotOnCharacter(ItemType itemType)
     {
-        var equipLocation = EquipmentLocations[itemType];
+        var equipLocation = equipmentLocations[itemType];
         if (equipLocation.childCount != 0)
             Destroy(equipLocation.GetChild(0).gameObject);
     }

@@ -19,12 +19,9 @@ public class InventorySlot
     [NonSerialized] public UnequipSlotEvent OnSlotUnequip;
     [NonSerialized] public Action<InventorySlot> OnUseSlot;
 
-    
-
     public ItemStack itemStack;
 
-    [SerializeField]
-    private bool isEquipped;
+    [SerializeField] private bool isEquipped;
 
     public bool IsEquipped
     {
@@ -37,15 +34,15 @@ public class InventorySlot
         }
     }
 
-    // void cop
     public InventorySlot Clone()
     {
         return MemberwiseClone() as InventorySlot;
     }
-    public void ResetSlot() //assign to null for now but new it in the future ??
+
+    public void ResetSlot()
     {
         itemStack = new ItemStack();
-        // IsEquipped = false;
+        IsEquipped = false;
         OnSlotChanged?.Invoke(this);
     }
 
@@ -75,7 +72,7 @@ public class InventorySlot
             (slot.itemStack.OwnerSlot, itemStack.OwnerSlot);
         (itemStack, slot.itemStack) = (slot.itemStack, itemStack);
         (IsEquipped, slot.IsEquipped) = (slot.IsEquipped, IsEquipped);
-        
+
         OnSlotChanged?.Invoke(this);
         slot.OnSlotChanged?.Invoke(slot);
     }

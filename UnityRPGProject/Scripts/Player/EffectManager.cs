@@ -4,29 +4,12 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    private Inventory playerHotbar;
     private List<EffectBase> activeEffects = new List<EffectBase>();
     private List<EffectBase> effectsToRemove = new List<EffectBase>();
-    private Action<EffectBase> removeEffectAction;
-    private InputManager inputManager;
 
-    private void Awake()
-    {
-        //todo - make separate holder for hotbar. Hotbar inventory will have different inventory slot type
-        inputManager = GetComponent<InputManager>();
-        playerHotbar = GetComponent<InventoryHolder>().HotbarInventory;
-        removeEffectAction = AddEffectToRemove;
-    }
 
     private void Update()
     {
-        /*if (inputManager.hotbarInput >= 0 && inputManager.hotbarInput < playerHotbar.ItemList.Count)
-        {
-            var slot = playerHotbar.ItemList[inputManager.hotbarInput];
-            ConsumeItem(slot);
-        }
-        */
-
         UpdateEffects();
     }
 
@@ -35,7 +18,6 @@ public class EffectManager : MonoBehaviour
         if (!(slot.itemStack.item is ConsumableItem consumable)) return;
         consumable.Use(gameObject);
         slot.DecreaseQuantity();
-        // AddEffect(consumable.useEffect);
         AddEffects(consumable.effects);
     }
 
@@ -46,7 +28,6 @@ public class EffectManager : MonoBehaviour
             AddEffect(effect);
         }
     }
-
     private void AddEffect(EffectBase item)
     {
         //only apply the last effect of the same type that was used
@@ -63,11 +44,9 @@ public class EffectManager : MonoBehaviour
     {
         foreach (var effect in activeEffects)
         {
-            if (item.GetType() == effect.GetType())
-            {
-                Debug.Log("same type " + item.GetType());
-                return effect;
-            }
+            if (item.GetType() != effect.GetType()) continue;
+            Debug.Log("same type " + item.GetType());
+            return effect;
         }
 
         return null;

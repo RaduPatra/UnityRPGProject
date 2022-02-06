@@ -12,9 +12,6 @@ using UnityEngine.UI;
 //todo add a ItemDragHandler class into the actual item being dragged(implements drag events etc) and only implement the drop on the slot
 public class InventorySlotUI : MonoBehaviour, ISlot
 {
-
-
-
     [SerializeField] private Image itemIcon;
     [SerializeField] private Image panelBackground;
     [SerializeField] private TextMeshProUGUI text;
@@ -54,8 +51,8 @@ public class InventorySlotUI : MonoBehaviour, ISlot
 
     private void UseSlot(InventorySlot slot)
     {
-
     }
+
     private void Awake()
     {
         InventoryUI = GetComponentInParent<InventoryUI>();
@@ -105,6 +102,12 @@ public class InventorySlotUI : MonoBehaviour, ISlot
 
         if (IsMiddleButton(eventData))
         {
+            if (inventorySlot.itemStack.item is EquipableItem equipableItem)
+            {
+                // if (inventorySlot.IsEquipped)
+                inventorySlot.OnSlotUnequip?.Invoke(equipableItem.itemType);
+            }
+
             InventoryUI.itemDropEventChannel.Raise(InventorySlot.itemStack.item); //call drop event from holder
             InventorySlot.ResetSlot();
         }

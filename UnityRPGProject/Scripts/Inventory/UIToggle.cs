@@ -6,23 +6,30 @@ public class UIToggle : MonoBehaviour
 {
     // private bool isOn = true;
     [SerializeField] private List<GameObject> objectsToToggle;
-    private bool isOn = true;
+    [SerializeField] private InputManager inputManager;
+    private bool isInterfaceOn = false;
 
-    private void Update()
+    private void Start()
     {
-        Toggle();
+        inputManager.toggleUIAction += Toggle;
     }
 
     private void Toggle()
     {
-        if (!Input.GetKeyDown(KeyCode.K)) return;
-        isOn = !isOn;
-        Cursor.visible = isOn;
-        Cursor.lockState = isOn ? CursorLockMode.None : CursorLockMode.Locked;
+        isInterfaceOn = !isInterfaceOn;
+
+        if (isInterfaceOn)
+        {
+            inputManager.EnableInterfaceActions();
+        }
+        else
+        {
+            inputManager.EnableGameplayActions();
+        }
 
         foreach (var obj in objectsToToggle)
         {
-            obj.SetActive(isOn);
+            obj.SetActive(isInterfaceOn);
         }
     }
 }

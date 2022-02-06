@@ -15,7 +15,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Player Movement"",
+            ""name"": ""Gameplay"",
             ""id"": ""623377ee-b01b-4fd2-85e1-79b8778bdeda"",
             ""actions"": [
                 {
@@ -23,6 +23,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""9994268a-d9ec-48d0-ad5f-bb1e7cf4bb91"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d9a22f6-0bf5-4e69-afe2-624ea288190f"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -134,7 +142,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""740c4f93-9931-4e6f-b2c0-7e932fa65e6d"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -216,6 +224,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48ca5262-6e36-4d08-92af-f9f37a43102d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -312,14 +331,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""MouseTest"",
+            ""name"": ""General"",
             ""id"": ""3fa43944-b329-495f-90f9-a9fd7d167b95"",
             ""actions"": [
                 {
-                    ""name"": ""MouseLookTest"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""fc001d9c-f147-437c-9cf4-ffe996d1823b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Hotbar"",
+                    ""type"": ""Value"",
+                    ""id"": ""746b4917-9388-402a-8b56-a6b20f82224d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""2342be97-14a5-4d9c-982a-bd3ca26a607b"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -327,12 +354,67 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""7341f2f8-62c8-4cb4-a0c3-46ccaf13268a"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""51e32627-6024-4a63-8e25-6af55d34d9ff"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Hotbar"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40e74706-3471-41f4-b7ea-0f77219235ce"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Hotbar(valueShift=1)"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89fa4e2d-afb5-43ea-9328-9a266366371c"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Hotbar(valueShift=2)"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0289db88-1bd2-4268-bf0a-8a5b4db2d224"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Hotbar(valueShift=3)"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""564763ed-5afe-4628-9107-0679d246adff"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": ""Hotbar(valueShift=4)"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2465b9cb-ff01-45d7-ac91-e982a0e3f046"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseLookTest"",
+                    ""action"": ""ToggleUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -341,22 +423,24 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Player Movement
-        m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
-        m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
-        m_PlayerMovement_MouseLook = m_PlayerMovement.FindAction("MouseLook", throwIfNotFound: true);
-        m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerMovement_Sprint = m_PlayerMovement.FindAction("Sprint", throwIfNotFound: true);
-        m_PlayerMovement_TestButton = m_PlayerMovement.FindAction("TestButton", throwIfNotFound: true);
-        m_PlayerMovement_MouseTest = m_PlayerMovement.FindAction("MouseTest", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_MouseLook = m_Gameplay.FindAction("MouseLook", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
+        m_Gameplay_TestButton = m_Gameplay.FindAction("TestButton", throwIfNotFound: true);
+        m_Gameplay_MouseTest = m_Gameplay.FindAction("MouseTest", throwIfNotFound: true);
         // Player Attack
         m_PlayerAttack = asset.FindActionMap("Player Attack", throwIfNotFound: true);
         m_PlayerAttack_Attack = m_PlayerAttack.FindAction("Attack", throwIfNotFound: true);
         m_PlayerAttack_Hotbar = m_PlayerAttack.FindAction("Hotbar", throwIfNotFound: true);
-        // MouseTest
-        m_MouseTest = asset.FindActionMap("MouseTest", throwIfNotFound: true);
-        m_MouseTest_MouseLookTest = m_MouseTest.FindAction("MouseLookTest", throwIfNotFound: true);
+        // General
+        m_General = asset.FindActionMap("General", throwIfNotFound: true);
+        m_General_Hotbar = m_General.FindAction("Hotbar", throwIfNotFound: true);
+        m_General_ToggleUI = m_General.FindAction("ToggleUI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,64 +487,72 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Player Movement
-    private readonly InputActionMap m_PlayerMovement;
-    private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
-    private readonly InputAction m_PlayerMovement_Movement;
-    private readonly InputAction m_PlayerMovement_Interact;
-    private readonly InputAction m_PlayerMovement_MouseLook;
-    private readonly InputAction m_PlayerMovement_Jump;
-    private readonly InputAction m_PlayerMovement_Sprint;
-    private readonly InputAction m_PlayerMovement_TestButton;
-    private readonly InputAction m_PlayerMovement_MouseTest;
-    public struct PlayerMovementActions
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private IGameplayActions m_GameplayActionsCallbackInterface;
+    private readonly InputAction m_Gameplay_Movement;
+    private readonly InputAction m_Gameplay_Attack;
+    private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_MouseLook;
+    private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Sprint;
+    private readonly InputAction m_Gameplay_TestButton;
+    private readonly InputAction m_Gameplay_MouseTest;
+    public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
-        public PlayerMovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
-        public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
-        public InputAction @MouseLook => m_Wrapper.m_PlayerMovement_MouseLook;
-        public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
-        public InputAction @Sprint => m_Wrapper.m_PlayerMovement_Sprint;
-        public InputAction @TestButton => m_Wrapper.m_PlayerMovement_TestButton;
-        public InputAction @MouseTest => m_Wrapper.m_PlayerMovement_MouseTest;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
+        public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @MouseLook => m_Wrapper.m_Gameplay_MouseLook;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
+        public InputAction @TestButton => m_Wrapper.m_Gameplay_TestButton;
+        public InputAction @MouseTest => m_Wrapper.m_Gameplay_MouseTest;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerMovementActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerMovementActions instance)
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void SetCallbacks(IGameplayActions instance)
         {
-            if (m_Wrapper.m_PlayerMovementActionsCallbackInterface != null)
+            if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Interact.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
-                @MouseLook.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseLook;
-                @MouseLook.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseLook;
-                @MouseLook.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseLook;
-                @Jump.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
-                @Sprint.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
-                @TestButton.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnTestButton;
-                @TestButton.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnTestButton;
-                @TestButton.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnTestButton;
-                @MouseTest.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseTest;
-                @MouseTest.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseTest;
-                @MouseTest.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMouseTest;
+                @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @Attack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
+                @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @MouseLook.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseLook;
+                @MouseLook.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseLook;
+                @MouseLook.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseLook;
+                @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Sprint.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSprint;
+                @TestButton.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTestButton;
+                @TestButton.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTestButton;
+                @TestButton.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTestButton;
+                @MouseTest.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseTest;
+                @MouseTest.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseTest;
+                @MouseTest.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseTest;
             }
-            m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
+            m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -482,7 +574,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             }
         }
     }
-    public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+    public GameplayActions @Gameplay => new GameplayActions(this);
 
     // Player Attack
     private readonly InputActionMap m_PlayerAttack;
@@ -525,41 +617,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     }
     public PlayerAttackActions @PlayerAttack => new PlayerAttackActions(this);
 
-    // MouseTest
-    private readonly InputActionMap m_MouseTest;
-    private IMouseTestActions m_MouseTestActionsCallbackInterface;
-    private readonly InputAction m_MouseTest_MouseLookTest;
-    public struct MouseTestActions
+    // General
+    private readonly InputActionMap m_General;
+    private IGeneralActions m_GeneralActionsCallbackInterface;
+    private readonly InputAction m_General_Hotbar;
+    private readonly InputAction m_General_ToggleUI;
+    public struct GeneralActions
     {
         private @PlayerControls m_Wrapper;
-        public MouseTestActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MouseLookTest => m_Wrapper.m_MouseTest_MouseLookTest;
-        public InputActionMap Get() { return m_Wrapper.m_MouseTest; }
+        public GeneralActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Hotbar => m_Wrapper.m_General_Hotbar;
+        public InputAction @ToggleUI => m_Wrapper.m_General_ToggleUI;
+        public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MouseTestActions set) { return set.Get(); }
-        public void SetCallbacks(IMouseTestActions instance)
+        public static implicit operator InputActionMap(GeneralActions set) { return set.Get(); }
+        public void SetCallbacks(IGeneralActions instance)
         {
-            if (m_Wrapper.m_MouseTestActionsCallbackInterface != null)
+            if (m_Wrapper.m_GeneralActionsCallbackInterface != null)
             {
-                @MouseLookTest.started -= m_Wrapper.m_MouseTestActionsCallbackInterface.OnMouseLookTest;
-                @MouseLookTest.performed -= m_Wrapper.m_MouseTestActionsCallbackInterface.OnMouseLookTest;
-                @MouseLookTest.canceled -= m_Wrapper.m_MouseTestActionsCallbackInterface.OnMouseLookTest;
+                @Hotbar.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnHotbar;
+                @Hotbar.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnHotbar;
+                @Hotbar.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnHotbar;
+                @ToggleUI.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnToggleUI;
+                @ToggleUI.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnToggleUI;
+                @ToggleUI.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnToggleUI;
             }
-            m_Wrapper.m_MouseTestActionsCallbackInterface = instance;
+            m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @MouseLookTest.started += instance.OnMouseLookTest;
-                @MouseLookTest.performed += instance.OnMouseLookTest;
-                @MouseLookTest.canceled += instance.OnMouseLookTest;
+                @Hotbar.started += instance.OnHotbar;
+                @Hotbar.performed += instance.OnHotbar;
+                @Hotbar.canceled += instance.OnHotbar;
+                @ToggleUI.started += instance.OnToggleUI;
+                @ToggleUI.performed += instance.OnToggleUI;
+                @ToggleUI.canceled += instance.OnToggleUI;
             }
         }
     }
-    public MouseTestActions @MouseTest => new MouseTestActions(this);
-    public interface IPlayerMovementActions
+    public GeneralActions @General => new GeneralActions(this);
+    public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -572,8 +673,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnHotbar(InputAction.CallbackContext context);
     }
-    public interface IMouseTestActions
+    public interface IGeneralActions
     {
-        void OnMouseLookTest(InputAction.CallbackContext context);
+        void OnHotbar(InputAction.CallbackContext context);
+        void OnToggleUI(InputAction.CallbackContext context);
     }
 }

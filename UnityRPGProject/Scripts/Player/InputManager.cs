@@ -8,40 +8,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
-public class InputManager : MonoBehaviour
+[CreateAssetMenu(fileName = "New Input Reader", menuName = "InputReader", order = 1)]
+public class InputManager : ScriptableObject
 {
+    //todo implement the interface for setcallbacks so you dont have to manually subscribe to actions multiple times
     private PlayerControls playerControls;
     private PlayerManager playerManager;
     private Vector2 movementInput;
     [SerializeField] private InputActionReference mouseLookReference;
-    [SerializeField] private InputActionAsset assetTest;
 
+    public Action jumpAction = delegate { };
+    public Action interactAction = delegate { };
+    public Action<Vector2> moveAction = delegate { };
+    public Action<int> hotbarUseAction = delegate { };
+    public Action sprintStartAction = delegate { };
+    public Action sprintCancelledAction = delegate { };
+    public Action toggleUIAction = delegate { };
 
-
-    public float verticalInput;
-    public float horizontalInput;
-    public bool jumpInput;
-    public bool sprintInput;
-    public bool attackInput;
-    public bool interactInput;
-    public int hotbarInput = -1;
-    public bool leftClickInputTest;
-    
-    
-
-
-    //public PlayerLocomotion playerLocomotion;
-    //todo implement the interface for setcallbacks so you dont have to manually subscribe to actions multiple times
-
-    private void Awake()
-    {
-        // mouseLookReference
-        mouseLookReference.action.Enable();
-        playerManager = GetComponent<PlayerManager>();
-    }
-
-
-//todo move bindings to their corresponding action maps (eg. gameplay, ui)
+    //todo - set callbacks instead of manually subscribing
     private void OnEnable()
     {
         if (playerControls == null)
@@ -50,95 +34,67 @@ public class InputManager : MonoBehaviour
             SetupControls();
         }
 
-        playerControls.Enable();
+        playerControls.General.Enable();
+        EnableGameplayActions();
     }
-
 
     void SetupControls()
     {
-        playerControls.PlayerMovement.Movement.performed += OnMove;
-        playerControls.PlayerMovement.Jump.performed += OnJump;
-        playerControls.PlayerMovement.Interact.performed += OnInteract;
-        playerControls.PlayerMovement.Sprint.performed += i => sprintInput = true;
-        playerControls.PlayerMovement.Sprint.canceled += i => sprintInput = false;
-        playerControls.PlayerMovement.TestButton.started += i => Debug.Log("btntest");
-        playerControls.PlayerMovement.MouseTest.performed += MouseTest;
-        playerControls.PlayerAttack.Hotbar.performed += OnHotbarInput;
-        //playerControls.PlayerAttack.Attack.performed += OnAttack;
+        playerControls.Gameplay.Movement.performed += OnMove;
+        playerControls.Gameplay.Jump.performed += OnJump;
+        playerControls.Gameplay.Interact.performed += OnInteract;
+        playerControls.Gameplay.Sprint.performed += OnSprint;
+        playerControls.Gameplay.Sprint.canceled += OnSprint;
+        playerControls.Gameplay.TestButton.started += i => Debug.Log("composite btn test");
+        //playerControls.Gameplay.Attack.performed += OnAttack;
+        playerControls.General.Hotbar.performed += OnHotbarInput;
+        playerControls.General.ToggleUI.performed += OnToggleUI;
     }
 
-    private bool isOn = true;
-
-    private void MouseTest(InputAction.CallbackContext ctx)
+    // private bool isOn = true;
+    private void OnToggleUI(InputAction.CallbackContext ctx)
     {
-        Debug.Log(ctx);
-        leftClickInputTest = true;
+        toggleUIAction?.Invoke();
+    }
 
-        /*isOn = !isOn;
-        if (isOn)
-            playerControls.PlayerMovement.MouseLook.Disable();
-        else playerControls.PlayerMovement.MouseLook.Enable();*/
+    public void EnableGameplayActions()
+    {
+        playerControls.Gameplay.Enable();
+        mouseLookReference.action.Enable();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void EnableInterfaceActions()
+    {
+        playerControls.Gameplay.Disable();
+        mouseLookReference.action.Disable();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void DisableAllActions()
+    {
+        playerControls.Gameplay.Disable();
+        playerControls.General.Disable();
     }
 
     private void OnHotbarInput(InputAction.CallbackContext ctx)
     {
         Debug.Log("key number = " + ctx.ReadValue<float>());
-        hotbarInput = (int)ctx.ReadValue<float>();
+        var hotbarInput = (int)ctx.ReadValue<float>();
+        hotbarUseAction.Invoke(hotbarInput);
     }
 
-    private void Update()
+    private void OnJump(InputAction.CallbackContext ctx)
     {
-        HandleLocomotionAnimation();
-
-        if (Input.GetKeyDown(KeyCode.Semicolon))
-        {
-            
-            Debug.Log("disable");
-            Debug.Log(mouseLookReference.action);
-            mouseLookReference.action.Disable();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Comma))
-        {
-            Debug.Log("enable");
-            mouseLookReference.action.Enable();
-
-
-            // mouseLookReference.action.Enable();
-        }
+        Debug.Log("jump");
+        jumpAction?.Invoke();
     }
 
-    private void HandleLocomotionAnimation() // todo - ??? .... move this shit to another class
+    private void OnAttack(InputAction.CallbackContext ctx) //this is just for testing atm
     {
-        var moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-
-        if (sprintInput && moveAmount != 0)
-            moveAmount = 2f;
-
-        playerManager.PlayerAnimator.UpdateLocomotionAnimation(moveAmount);
-    }
-
-    private void LateUpdate()
-    {
-        //reset inputs next frame
-        jumpInput = false;
-        interactInput = false;
-        attackInput = false;
-        interactInput = false;
-        leftClickInputTest = false;
-        hotbarInput = -1;
-    }
-
-    private void OnJump(InputAction.CallbackContext obj)
-    {
-        jumpInput = true;
-        //playerLocomotion.HandleJump();
-        // Debug.Log("jumptgest23eeeeedeee");
-    }
-
-    private void OnAttack(InputAction.CallbackContext obj) //this is just for testing atm
-    {
-        attackInput = true;
+        // attackInput = true;
         if (playerManager.isInteracting) return;
         playerManager.PlayerAttack.AttackAction();
         Debug.Log("attack");
@@ -147,19 +103,27 @@ public class InputManager : MonoBehaviour
     private void OnMove(InputAction.CallbackContext ctx) //called the frame wasd keys were pressed or released
     {
         movementInput = ctx.ReadValue<Vector2>();
-        verticalInput = movementInput.y;
-        horizontalInput = movementInput.x;
+        moveAction.Invoke(movementInput);
+    }
+
+    private void OnSprint(InputAction.CallbackContext ctx) //called the frame wasd keys were pressed or released
+    {
+        if (ctx.performed)
+            sprintStartAction?.Invoke();
+
+        if (ctx.canceled)
+            sprintCancelledAction?.Invoke();
     }
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
-        interactInput = true;
-        //layerManager.i
+        interactAction?.Invoke();
         Debug.Log("interact");
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
+        DisableAllActions();
     }
 }

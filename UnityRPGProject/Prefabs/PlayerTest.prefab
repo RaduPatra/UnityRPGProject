@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5184514675991891517}
   - component: {fileID: 5184514675991891514}
   - component: {fileID: 5184514675991891515}
-  - component: {fileID: 5184514675991891512}
   - component: {fileID: 5184514675991891513}
   - component: {fileID: 5184514675991891510}
   m_Layer: 0
@@ -103,21 +102,6 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5184514675991891512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5184514675991891511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 611f9d5773e1c4c4f89f12e9f879d5cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  verticalInput: 0
-  horizontalInput: 0
 --- !u!114 &5184514675991891513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b99d8210e5cf02469b9dbb484ce12f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 0
+  isInteracting: 0
 --- !u!114 &5184514675991891510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,9 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6b3c0983bf5224a8c9c167f70d4ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  walkMoveSpeed: 7
+  baseWalkSpeed: 7
+  baseJumpHeight: 2.5
+  sprintSpeedMultiplier: 2
+  inAirSpeedMultiplier: 0.5
   rotationSpeed: 10
-  cameraTransform: {fileID: 0}
   gravity: -9.81
+  jumpHeight: 2.5
+  groundCheckRayDistance: 0
+  airTimeToBeginFall: 0.5
   controller: {fileID: 5184514675991891515}
-  veltest: {x: 0, y: 0, z: 0}
+  cameraTransform: {fileID: 0}
+  groundCheck: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  inputManager: {fileID: 0}

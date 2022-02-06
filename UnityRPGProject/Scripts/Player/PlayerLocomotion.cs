@@ -15,7 +15,7 @@ public class PlayerLocomotion : MonoBehaviour
     private float walkMoveSpeed = 7f;
 
     [SerializeField] private float baseWalkSpeed = 7f;
-    [SerializeField] private float baseJumpHeight =2.5f;
+    [SerializeField] private float baseJumpHeight = 2.5f;
     [SerializeField] private float sprintSpeedMultiplier = 2f;
     [SerializeField] private float inAirSpeedMultiplier = .5f;
 
@@ -39,6 +39,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private InputManager inputManager;
 
 
     private PlayerManager playerManager;
@@ -47,6 +48,10 @@ public class PlayerLocomotion : MonoBehaviour
     private Vector3 verticalVelocity;
     private float moveSpeed = 7f;
     private float inAirTime;
+
+
+    private Vector2 movementInput;
+    private bool sprintInput;
 
     public float WalkMoveSpeed
     {
@@ -63,12 +68,21 @@ public class PlayerLocomotion : MonoBehaviour
     public float BaseWalkSpeed => baseWalkSpeed;
     public float BaseJumpHeight => baseJumpHeight;
 
-    void Start()
+    private void Start()
     {
         playerManager = GetComponent<PlayerManager>();
         walkMoveSpeed = baseWalkSpeed;
         jumpHeight = baseJumpHeight;
         //playerManager.isGrounded = false;
+        SetupInput();
+    }
+
+    private void SetupInput()
+    {
+        inputManager.jumpAction += HandleJump;
+        inputManager.moveAction += OnMove;
+        inputManager.sprintStartAction += OnSprintStarted;
+        inputManager.sprintCancelledAction += OnSprintCancelled;
     }
 
     private void Update()
@@ -80,9 +94,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void SetMoveDirection()
     {
-        var horizontalInput = playerManager.InputManager.horizontalInput;
-        var verticalInput = playerManager.InputManager.verticalInput;
-        Vector2 direction = new Vector2(horizontalInput, verticalInput);
+        var horizontalInput = movementInput.x;
+        var verticalInput = movementInput.y;
+        var direction = new Vector2(horizontalInput, verticalInput);
         moveDirection = Vector3.zero;
 
         //don't calculate move if interacting
@@ -100,14 +114,16 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void HandleMovement()
     {
+        HandleLocomotionAnimation();
         CalculateMovementSpeed();
         HandleFalling();
-        HandleJump();
         moveVelocity = moveDirection * (moveSpeed * Time.deltaTime);
         var finalVelocity = moveVelocity + verticalVelocity * Time.deltaTime;
         controller.Move(finalVelocity);
     }
 
+    //here we use controller.isGrounded for resetting fall exactly when we touch the ground so we fall constantly at the right speed
+    //and playerManager.isGrounded for checking things just before they touch the ground
     private void HandleFalling()
     {
         //Handle gravity. Reset if grounded.
@@ -158,18 +174,16 @@ public class PlayerLocomotion : MonoBehaviour
         if (!controller.isGrounded)
             currentAirSpeedMultiplier = inAirSpeedMultiplier;
 
-        if (playerManager.InputManager.sprintInput)
+        if (sprintInput)
             currentSprintSpeedMultiplier = sprintSpeedMultiplier;
-
 
         moveSpeed = walkMoveSpeed * currentSprintSpeedMultiplier * currentAirSpeedMultiplier;
     }
 
     private void HandleJump()
     {
-        //jump if pressing space and grounded
-        if (!playerManager.InputManager.jumpInput || !playerManager.isGrounded) return;
-
+        //jump only when grounded
+        if (!playerManager.isGrounded) return;
         verticalVelocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
         playerManager.PlayerAnimator.PlayAnimation("Jump", false);
     }
@@ -182,4 +196,19 @@ public class PlayerLocomotion : MonoBehaviour
         var targetRotation = Quaternion.LookRotation(moveDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
+
+    private void HandleLocomotionAnimation() // todo -  move this to another class?
+    {
+        var moveAmount = Mathf.Clamp01(Mathf.Abs(movementInput.x) + Mathf.Abs(movementInput.y));
+
+        if (sprintInput && moveAmount != 0)
+            moveAmount = 2f;
+
+        playerManager.PlayerAnimator.UpdateLocomotionAnimation(moveAmount);
+    }
+    
+    
+    private void OnMove(Vector2 input) =>  movementInput = input;
+    private void OnSprintStarted() => sprintInput = true;
+    private void OnSprintCancelled() => sprintInput = false;
 }

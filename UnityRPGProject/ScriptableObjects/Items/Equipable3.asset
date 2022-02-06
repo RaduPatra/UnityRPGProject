@@ -17,4 +17,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 100000, guid: 319f1d32cbddc7d48a711c009e583764, type: 3}
   isStackable: 0
   maxStack: 1
-  itemType: 1
+  itemType: 5

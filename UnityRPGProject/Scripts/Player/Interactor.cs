@@ -8,23 +8,23 @@ namespace Player
         // private PlayerManager playerManager;
         public PlayerManager PlayerManager { get; set; }
         private GameObject interactObject;
-        
+
+        [SerializeField] private InputManager inputManager;
+
         private void Start()
         {
             PlayerManager = GetComponent<PlayerManager>();
+            inputManager.interactAction += StartInteract;
         }
-        private void Update()
+
+        private void StartInteract()
         {
-            if (PlayerManager == null) return;
-            if (!PlayerManager.InputManager.interactInput) return;
-            if (interactObject)
-            {
-                Interact(interactObject);
-            }
+            Interact(interactObject);
         }
-        
+
         private void Interact(GameObject go)
         {
+            if (go == null) return;
             var interactObj = go.GetComponent<IInteractable>();
             interactObj?.Interact(this);
         }
