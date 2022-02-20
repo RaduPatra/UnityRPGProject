@@ -6,19 +6,24 @@ using UnityEngine.PlayerLoop;
 public class SlotAbilityUser : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
-    private EquipmentManager equipmentManager;
-    private EffectManager effectManager;
-
     [SerializeField] private Inventory hotbarInventory;
     public ItemSlotEventChannel itemUseEventChannel;
+    
+    private EquipmentManager equipmentManager;
+    private InventoryHolder inventoryHolder;
+    private EffectManager effectManager;
+
+    
 
     private void Awake()
     {
-        // inputManager = GetComponent<InputManager>();
         equipmentManager = GetComponent<EquipmentManager>();
+        inventoryHolder = GetComponent<InventoryHolder>();
         effectManager = GetComponent<EffectManager>();
+        
         itemUseEventChannel.Listeners += UseItem;
         inputManager.hotbarUseAction += HotbarUseStarted;
+        // itemUnequipEventChannel.Listeners += UnequipTest;
     }
 
     private void HotbarUseStarted(int slotIndex)
@@ -26,11 +31,16 @@ public class SlotAbilityUser : MonoBehaviour
         var slot = hotbarInventory.ItemList[slotIndex];
         UseItem(slot);
     }
-
     private void UseItem(InventorySlot slot)
     {
-        equipmentManager.EquipItem(slot);
         effectManager.ConsumeItem(slot);
-        // slot.OnUseSlot.Invoke(slot);
+        equipmentManager.ToggleWeaponAction(slot);
+        equipmentManager.EquipArmorAction(slot);
+    }
+
+    public void UnequipTest(InventorySlot slot)
+    {
+        inventoryHolder.PickUp(slot.itemStack.item);
+        slot.ResetSlot();
     }
 }

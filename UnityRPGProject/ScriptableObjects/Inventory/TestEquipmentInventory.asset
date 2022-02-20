@@ -16,13 +16,16 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: a4b741bc32acf6b4788955ace2844d3b, type: 2}
+    - {fileID: 11400000, guid: 6bb1009deaf04eb419dff213af1841f6, type: 2}
+    - {fileID: 11400000, guid: 5114d6f666bd21848b1b5730babaab9c, type: 2}
+    - {fileID: 11400000, guid: 87364665af2375e42afd420725c52169, type: 2}
+    - {fileID: 11400000, guid: 67c3999000ac7a842a6d317a4adccfd7, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: equipmentSlots
+    - Name: equipmentArmorSlots
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[ItemType, Assembly-CSharp],[InventorySlot,
         Assembly-CSharp]], mscorlib
@@ -55,14 +58,23 @@ MonoBehaviour:
       Entry: 7
       Data: 3|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: quantity
       Entry: 3
-      Data: 0
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: 7554643b-8dfd-4723-89a2-77b1098cb16e
     - Name: 
       Entry: 8
       Data: 
+    - Name: slotType
+      Entry: 3
+      Data: 1
+    - Name: slotIndex
+      Entry: 3
+      Data: 0
     - Name: isEquipped
       Entry: 5
       Data: false
@@ -85,14 +97,23 @@ MonoBehaviour:
       Entry: 7
       Data: 5|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 1
     - Name: quantity
       Entry: 3
-      Data: 0
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: 86cd1553-716f-455f-a82b-3bbced4e71b3
     - Name: 
       Entry: 8
       Data: 
+    - Name: slotType
+      Entry: 3
+      Data: 2
+    - Name: slotIndex
+      Entry: 3
+      Data: 0
     - Name: isEquipped
       Entry: 5
       Data: false
@@ -115,14 +136,23 @@ MonoBehaviour:
       Entry: 7
       Data: 7|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 2
     - Name: quantity
       Entry: 3
-      Data: 0
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: 2abda50a-d85e-4d9a-a61a-498f3b6c7b13
     - Name: 
       Entry: 8
       Data: 
+    - Name: slotType
+      Entry: 3
+      Data: 3
+    - Name: slotIndex
+      Entry: 3
+      Data: 0
     - Name: isEquipped
       Entry: 5
       Data: false
@@ -145,14 +175,23 @@ MonoBehaviour:
       Entry: 7
       Data: 9|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 3
     - Name: quantity
       Entry: 3
-      Data: 0
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: 0f8b3f59-d0c8-4a0c-90c4-8c76428fbde3
     - Name: 
       Entry: 8
       Data: 
+    - Name: slotType
+      Entry: 3
+      Data: 4
+    - Name: slotIndex
+      Entry: 3
+      Data: 0
     - Name: isEquipped
       Entry: 5
       Data: false
@@ -168,7 +207,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: equippedActionItems
+    - Name: equippedWeaponItems
       Entry: 7
       Data: 10|System.Collections.Generic.Dictionary`2[[ItemType, Assembly-CSharp],[ItemStack,
         Assembly-CSharp]], mscorlib
@@ -195,16 +234,7 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 7
-      Data: 12|ItemStack, Assembly-CSharp
-    - Name: item
-      Entry: 10
-      Data: 0
-    - Name: quantity
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8

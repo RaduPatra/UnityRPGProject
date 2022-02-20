@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13190155bd52468f93d6222cbee39a39, type: 3}
+  m_Name: BigSpeedConsumable
+  m_EditorClassIdentifier: 
+  itemName: big speed consumable
+  itemIcon: {fileID: 21300000, guid: 62ce59ce09148c847b198159a3abc9f6, type: 3}
+  dropItemPrefab: {fileID: 8776414566409819285, guid: 08b82c68a6f787f4c89b636f2210c635, type: 3}
+  isStackable: 0
+  maxStack: 1
+  effects:
+  - {fileID: 11400000, guid: 2b4063e313f603a4bb9a7934a678bba0, type: 2}

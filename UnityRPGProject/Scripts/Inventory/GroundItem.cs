@@ -16,7 +16,7 @@ public class GroundItem : MonoBehaviour, IInteractable
         var user = interactor.PlayerManager;
         if (user == null) return;
         user.InventoryHolder.PickUp(item);
-        // Destroy(gameObject);
+        Destroy(gameObject);
         Debug.Log(user.name);
         Debug.Log(item.name);
     }

@@ -1,35 +1,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UIElements;
+
+
+public enum SlotType
+{
+    Any,
+    Equipment
+}
 
 [Serializable]
 public class InventorySlot
 {
-    public delegate void UpdateSlotEvent(InventorySlot slot);
-
-    public delegate void UnequipSlotEvent(ItemType slot);
-
-    public delegate void EquipActionEvent();
-
     [NonSerialized] public Action OnEquipActionChange;
-    [NonSerialized] public UpdateSlotEvent OnSlotChanged;
-    [NonSerialized] public UpdateSlotEvent OnSlotEquip;
-    [NonSerialized] public UnequipSlotEvent OnSlotUnequip;
-    [NonSerialized] public Action<InventorySlot> OnUseSlot;
+    [NonSerialized] public Action<InventorySlot> OnSlotChanged;
+    [NonSerialized] public Action<InventorySlot> OnBeforeSlotChanged;
+    [NonSerialized] public Action<ItemType> OnSlotUnequip;
 
     public ItemStack itemStack;
+    public ItemType slotType;
+    public int slotIndex;
 
-    [SerializeField] private bool isEquipped;
-
+    private bool isEquipped;
     public bool IsEquipped
     {
         get => isEquipped;
         set
         {
             isEquipped = value;
-            Debug.Log(OnEquipActionChange);
             OnEquipActionChange?.Invoke();
         }
     }
@@ -41,6 +43,7 @@ public class InventorySlot
 
     public void ResetSlot()
     {
+        OnBeforeSlotChanged?.Invoke(this);
         itemStack = new ItemStack();
         IsEquipped = false;
         OnSlotChanged?.Invoke(this);
@@ -62,18 +65,35 @@ public class InventorySlot
     public void AssignItem(ItemStack item)
     {
         itemStack = item;
-        itemStack.OwnerSlot = this;
+        itemStack.ParentSlot = this;
         OnSlotChanged?.Invoke(this);
     }
 
     public void SwapContentsWith(InventorySlot slot)
     {
-        (itemStack.OwnerSlot, slot.itemStack.OwnerSlot) =
-            (slot.itemStack.OwnerSlot, itemStack.OwnerSlot);
+        if (!(CanAcceptItem(slot.itemStack.item) && slot.CanAcceptItem(itemStack.item))) return;
+        OnBeforeSlotChanged?.Invoke(this);
+        slot.OnBeforeSlotChanged?.Invoke(slot);
+
+        (itemStack.ParentSlot, slot.itemStack.ParentSlot) =
+            (slot.itemStack.ParentSlot, itemStack.ParentSlot);
         (itemStack, slot.itemStack) = (slot.itemStack, itemStack);
         (IsEquipped, slot.IsEquipped) = (slot.IsEquipped, IsEquipped);
 
         OnSlotChanged?.Invoke(this);
         slot.OnSlotChanged?.Invoke(slot);
+    }
+
+    public bool CanAcceptItem(ItemBase item)
+    {
+        if (slotType == ItemType.Any || item == null) return true;
+        var eqItem = item as EquipableItem;
+        return eqItem != null && eqItem.itemType == slotType;
+    }
+
+    public EquipableItem TryGetEquipable()
+    {
+        var equipable = itemStack.item as EquipableItem;
+        return equipable;
     }
 }

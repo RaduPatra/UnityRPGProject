@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7962ac1accca4c4ebcd871122315b92e, type: 3}
+  m_Name: RoyalPants
+  m_EditorClassIdentifier: 
+  itemName: sword2
+  itemIcon: {fileID: 21300000, guid: c3dbdee0ce8cf8948a9c29068bf93e51, type: 3}
+  dropItemPrefab: {fileID: 2711311128754172012, guid: 06cd2e808877a064cb5f361aa4bdcb6b, type: 3}
+  isStackable: 0
+  maxStack: 1
+  equipItemPrefab: {fileID: 2711311128754172012, guid: cbed65cd97175534598d9b2438375669, type: 3}
+  impactParticle: {fileID: 0}
+  itemType: 3
+  meleeAttackDamage: 0
+  defenceBonus: 4
+  healthBonus: 4

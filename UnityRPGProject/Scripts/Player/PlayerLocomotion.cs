@@ -81,8 +81,8 @@ public class PlayerLocomotion : MonoBehaviour
     {
         inputManager.jumpAction += HandleJump;
         inputManager.moveAction += OnMove;
-        inputManager.sprintStartAction += OnSprintStarted;
-        inputManager.sprintCancelledAction += OnSprintCancelled;
+        inputManager.sprintStartAction += OnSprintStart;
+        inputManager.sprintCancelledAction += OnSprintCancel;
     }
 
     private void Update()
@@ -209,6 +209,6 @@ public class PlayerLocomotion : MonoBehaviour
     
     
     private void OnMove(Vector2 input) =>  movementInput = input;
-    private void OnSprintStarted() => sprintInput = true;
-    private void OnSprintCancelled() => sprintInput = false;
+    private void OnSprintStart() => sprintInput = true;
+    private void OnSprintCancel() => sprintInput = false;
 }

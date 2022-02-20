@@ -11,7 +11,7 @@ public abstract class ItemBase: ScriptableObject
 {
     public string itemName;
     public Sprite itemIcon;
-    public GameObject itemPrefab;
+    public GameObject dropItemPrefab;
     public bool isStackable;
     public int maxStack = 1;
 

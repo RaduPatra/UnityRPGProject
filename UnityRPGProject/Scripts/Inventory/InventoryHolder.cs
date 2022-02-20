@@ -5,14 +5,14 @@ using UnityEngine;
 //inventory holder
 public class InventoryHolder : MonoBehaviour
 {
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private Inventory mainInventory;
     [SerializeField] private Inventory hotbarInventory;
     [SerializeField] private Vector3 dropOffset;
     [SerializeField] private ItemEventChannel itemDropEventChannel;
     [SerializeField] private ItemEventChannel itemPickupEventChannel;
 
-    public Inventory Inventory => inventory;
-    public Inventory HotbarInventory => hotbarInventory;
+    /*public Inventory MainInventory => mainInventory;
+    public Inventory HotbarInventory => hotbarInventory;*/
 
     private void Awake()
     {
@@ -22,16 +22,16 @@ public class InventoryHolder : MonoBehaviour
 
     public bool PickUp(ItemBase item)
     {
-        if (!item.isStackable) return hotbarInventory.TryAddToEmptySlot(item) || Inventory.TryAddToEmptySlot(item);
+        if (!item.isStackable) return hotbarInventory.TryAddToEmptySlot(item) || mainInventory.TryAddToEmptySlot(item);
         if (hotbarInventory.TryAddToStack(item)) return true;   
-        if (Inventory.TryAddToStack(item)) return true;
+        if (mainInventory.TryAddToStack(item)) return true;
 
-        return hotbarInventory.TryAddToEmptySlot(item) || Inventory.TryAddToEmptySlot(item);
+        return hotbarInventory.TryAddToEmptySlot(item) || mainInventory.TryAddToEmptySlot(item);
     }
 
     private void DropItemOnGround(ItemBase item)
     {
         var transform1 = transform;
-        Instantiate(item.itemPrefab, transform1.position + dropOffset, transform1.rotation);
+        Instantiate(item.dropItemPrefab, transform1.position + dropOffset, transform1.rotation);
     }
 }

@@ -24,6 +24,7 @@ public class InputManager : ScriptableObject
     public Action sprintStartAction = delegate { };
     public Action sprintCancelledAction = delegate { };
     public Action toggleUIAction = delegate { };
+    public Action attackAction = delegate { };
 
     //todo - set callbacks instead of manually subscribing
     private void OnEnable()
@@ -46,7 +47,7 @@ public class InputManager : ScriptableObject
         playerControls.Gameplay.Sprint.performed += OnSprint;
         playerControls.Gameplay.Sprint.canceled += OnSprint;
         playerControls.Gameplay.TestButton.started += i => Debug.Log("composite btn test");
-        //playerControls.Gameplay.Attack.performed += OnAttack;
+        playerControls.Gameplay.Attack.performed += OnAttack;
         playerControls.General.Hotbar.performed += OnHotbarInput;
         playerControls.General.ToggleUI.performed += OnToggleUI;
     }
@@ -61,16 +62,12 @@ public class InputManager : ScriptableObject
     {
         playerControls.Gameplay.Enable();
         mouseLookReference.action.Enable();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void EnableInterfaceActions()
     {
         playerControls.Gameplay.Disable();
         mouseLookReference.action.Disable();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     private void DisableAllActions()
@@ -92,12 +89,13 @@ public class InputManager : ScriptableObject
         jumpAction?.Invoke();
     }
 
-    private void OnAttack(InputAction.CallbackContext ctx) //this is just for testing atm
+    private void OnAttack(InputAction.CallbackContext ctx)
     {
         // attackInput = true;
-        if (playerManager.isInteracting) return;
+        /*if (playerManager.isInteracting) return;
         playerManager.PlayerAttack.AttackAction();
-        Debug.Log("attack");
+        Debug.Log("attack");*/
+        attackAction?.Invoke();
     }
 
     private void OnMove(InputAction.CallbackContext ctx) //called the frame wasd keys were pressed or released

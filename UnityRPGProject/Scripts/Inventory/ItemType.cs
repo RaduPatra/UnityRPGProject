@@ -1,9 +1,10 @@
 public enum ItemType
 {
-    Weapon,
+    Sword,
     Helm,
     Chest,
     Pants,
     Boots,
-    Shield
+    Shield,
+    Any
 }
