@@ -23,3 +23,6 @@ MonoBehaviour:
   meleeAttackDamage: 0
   defenceBonus: 10
   healthBonus: 5
+  statModifiers:
+  - type: 1
+    value: 10

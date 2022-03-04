@@ -3,31 +3,34 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    public int maxHealth;
-    private int currentHealth;
+    public float maxHealth;
+    private float currentHealth;
     private CharacterStats characterStats;
-    [SerializeField] private IntEventChannel onHealthChangeEventChannel;
-    [SerializeField] private IntEventChannel onMaxHealthChangeEventChannel;
+    [SerializeField] private FloatEventChannel onHealthChangeEventChannel;
+    [SerializeField] private FloatEventChannel onMaxHealthChangeEventChannel;
 
     private void Awake()
     {
         currentHealth = maxHealth;
         characterStats = GetComponentInParent<CharacterStats>();
+    }
 
+    private void Start()
+    {
         if (onHealthChangeEventChannel != null && onMaxHealthChangeEventChannel != null)
         {
-            onHealthChangeEventChannel.Raise(currentHealth);
             onMaxHealthChangeEventChannel.Raise(maxHealth);
+            onHealthChangeEventChannel.Raise(currentHealth);
         }
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         currentHealth = Math.Min(currentHealth + amount, maxHealth);
         Debug.Log("Heal , current health: " + currentHealth);
     }
 
-    public void Damage(int amount)
+    public void Damage(float amount)
     {
         amount = characterStats != null ? characterStats.CalculateDamageReduction(amount) : amount;
 

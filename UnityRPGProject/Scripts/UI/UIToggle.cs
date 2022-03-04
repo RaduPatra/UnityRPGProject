@@ -9,6 +9,23 @@ public class UIToggle : MonoBehaviour
     [SerializeField] private InputManager inputManager;
     private bool isInterfaceOn = false;
 
+    private void Awake()
+    {
+        AwakeInactive();
+    }
+
+    private void AwakeInactive()
+    {
+        foreach (var obj in objectsToToggle)
+        {
+            var statsUI = obj.GetComponent<StatsUI>();
+            if (statsUI != null)
+            {
+                statsUI.Setup();
+            }
+        }
+    }
+
     private void Start()
     {
         inputManager.toggleUIAction += Toggle;

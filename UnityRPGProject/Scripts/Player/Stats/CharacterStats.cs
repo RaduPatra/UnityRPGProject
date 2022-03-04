@@ -7,12 +7,14 @@ public class CharacterStats : MonoBehaviour
     private EquipmentManager equipmentManager;
     private Dictionary<InventorySlot, StatModifier> equipmentModifiers;
 
-    [SerializeField] private CharacterAttributes characterAttributes;
+    // [SerializeField] private CharacterAttributes characterAttributes;
     [SerializeField] private VoidEventChannel onStatsChangeEventChannel;
     [SerializeField] private StatModifierEventChannel onStatModifierChangeEventChannel;
-    public CharacterAttributes CharacterAttributes => characterAttributes;
+    // public CharacterAttributes CharacterAttributes => characterAttributes;
 
     private Dictionary<StatType, float> activeModifiers = new Dictionary<StatType, float>();
+
+    public Dictionary<StatType, float> ActiveModifiers => activeModifiers;
 
     private void Awake()
     {
@@ -53,13 +55,20 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public int CalculateDamageReduction(int amount)
+    public float CalculateDamageReduction(float amount)
+    {
+        var def = activeModifiers[StatType.Defence];
+        if (def == 0) return amount;
+        amount -= def / 2;
+        return amount;
+    }
+    
+    /*public int CalculateDamageReductionTest(int amount)
     {
         if (CharacterAttributes.characterDefence == 0) return amount;
         amount -= CharacterAttributes.characterDefence / 2;
         return amount;
-    }
-
+    }*/
     private void AddStatModifiers(EquipableItem item)
     {
         /*foreach (var modifier in item.statModifiers)
@@ -75,6 +84,8 @@ public class CharacterStats : MonoBehaviour
 
     private void AddItemStatsTest(InventorySlot slot)
     {
+        Debug.Log("add stats enable");
+
         if (CanChangeStats(slot) == false) return;
         var item = slot.TryGetEquipable();
         if (item == null) return;
@@ -99,7 +110,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    private void AddItemStats(InventorySlot slot)
+    /*private void AddItemStats(InventorySlot slot)
     {
         if (CanChangeStats(slot) == false) return;
         var item = slot.TryGetEquipable();
@@ -119,7 +130,7 @@ public class CharacterStats : MonoBehaviour
         characterAttributes.characterAttackDamage -= item.meleeAttackDamage;
         characterAttributes.characterDefence -= item.defenceBonus;
         onStatsChangeEventChannel.RaiseVoid();
-    }
+    }*/
 
     private bool CanChangeStats(InventorySlot slot)
     {

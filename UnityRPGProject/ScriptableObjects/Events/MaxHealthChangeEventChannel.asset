@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da80ac89074a63a9dd53ca17a1bdb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a4201f0bb204b3ea4636813b75c6b8e, type: 3}
   m_Name: MaxHealthChangeEventChannel
   m_EditorClassIdentifier: 

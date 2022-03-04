@@ -50,7 +50,7 @@ public class InventorySlotUI : MonoBehaviour, ISlot
 
     public void UpdateUISlot(InventorySlot slot)
     {
-        Debug.Log("updated slot " + transform.name + " --- " + slot.itemStack.item);
+        // Debug.Log("updated slot " + transform.name + " --- " + slot.itemStack.item);
         inventorySlot = slot;
         itemIcon.sprite = slot.itemStack.item ? slot.itemStack.item.itemIcon : null;
         itemIcon.gameObject.SetActive(itemIcon.sprite);

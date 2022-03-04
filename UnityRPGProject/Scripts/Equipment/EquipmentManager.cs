@@ -19,6 +19,11 @@ public class EquipmentManager : MonoBehaviour
     public Inventory mainInventory;
     public Action<EquipableItem, GameObject> OnEquipWeapon;
 
+    private void Awake()
+    {
+        Debug.Log("eq man awake");
+    }
+
     private void Start()
     {
         SetupSlotLocations();
@@ -33,16 +38,8 @@ public class EquipmentManager : MonoBehaviour
         {
             slot.Value.OnSlotChanged += EquipArmor;
             slot.Value.OnBeforeSlotChanged += UnequipArmor;
-            EquipArmor(slot.Value);
-        }
-
-        //equip actions
-        foreach (var stack in equipmentInventory.equippedWeaponItems)
-        {
-            if (stack.Value == null || stack.Value.item == null) continue;
-            var equipable = stack.Value.item as EquipableItem;
-            if (equipable is null) continue;
-            EquipItemOnCharacter(equipable);
+            // EquipArmor(slot.Value);
+            slot.Value.OnSlotChanged(slot.Value);
         }
 
         foreach (var slot in mainInventory.ItemList)
@@ -56,6 +53,19 @@ public class EquipmentManager : MonoBehaviour
             slot.OnSlotUnequip += UnequipWeaponOnDrop;
             FindStackParentSlot(slot);
         }
+        
+        //equip actions
+        Debug.Log("eq man start");
+
+        foreach (var stack in equipmentInventory.equippedWeaponItems)
+        {
+            if (stack.Value == null || stack.Value.item == null) continue;
+            var equipable = stack.Value.item as EquipableItem;
+            if (equipable is null) continue;
+            
+            EquipItemOnCharacter(equipable);
+            stack.Value.ParentSlot.OnSlotChanged(stack.Value.ParentSlot);
+        }   
     }
 
     private void FindStackParentSlot(InventorySlot slot)
@@ -130,11 +140,6 @@ public class EquipmentManager : MonoBehaviour
         oldSlot?.OnBeforeSlotChanged?.Invoke(oldSlot);
 
         //unequip if same item
-        if (equippedWeaponItems[item.itemType] != null)
-            Debug.Log(equippedWeaponItems[item.itemType].GetHashCode());
-        if (slot.itemStack != null)
-            Debug.Log(slot.itemStack.GetHashCode());
-
         if (slot.itemStack != null && equippedWeaponItems[item.itemType] != null &&
             equippedWeaponItems[item.itemType].id == slot.itemStack.id)
         {

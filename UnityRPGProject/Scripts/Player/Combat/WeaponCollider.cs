@@ -51,7 +51,8 @@ public class WeaponCollider : MonoBehaviour
         
         var damageable = other.collider.GetComponent<IDamageable>();
         // damageable?.Damage(playerAttack.CurrentWeapon.itemDamage);
-        damageable?.Damage(characterStats.CharacterAttributes.characterAttackDamage);
+        // damageable?.Damage(characterStats.CharacterAttributes.characterAttackDamage);
+        damageable?.Damage(characterStats.ActiveModifiers[StatType.AttackDamage]);
         
         var hitPoint = other.contacts[0].point;
         var hitNormal = other.contacts[0].normal;

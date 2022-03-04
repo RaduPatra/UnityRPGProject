@@ -14,27 +14,25 @@ public class UIStatInfo
 }
 public class StatsUI : MonoBehaviour
 {
-    [SerializeField] private CharacterAttributes characterAttributes;
-    [SerializeField] private TextMeshProUGUI attackStatText;
-    [SerializeField] private TextMeshProUGUI defenceStatText;
-    [SerializeField] private VoidEventChannel onStatsChangeEventChannel;
     [SerializeField] private StatModifierEventChannel onStatModifierChangeEventChannel;
     [SerializeField] private List<UIStatInfo> stats;
 
-    private void OnEnable()
+    private void Awake()
     {
-        onStatsChangeEventChannel.VoidListeners += UpdateStats;
+        Debug.Log("stats ui awake");
+        // onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
+    }
+
+    public void Setup()
+    {
+        Debug.Log("stats ui setup");
+
         onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
-        // UpdateStats();
     }
-    private void UpdateStats()
-    {
-        attackStatText.text = "Attack: " + characterAttributes.characterAttackDamage;
-        defenceStatText.text = "Defence: " + characterAttributes.characterDefence;
-    }
-    
     private void UpdateStatModifier(StatModifier statModifier)
     {
+        Debug.Log("stats ui update");
+
         var statInfo = stats.Find(x => x.statType == statModifier.type);
         statInfo.statText.text = statInfo.statName + " : " + statModifier.value;
     }

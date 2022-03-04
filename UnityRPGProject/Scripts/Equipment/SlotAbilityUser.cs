@@ -13,16 +13,17 @@ public class SlotAbilityUser : MonoBehaviour
     private InventoryHolder inventoryHolder;
     private EffectManager effectManager;
 
-    
-
     private void Awake()
     {
         equipmentManager = GetComponent<EquipmentManager>();
         inventoryHolder = GetComponent<InventoryHolder>();
         effectManager = GetComponent<EffectManager>();
-        
         itemUseEventChannel.Listeners += UseItem;
         inputManager.hotbarUseAction += HotbarUseStarted;
+    }
+
+    private void Start()
+    {
         // itemUnequipEventChannel.Listeners += UnequipTest;
     }
 

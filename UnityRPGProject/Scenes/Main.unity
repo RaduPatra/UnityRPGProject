@@ -1753,7 +1753,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137474230}
-  m_LocalRotation: {x: 0.2293131, y: 0.000000017199183, z: -0.000000004051972, w: 0.97335273}
+  m_LocalRotation: {x: 0.2293131, y: 0.000000016440154, z: -0.000000003873152, w: 0.97335273}
   m_LocalPosition: {x: 80.38, y: 9.335888, z: -146.49019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4319,8 +4319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dc9c76a22d4c56a75a19661fccc78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterAttributes: {fileID: 11400000, guid: c358fca7c03d91f49ba382bda95a6534, type: 2}
   onStatsChangeEventChannel: {fileID: 11400000, guid: e35135df344505a4ab2c2ecb17d1facc, type: 2}
+  onStatModifierChangeEventChannel: {fileID: 11400000, guid: fe4c1707e3f64bd4aa8f829bca2c20b5, type: 2}
 --- !u!114 &364343137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4389,8 +4389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  onHealthChangeEventChannel: {fileID: 11400000, guid: e1907112b26ca244b93c220532c8fa1e, type: 2}
-  onMaxHealthChangeEventChannel: {fileID: 11400000, guid: 47a53c8346d92b043b8c1b83c25a42de, type: 2}
+  onHealthChangeEventChannel: {fileID: 11400000, guid: dc8038333dd67c34f93bbf99580647c0, type: 2}
+  onMaxHealthChangeEventChannel: {fileID: 11400000, guid: ad5a3dca664f12b45b5c272b5ff4065f, type: 2}
 --- !u!114 &364343142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7627,7 +7627,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4555231, y: 1}
+    m_SensorSize: {x: 1.2539948, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7643,7 +7643,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493898028}
-  m_LocalRotation: {x: 0.21161735, y: 0.000000018986333, z: -0.00000000411094, w: 0.9773526}
+  m_LocalRotation: {x: 0.21161735, y: 0.000000019999945, z: -0.000000004330408, w: 0.9773526}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15757,10 +15757,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8456f242f27e4063a5ab955d789bf711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterAttributes: {fileID: 11400000, guid: c358fca7c03d91f49ba382bda95a6534, type: 2}
-  attackStatText: {fileID: 524798035}
-  defenceStatText: {fileID: 503481151}
-  onStatsChangeEventChannel: {fileID: 11400000, guid: e35135df344505a4ab2c2ecb17d1facc, type: 2}
+  onStatModifierChangeEventChannel: {fileID: 11400000, guid: fe4c1707e3f64bd4aa8f829bca2c20b5, type: 2}
+  stats:
+  - statType: 0
+    statName: Attack
+    statText: {fileID: 524798035}
+  - statType: 1
+    statName: Defence
+    statText: {fileID: 503481151}
 --- !u!1 &708235164
 GameObject:
   m_ObjectHideFlags: 0
@@ -16538,7 +16542,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4555231, y: 1}
+    m_SensorSize: {x: 1.2539948, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -23532,7 +23536,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4555231, y: 1}
+    m_SensorSize: {x: 1.2539948, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -23548,7 +23552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047210126}
-  m_LocalRotation: {x: 0.2293131, y: 0.000000009243561, z: -0.0000000021776996, w: 0.97335273}
+  m_LocalRotation: {x: 0.2293131, y: 0.000000007740161, z: -0.0000000018235123, w: 0.97335273}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -29928,7 +29932,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4555231, y: 1}
+    m_SensorSize: {x: 1.2539948, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -29944,7 +29948,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371655509}
-  m_LocalRotation: {x: 0.24697998, y: -0.000000032317136, z: 0.000000008236858, w: 0.9690206}
+  m_LocalRotation: {x: 0.24698001, y: 0.000000007219766, z: -0.0000000018401445, w: 0.9690206}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32644,8 +32648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced00e2de28f43e99325fba1a7ed3c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHealthChangeEventChannel: {fileID: 11400000, guid: e1907112b26ca244b93c220532c8fa1e, type: 2}
-  onMaxHealthChangeEventChannel: {fileID: 11400000, guid: 47a53c8346d92b043b8c1b83c25a42de, type: 2}
+  onHealthChangeEventChannel: {fileID: 11400000, guid: dc8038333dd67c34f93bbf99580647c0, type: 2}
+  onMaxHealthChangeEventChannel: {fileID: 11400000, guid: ad5a3dca664f12b45b5c272b5ff4065f, type: 2}
   healthStatText: {fileID: 1410910338}
   healthSlider: {fileID: 143785861}
 --- !u!1001 &1593710077
@@ -40081,9 +40085,6 @@ MonoBehaviour:
   equipmentInventory: {fileID: 11400000, guid: 22e099e828ab17e45a30e5b131c92a30, type: 2}
   itemDropEventChannel: {fileID: 11400000, guid: c7cf8f14886b74d48ba81fa71cc61617, type: 2}
   itemPickupEventChannel: {fileID: 11400000, guid: 66a58da46faf3eb4e902c511154835e6, type: 2}
-  equipmentChangedEventChannel: {fileID: 0}
-  unequipEventChannel: {fileID: 0}
-  itemUseEventChannel: {fileID: 0}
 --- !u!222 &8831037820450956404
 CanvasRenderer:
   m_ObjectHideFlags: 0
