@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.09
       objectReference: {fileID: 0}
+    - target: {fileID: 1446548912037117601, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}
+      propertyPath: particleAttribute
+      value: 
+      objectReference: {fileID: 11400000, guid: 3316c4af87eb60641862903383a1b2ca, type: 2}
     - target: {fileID: 6457490996117670435, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}
       propertyPath: m_RootOrder
       value: 0

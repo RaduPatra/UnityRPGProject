@@ -1,187 +1,151 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Security.AccessControl;
 using System.Text;
+using Microsoft.SqlServer.Server;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManager : SerializedMonoBehaviour
 {
-    [SerializeField] private Transform equipWeaponLocation;
-    [SerializeField] private Transform equipHelmLocation;
-    [SerializeField] private Transform equipChestLocation;
-    [SerializeField] private Transform equipPantsLocation;
-    [SerializeField] private Transform equipBootsLocation;
-    [SerializeField] private Transform equipShieldLocation;
+    [SerializeField]
+    public readonly Dictionary<ItemCategory, Transform> equipmentLocations = new Dictionary<ItemCategory, Transform>();
 
-    private readonly Dictionary<ItemType, Transform> equipmentLocations = new Dictionary<ItemType, Transform>();
     public EquipmentInventory equipmentInventory;
     public Inventory hotbarInventory;
     public Inventory mainInventory;
-    public Action<EquipableItem, GameObject> OnEquipWeapon;
 
-    private void Awake()
-    {
-        Debug.Log("eq man awake");
-    }
+    [NonSerialized] public Action<ItemWithAttributes, GameObject> OnEquipWeapon;
+    [NonSerialized] public Action<ItemCategory> OnUnequipWeapon;
+    [NonSerialized] public Action<ItemWithAttributes> OnEquipItem;
+    [NonSerialized] public Action<ItemWithAttributes> OnUnequipItem;
 
     private void Start()
     {
-        SetupSlotLocations();
+        Debug.Log("eq man start");
         InitSlots();
     }
 
     private void InitSlots()
     {
         //setup slot events/equip
-        //todo - ? move equip/unequip event in inventory instead of slot? (no need for many to one)
         foreach (var slot in equipmentInventory.equipmentArmorSlots)
         {
-            slot.Value.OnSlotChanged += EquipArmor;
-            slot.Value.OnBeforeSlotChanged += UnequipArmor;
-            // EquipArmor(slot.Value);
-            slot.Value.OnSlotChanged(slot.Value);
+            slot.Value.OnSlotAdd += EquipItem;
+            slot.Value.OnSlotRemove += UnequipItem;
+            EquipItem(slot.Value.itemStack);
         }
 
         foreach (var slot in mainInventory.ItemList)
         {
-            slot.OnSlotUnequip += UnequipWeaponOnDrop;
             FindStackParentSlot(slot);
         }
 
         foreach (var slot in hotbarInventory.ItemList)
         {
-            slot.OnSlotUnequip += UnequipWeaponOnDrop;
             FindStackParentSlot(slot);
         }
-        
-        //equip actions
-        Debug.Log("eq man start");
-
-        foreach (var stack in equipmentInventory.equippedWeaponItems)
-        {
-            if (stack.Value == null || stack.Value.item == null) continue;
-            var equipable = stack.Value.item as EquipableItem;
-            if (equipable is null) continue;
-            
-            EquipItemOnCharacter(equipable);
-            stack.Value.ParentSlot.OnSlotChanged(stack.Value.ParentSlot);
-        }   
     }
 
-    private void FindStackParentSlot(InventorySlot slot)
+    private void FindStackParentSlot(InventorySlot slot) //cleanup
     {
-        var item = slot.TryGetEquipable();
+        var item = slot.GetItem();
         if (item == null) return;
-
-        if (!equipmentInventory.equippedWeaponItems.TryGetValue(item.itemType, out var stack)) return;
+        var stack = GetEquippedItemInfo(item, equipmentInventory.equippedWeaponItems, out var equippedCategory);
         if (stack == null) return;
-        if (slot.itemStack.id == stack.id)
-            equipmentInventory.equippedWeaponItems[item.itemType].ParentSlot = slot;
+
+        if (slot.itemStack.id != stack.id) return;
+        /*-> we have to reassign the reference for it to update when swapping
+         https://forum.unity.com/threads/losing-reference-when-hitting-play-not-a-use-serializefield-to-fix.690829/*/
+        equipmentInventory.equippedWeaponItems[equippedCategory] = slot.itemStack;
+        EquipItem(stack);
     }
 
-    private void SetupSlotLocations()
+
+    public AttributeBaseSO equipPrefabAttr;
+
+    private GameObject EquipItemOnCharacter(ItemWithAttributes item)
     {
-        equipmentLocations.Add(ItemType.Helm, equipHelmLocation);
-        equipmentLocations.Add(ItemType.Chest, equipChestLocation);
-        equipmentLocations.Add(ItemType.Pants, equipPantsLocation);
-        equipmentLocations.Add(ItemType.Boots, equipBootsLocation);
-        equipmentLocations.Add(ItemType.Sword, equipWeaponLocation);
-        equipmentLocations.Add(ItemType.Shield, equipShieldLocation);
+        var equipLocation = GetEquippedItemInfo(item, equipmentLocations, out var equippedCategory);
+        var attr = item.GetAttribute<GameObjectData>(equipPrefabAttr);
+        if (attr == null) return null;
+        var equipper = equipLocation.GetComponent<IEquipper>();
+        return equipper?.Equip(attr.value);
     }
 
-    private void EquipItemOnCharacter(EquipableItem item)
-    {
-        if (!equipmentInventory.equipmentArmorSlots.ContainsKey(item.itemType) &&
-            !equipmentInventory.equippedWeaponItems.ContainsKey(item.itemType)) return;
-        var equipLocation = equipmentLocations[item.itemType];
-        var weaponGO = Instantiate(item.equipItemPrefab, equipLocation);
-
-        OnEquipWeapon?.Invoke(item, weaponGO);
-    }
-
-    private void UnequipItemOnCharacter(ItemType itemType)
+    private void UnequipItemOnCharacter(ItemCategory itemType)
     {
         if (!equipmentLocations.ContainsKey(itemType)) return;
         var equipLocation = equipmentLocations[itemType];
-        if (equipLocation.childCount != 0)
-        {
-            Destroy(equipLocation.GetChild(0).gameObject);
-        }
+        var equipper = equipLocation.GetComponent<IEquipper>();
+        equipper?.Unequip();
     }
 
-    private void UnequipArmor(InventorySlot slot) //onbeforechange
+    public void UnequipItem(ItemStack stack) //onbeforechange
     {
-        if (CanChangeArmor(slot) == false) return;
-        var item = slot.TryGetEquipable();
+        Debug.Log("UnequipArmor");
+        var item = stack.item;
         if (item == null) return;
-        UnequipItemOnCharacter(item.itemType);
+        var equippedCategory = FindEquippedCategory(item, equipmentLocations);
+        UnequipItemOnCharacter(equippedCategory);
+        OnUnequipItem?.Invoke(item);
+
+        var equipItemAction = item.GetAttribute<EquipActionData>(equipActionAttr)?.value;
+        if (equipItemAction)
+            equipItemAction.ExecuteOnUnequip(item, gameObject);
     }
 
-    private void EquipArmor(InventorySlot slot) //onafterchange
+    public void RemoveWeapon(ItemStack stack) //onbeforechange
     {
-        if (CanChangeArmor(slot) == false) return;
-        var item = slot.TryGetEquipable();
+        var item = stack.item;
+        var equippedWeapons = equipmentInventory.equippedWeaponItems;
+        var equippedCategory =
+            FindEquippedCategory(item, equippedWeapons);
+
+        equippedWeapons[equippedCategory] = new ItemStack();
+    }
+
+
+    public AttributeBaseSO equipActionAttr;
+
+    public void EquipItem(ItemStack stack) //onafterchange
+    {
+        // Debug.Log("EquipArmor");
+        var item = stack.item;
         if (item == null) return;
-        EquipItemOnCharacter(item);
+        var equippedGO = EquipItemOnCharacter(item);
+        OnEquipItem?.Invoke(item);
+
+        var attr = item.GetAttribute<EquipActionData>(equipActionAttr);
+        // attr?.value.Equip(item, gameObject);
+        if (equippedGO) attr?.value.ExecuteOnEquip(item, gameObject, equippedGO);
     }
 
-    public void ToggleWeaponAction(InventorySlot slot)
+    public ItemCategory FindEquippedCategory<T>(ItemWithAttributes item,
+        IDictionary<ItemCategory, T> inventory)
     {
-        if (CanToggleSlot(slot) == false) return;
-        var item = slot.TryGetEquipable();
-        if (item == null) return;
-        var equippedWeaponItems = equipmentInventory.equippedWeaponItems;
-        UnequipItemOnCharacter(item.itemType);
-
-        var oldSlot = equippedWeaponItems[item.itemType]?.ParentSlot;
-        if (oldSlot != null)
-            oldSlot.IsEquipped = false;
-
-        oldSlot?.OnBeforeSlotChanged?.Invoke(oldSlot);
-
-        //unequip if same item
-        if (slot.itemStack != null && equippedWeaponItems[item.itemType] != null &&
-            equippedWeaponItems[item.itemType].id == slot.itemStack.id)
-        {
-            equippedWeaponItems[item.itemType] = null;
-            slot.IsEquipped = false;
-            return;
-        }
-
-        equippedWeaponItems[item.itemType] = slot.itemStack;
-        slot.IsEquipped = true;
-        EquipItemOnCharacter(item);
-        slot.OnSlotChanged(slot);
+        var categories = item.GetCategoryAncestors();
+        return categories.FirstOrDefault(inventory.ContainsKey);
     }
 
-    private void UnequipWeaponOnDrop(ItemType itemType)
+    public T GetEquippedItemInfo<T>(ItemWithAttributes item,
+        IDictionary<ItemCategory, T> inventory, out ItemCategory cat)
     {
-        UnequipItemOnCharacter(itemType);
-        equipmentInventory.equippedWeaponItems[itemType] = null;
+        cat = FindEquippedCategory(item, inventory);
+        if (cat == null) return default;
+
+        inventory.TryGetValue(cat, out var value);
+        return value;
     }
 
-    private bool CanChangeArmor(InventorySlot slot)
+    public Transform GetEquippedItemLocation(ItemWithAttributes item)
     {
-        var item = slot.TryGetEquipable();
-        if (item == null) return false;
-        if (!equipmentInventory.equipmentArmorSlots.ContainsKey(item.itemType)) return false;
-        return equipmentInventory.equipmentArmorSlots[item.itemType] == slot;
-    }
-
-    private bool CanToggleSlot(InventorySlot slot)
-    {
-        var item = slot.TryGetEquipable();
-        if (item == null) return false;
-        var equippedWeaponItems = equipmentInventory.equippedWeaponItems;
-        return equippedWeaponItems.ContainsKey(item.itemType);
-    }
-
-    public void EquipArmorAction(InventorySlot slot)
-    {
-        var item = slot.TryGetEquipable();
-        if (item == null) return;
-        if (!equipmentInventory.equipmentArmorSlots.ContainsKey(item.itemType)) return;
-        var oldSlot = equipmentInventory.equipmentArmorSlots[item.itemType];
-        slot.SwapContentsWith(oldSlot);
+        var equippedCategory = FindEquippedCategory(item, equipmentLocations);
+        if (!equippedCategory) return null;
+        // var equipLocation = equipmentLocations[equippedCategory];
+        return !equipmentLocations.TryGetValue(equippedCategory, out var equipLocation) ? null : equipLocation;
     }
 }

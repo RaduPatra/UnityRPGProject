@@ -22,6 +22,22 @@
                     "interactions": ""
                 },
                 {
+                    "name": "SpecialAttack",
+                    "type": "Button",
+                    "id": "911b26c5-788f-44f6-92e5-634da40f8399",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "b6df7d53-64f2-478d-85eb-d83523aa6f1f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "8084a81b-5479-47d1-87c0-b1eb279bac54",
@@ -216,12 +232,34 @@
                 },
                 {
                     "name": "",
+                    "id": "bce09997-9a4f-47c0-a7f7-8fb61c398eb1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Hold(duration=0.7,pressPoint=0.2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "48ca5262-6e36-4d08-92af-f9f37a43102d",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f437224-7532-4d71-80ea-a7d7666942bc",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

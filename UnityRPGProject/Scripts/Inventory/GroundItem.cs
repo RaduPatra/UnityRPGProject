@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GroundItem : MonoBehaviour, IInteractable
 {
-    public ItemBase item;
+    public ItemWithAttributes item;
 
     public void Interact(Interactor interactor)
     {

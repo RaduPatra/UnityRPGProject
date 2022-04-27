@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
@@ -16,37 +17,18 @@ public enum SlotType
 [Serializable]
 public class InventorySlot
 {
-    [NonSerialized] public Action OnEquipActionChange;
     [NonSerialized] public Action<InventorySlot> OnSlotChanged;
-    [NonSerialized] public Action<InventorySlot> OnBeforeSlotChanged;
-    [NonSerialized] public Action<ItemType> OnSlotUnequip;
+    [NonSerialized] public Action<ItemStack> OnSlotRemove;
+    [NonSerialized] public Action<ItemStack> OnSlotAdd;
+    public string id = Guid.NewGuid().ToString();
 
     public ItemStack itemStack;
-    public ItemType slotType;
-    public int slotIndex;
-
-    private bool isEquipped;
-    public bool IsEquipped
-    {
-        get => isEquipped;
-        set
-        {
-            isEquipped = value;
-            OnEquipActionChange?.Invoke();
-        }
-    }
+    // public int slotIndex;
+    public ItemCategory slotCategory;
 
     public InventorySlot Clone()
     {
         return MemberwiseClone() as InventorySlot;
-    }
-
-    public void ResetSlot()
-    {
-        OnBeforeSlotChanged?.Invoke(this);
-        itemStack = new ItemStack();
-        IsEquipped = false;
-        OnSlotChanged?.Invoke(this);
     }
 
     public void DecreaseQuantity() //?move to itemstack
@@ -58,42 +40,68 @@ public class InventorySlot
         }
         else
         {
-            ResetSlot();
+            RemoveItem();
         }
     }
 
-    public void AssignItem(ItemStack item)
+    public ItemWithAttributes GetItem()
     {
-        itemStack = item;
+        return itemStack.item;
+    }
+
+    // this = drop slot(destination), slot = dragged slot(source)
+    public void NewSwapTest(InventorySlot slot)
+    {
+        if (!(CanAcceptTest(slot.itemStack.item) && slot.CanAcceptTest(itemStack.item)))
+        {
+            Debug.Log("failed");
+            return;
+        }
+
+
+        if (slotCategory == slot.slotCategory)
+        {
+            (itemStack, slot.itemStack) = (slot.itemStack, itemStack);
+            (itemStack.ParentSlot, slot.itemStack.ParentSlot) =
+                (slot.itemStack.ParentSlot, itemStack.ParentSlot);
+            OnSlotChanged?.Invoke(this);
+            slot.OnSlotChanged?.Invoke(slot);
+        }
+        else
+        {
+            var removedDestinationStack = itemStack.Clone();
+            var removedSourceStack = slot.itemStack.Clone();
+            RemoveItem();
+            slot.RemoveItem();
+            
+            AddItem(removedSourceStack);
+            slot.AddItem(removedDestinationStack);
+        }
+    }
+
+    public void RemoveItem()
+    {
+        Debug.Log("remove");
+
+        OnSlotRemove?.Invoke(itemStack);
+        itemStack.ResetStack();
+        // itemStack = new ItemStack();
+        OnSlotChanged?.Invoke(this);
+    }
+
+    public void AddItem(ItemStack stack)
+    {
+        Debug.Log("add");
+
+        OnSlotAdd?.Invoke(stack);
+        itemStack = stack;
         itemStack.ParentSlot = this;
         OnSlotChanged?.Invoke(this);
     }
 
-    public void SwapContentsWith(InventorySlot slot)
+    public bool CanAcceptTest(ItemWithAttributes item)
     {
-        if (!(CanAcceptItem(slot.itemStack.item) && slot.CanAcceptItem(itemStack.item))) return;
-        OnBeforeSlotChanged?.Invoke(this);
-        slot.OnBeforeSlotChanged?.Invoke(slot);
-
-        (itemStack.ParentSlot, slot.itemStack.ParentSlot) =
-            (slot.itemStack.ParentSlot, itemStack.ParentSlot);
-        (itemStack, slot.itemStack) = (slot.itemStack, itemStack);
-        (IsEquipped, slot.IsEquipped) = (slot.IsEquipped, IsEquipped);
-
-        OnSlotChanged?.Invoke(this);
-        slot.OnSlotChanged?.Invoke(slot);
+        return item == null || item.HasCategory(slotCategory);
     }
-
-    public bool CanAcceptItem(ItemBase item)
-    {
-        if (slotType == ItemType.Any || item == null) return true;
-        var eqItem = item as EquipableItem;
-        return eqItem != null && eqItem.itemType == slotType;
-    }
-
-    public EquipableItem TryGetEquipable()
-    {
-        var equipable = itemStack.item as EquipableItem;
-        return equipable;
-    }
+    
 }

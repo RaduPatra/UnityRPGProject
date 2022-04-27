@@ -12,144 +12,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fc8b06968f46c1b9a2956ee445a504, type: 3}
   m_Name: TestInventory
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   itemList:
-  - itemStack:
+  - id: cd028f4a-9502-4846-af9c-be5ea165187e
+    itemStack:
+      item: {fileID: 11400000, guid: 7a910451f6d628949ae877008858b675, type: 2}
+      quantity: 3
+      id: 67c18963-c0da-49e2-be2a-6bf68c0d4bce
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: d4b05a95-d8f0-404a-8774-0f3366bd4c9e
+    itemStack:
+      item: {fileID: 11400000, guid: 7a910451f6d628949ae877008858b675, type: 2}
+      quantity: 1
+      id: 25124a39-c992-4cb5-bc7c-d2b31bc9b1e8
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 8976bc9c-526d-48bd-942c-5361727e15e5
+    itemStack:
+      item: {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+      quantity: 1
+      id: 31adb791-adb7-4209-a0a4-ca766a358d1e
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 34642b85-51bc-410a-8a30-8ac7fa2eff63
+    itemStack:
       item: {fileID: 0}
       quantity: 0
-      id: d4721e2e-aed4-4fda-beff-0a31ff6ee7af
-    slotType: 6
-    slotIndex: 0
-    isEquipped: 0
-  - itemStack:
+      id: f028d891-7a2b-4943-85c9-3ecb43d4daca
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 7ca2565a-287c-4565-a9ee-fb36acd04abc
+    itemStack:
+      item: {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+      quantity: 1
+      id: 84c4a6e3-0846-4cdf-bae3-c25b542582eb
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: c8f7b683-3741-470e-9f7f-35f4d8a2bbfc
+    itemStack:
+      item: {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+      quantity: 1
+      id: fbc89d37-ba02-4f01-b424-e7843efa5dbd
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: b7085b14-ff26-4d85-827a-d1339376d14f
+    itemStack:
       item: {fileID: 0}
       quantity: 0
-      id: f958ec0b-8c3c-4573-ab46-2bfb74300c62
-    slotType: 6
-    slotIndex: 1
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 4ebda8ba-4b33-42a3-bf48-b1384bae9ad5
-    slotType: 6
-    slotIndex: 2
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 96afe7a9-a893-4dde-990b-371ede369abe
-    slotType: 6
-    slotIndex: 3
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 6d26ec48-80c1-49f4-ae61-032251d6747a
-    slotType: 6
-    slotIndex: 4
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: e3f2265a-8bc1-4636-bf25-2d2d03af523f
-    slotType: 6
-    slotIndex: 5
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 2ee1b2d1-c4b9-421a-b06b-b2438fbc1043
-    slotType: 6
-    slotIndex: 6
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: c694fcaf-ba4a-4205-99d7-8dc9a2c8ecb4
-    slotType: 6
-    slotIndex: 7
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: a3cd9c77-a8cb-4493-aa68-0f87613765a8
-    slotType: 6
-    slotIndex: 8
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 625c953d-99d6-4415-98e1-b21d6b8ae660
-    slotType: 6
-    slotIndex: 9
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: b78b3a90-5486-44af-ab32-f048dffdec5d
-    slotType: 6
-    slotIndex: 10
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 8d3819c8-f541-454f-a26a-190c89d7d464
-    slotType: 6
-    slotIndex: 11
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 282cf1f8-8864-4dea-85e0-05a1ec0ebbb5
-    slotType: 6
-    slotIndex: 12
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: c533b140-d68e-4d87-8c40-4b943f44f12c
-    slotType: 6
-    slotIndex: 13
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 7a5028ae-1803-4c61-9a0c-5e0209c532a9
-    slotType: 6
-    slotIndex: 14
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: d2c2c75d-eb78-4597-843c-9e6b43382ce6
-    slotType: 6
-    slotIndex: 15
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 01aa2b85-9534-49df-b684-01decdf7adf3
-    slotType: 6
-    slotIndex: 16
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: c25252f7-c274-4fac-b120-b1fabf5db5bc
-    slotType: 6
-    slotIndex: 17
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: a12ff6c4-51ec-45d5-85f9-87d4bb31c6f1
-    slotType: 6
-    slotIndex: 18
-    isEquipped: 0
-  - itemStack:
+      id: 89178a73-2e85-4119-b033-3f481e03b76c
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 5ce657a7-e463-427f-ac42-53db1f3fa11b
+    itemStack:
+      item: {fileID: 11400000, guid: eba3a501043522d4dbfc5e474cf76f4a, type: 2}
+      quantity: 1
+      id: e141cfa9-dfb1-4a69-8578-701284e7b7c9
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 28c65e5d-b16b-4f5b-ad6a-14418944993d
+    itemStack:
       item: {fileID: 0}
       quantity: 0
       id: 47308625-f69d-4f7b-a398-b9a287ed112e
-    slotType: 6
-    slotIndex: 19
-    isEquipped: 0
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: ab54a729-69e2-4f72-9d91-cd8b104c3ebf
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: a12ff6c4-51ec-45d5-85f9-87d4bb31c6f1
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: df213208-9312-4f36-963f-8f213a786c55
+    itemStack:
+      item: {fileID: 11400000, guid: 5573b6390b124aa438011b1052770555, type: 2}
+      quantity: 0
+      id: e934471a-c2ba-4cf4-b581-5fd0839ace14
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: a53b21ef-5918-40d5-a918-ca4623122168
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: 81ccdc84-e6c3-47f5-b898-779c66b5ad9b
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: c5210064-5fbc-4c6d-9785-a15c43f47f91
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: 7cfbee54-05b7-48c4-9835-056fe920e65c
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 9e504e9f-b4f5-4f01-9639-90888c0ad3fd
+    itemStack:
+      item: {fileID: 11400000, guid: 5573b6390b124aa438011b1052770555, type: 2}
+      quantity: 1
+      id: e3e571c0-19c0-4f56-bdcd-af747d70986f
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 440071db-596c-4b9d-875a-7a51d37fce15
+    itemStack:
+      item: {fileID: 11400000, guid: fc1ef20e14f5e724abbec4838d791c68, type: 2}
+      quantity: 0
+      id: c533b140-d68e-4d87-8c40-4b943f44f12c
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: b668eaa9-990b-46e5-95a6-ec59f42555c0
+    itemStack:
+      item: {fileID: 11400000, guid: eba3a501043522d4dbfc5e474cf76f4a, type: 2}
+      quantity: 1
+      id: afb00c45-f8ae-4ea1-802b-1750b3423ec3
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 4f3e28bc-bb0c-4372-b161-7ea765a9330e
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: 38a145ad-6321-46e2-90fa-c7bd27d871d9
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: b8c0c2a4-b534-4d9b-9fc5-dc77752a9c05
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: 9f3a5b29-081f-4a84-b523-d1f95b74a926
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: c28e0409-f256-4d49-9c8e-db5b7774dbb7
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: 7a5028ae-1803-4c61-9a0c-5e0209c532a9
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 47cc2a48-3558-4ffd-8969-d3bf5b717dbf
+    itemStack:
+      item: {fileID: 0}
+      quantity: 0
+      id: 838174f2-923c-4238-8b07-e46bdfa18171
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  inventoryCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}

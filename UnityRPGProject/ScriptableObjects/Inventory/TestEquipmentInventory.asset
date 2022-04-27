@@ -16,10 +16,13 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 6bb1009deaf04eb419dff213af1841f6, type: 2}
-    - {fileID: 11400000, guid: 5114d6f666bd21848b1b5730babaab9c, type: 2}
-    - {fileID: 11400000, guid: 87364665af2375e42afd420725c52169, type: 2}
-    - {fileID: 11400000, guid: 67c3999000ac7a842a6d317a4adccfd7, type: 2}
+    - {fileID: 11400000, guid: f8aed848f02b78e4c87b74087475b570, type: 2}
+    - {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+    - {fileID: 11400000, guid: 4783761c9dfb31c4b89691f4446fb109, type: 2}
+    - {fileID: 11400000, guid: aa84ccfbea484ad44ac0b7af08f05664, type: 2}
+    - {fileID: 11400000, guid: 5797dbf29df95fb4a882fd356a74cfd6, type: 2}
+    - {fileID: 11400000, guid: ecc15c08461097842919ae2b383f9b6f, type: 2}
+    - {fileID: 11400000, guid: 49f4f3d33f819764c9a01e3f106afb5b, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,18 +30,12 @@ MonoBehaviour:
     SerializationNodes:
     - Name: equipmentArmorSlots
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[ItemType, Assembly-CSharp],[InventorySlot,
+      Data: 0|System.Collections.Generic.Dictionary`2[[ItemCategory, Assembly-CSharp],[InventorySlot,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[ItemType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[ItemCategory,
+        Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -49,35 +46,32 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
-      Entry: 3
-      Data: 1
+      Entry: 10
+      Data: 0
     - Name: $v
       Entry: 7
       Data: 2|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 6
+      Data: 
     - Name: itemStack
       Entry: 7
       Data: 3|ItemStack, Assembly-CSharp
     - Name: item
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: quantity
       Entry: 3
       Data: 1
     - Name: id
       Entry: 1
-      Data: 7554643b-8dfd-4723-89a2-77b1098cb16e
+      Data: 23a52253-4132-4c0c-81e7-e553dcf019eb
     - Name: 
       Entry: 8
       Data: 
-    - Name: slotType
-      Entry: 3
-      Data: 1
-    - Name: slotIndex
-      Entry: 3
+    - Name: slotCategory
+      Entry: 10
       Data: 0
-    - Name: isEquipped
-      Entry: 5
-      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -88,35 +82,32 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
-      Entry: 3
+      Entry: 10
       Data: 2
     - Name: $v
       Entry: 7
       Data: 4|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 6
+      Data: 
     - Name: itemStack
       Entry: 7
       Data: 5|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: quantity
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: id
       Entry: 1
-      Data: 86cd1553-716f-455f-a82b-3bbced4e71b3
+      Data: d739e77a-879e-4173-b1fc-9cda82b72af6
     - Name: 
       Entry: 8
       Data: 
-    - Name: slotType
-      Entry: 3
+    - Name: slotCategory
+      Entry: 10
       Data: 2
-    - Name: slotIndex
-      Entry: 3
-      Data: 0
-    - Name: isEquipped
-      Entry: 5
-      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -127,35 +118,32 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
-      Entry: 3
+      Entry: 10
       Data: 3
     - Name: $v
       Entry: 7
       Data: 6|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 6
+      Data: 
     - Name: itemStack
       Entry: 7
       Data: 7|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: quantity
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: id
       Entry: 1
-      Data: 2abda50a-d85e-4d9a-a61a-498f3b6c7b13
+      Data: 340f8584-6e09-4210-ba89-1696b5fd27cc
     - Name: 
       Entry: 8
       Data: 
-    - Name: slotType
-      Entry: 3
+    - Name: slotCategory
+      Entry: 10
       Data: 3
-    - Name: slotIndex
-      Entry: 3
-      Data: 0
-    - Name: isEquipped
-      Entry: 5
-      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -166,35 +154,32 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
-      Entry: 3
+      Entry: 10
       Data: 4
     - Name: $v
       Entry: 7
       Data: 8|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 6
+      Data: 
     - Name: itemStack
       Entry: 7
       Data: 9|ItemStack, Assembly-CSharp
     - Name: item
-      Entry: 10
-      Data: 3
+      Entry: 6
+      Data: 
     - Name: quantity
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: id
       Entry: 1
-      Data: 0f8b3f59-d0c8-4a0c-90c4-8c76428fbde3
+      Data: 8f3ee748-2f23-4e67-964e-38989f3d2f07
     - Name: 
       Entry: 8
       Data: 
-    - Name: slotType
-      Entry: 3
+    - Name: slotCategory
+      Entry: 10
       Data: 4
-    - Name: slotIndex
-      Entry: 3
-      Data: 0
-    - Name: isEquipped
-      Entry: 5
-      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -209,21 +194,11 @@ MonoBehaviour:
       Data: 
     - Name: equippedWeaponItems
       Entry: 7
-      Data: 10|System.Collections.Generic.Dictionary`2[[ItemType, Assembly-CSharp],[ItemStack,
+      Data: 10|System.Collections.Generic.Dictionary`2[[ItemCategory, Assembly-CSharp],[ItemStack,
         Assembly-CSharp]], mscorlib
     - Name: comparer
-      Entry: 7
-      Data: 11|System.Collections.Generic.EnumEqualityComparer`1[[ItemType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+      Entry: 9
+      Data: 1
     - Name: 
       Entry: 12
       Data: 2
@@ -231,10 +206,22 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
+      Entry: 10
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 11|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: quantity
       Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 6
+    - Name: id
+      Entry: 1
+      Data: 8fe54200-f2d7-4858-9a7d-2119702953cc
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
@@ -243,14 +230,46 @@ MonoBehaviour:
       Entry: 7
       Data: 
     - Name: $k
-      Entry: 3
-      Data: 5
+      Entry: 10
+      Data: 6
     - Name: $v
+      Entry: 7
+      Data: 12|ItemStack, Assembly-CSharp
+    - Name: item
       Entry: 6
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 85564efe-440d-4b49-81c2-f61b89b64abc
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: equippedWeaponsTest
+      Entry: 7
+      Data: 13|System.Collections.Generic.Dictionary`2[[ItemCategory, Assembly-CSharp],[EquippedInfo,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 14|System.Collections.Generic.ObjectEqualityComparer`1[[ItemCategory,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
     - Name: 
       Entry: 13
       Data: 

@@ -8,5 +8,5 @@ public interface ISlot : IPointerClickHandler
 
     // public void SwapWith(ISlot slot);
 
-    public bool CanAcceptSlot(InventorySlot slot);
+    // public bool CanAcceptSlot(InventorySlot slot);
 }

@@ -4,27 +4,38 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
-public class WeaponCollider : MonoBehaviour
+public interface IDamageCollider
 {
-    private Collider damageCollider;
-    private PlayerAttack playerAttack;
-    private CharacterStats characterStats;
-    private EquipmentManagerOld equipmentManagerOld;
+    public void EnableCollider();
+    public void DisableCollider();
+    public void Initialize(ItemWithAttributes item);
+}
 
-    public Transform testTransform;
+
+public class WeaponCollider : MonoBehaviour, IDamageCollider
+{
+    [SerializeField] private AttributeBaseSO particleAttribute;
+    [SerializeField] private LayerMask layerToIgnore;
+    private CharacterStats characterStats;
+    private ItemWithAttributes weaponItem;
+    private Collider damageCollider;
 
     private void Awake()
     {
         damageCollider = GetComponent<BoxCollider>();
-        playerAttack = GetComponentInParent<PlayerAttack>();
         characterStats = GetComponentInParent<CharacterStats>();
         Debug.Log("coll onenable");
+    }
+
+    public void Initialize(ItemWithAttributes weaponItem)
+    {
+        this.weaponItem = weaponItem;
     }
 
     public void EnableCollider()
     {
         damageCollider.enabled = true;
-        isFirstCollision = true;
+        hasCollided = false;
         Debug.Log("enable collider");
     }
 
@@ -40,23 +51,53 @@ public class WeaponCollider : MonoBehaviour
         damageable?.Damage(currentWeapon.itemDamage);
     }*/
 
-    private bool isFirstCollision = true;
+    [SerializeField]
+    private bool hasCollided;
 
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log(other);
 
-        if (!isFirstCollision) return;
-        isFirstCollision = false;
-        
+        //prevent damaging yourself
+        var stats = other.gameObject.GetComponent<CharacterStats>();
+        if (stats == characterStats) return;
+        if (hasCollided) return;
+        hasCollided = true;
+        // if (other.gameObject.layer != LayerMask.NameToLayer("Ground")) return;
+
         var damageable = other.collider.GetComponent<IDamageable>();
-        // damageable?.Damage(playerAttack.CurrentWeapon.itemDamage);
-        // damageable?.Damage(characterStats.CharacterAttributes.characterAttackDamage);
-        damageable?.Damage(characterStats.ActiveModifiers[StatType.AttackDamage]);
-        
+        var shieldCollider = other.collider.GetComponent<ShieldCollider>();
+        var attackDamage = characterStats.ActiveModifiers[StatType.AttackDamage];
+
+        if (shieldCollider)
+        {
+            var shieldDamageReduction = shieldCollider.DamageReduction;
+            attackDamage = shieldCollider.ApplyShieldReduction(attackDamage);
+            var shieldUser = shieldCollider.gameObject.GetComponentInParent<IDamageable>();
+            shieldUser?.Damage(attackDamage);
+            Debug.Log("Hit Shield " + shieldUser);
+
+        }
+        else if (damageable != null)
+        {
+            Debug.Log("Hit Character " + damageable);
+            damageable.Damage(attackDamage);
+        }
+
         var hitPoint = other.contacts[0].point;
         var hitNormal = other.contacts[0].normal;
-        var ps = Instantiate(playerAttack.CurrentWeapon.impactParticle, hitPoint + hitNormal / 7, Quaternion.identity);
-        ps.Play();
+
+        if (!weaponItem) return;
+        var impactParticle = weaponItem.GetAttribute<ParticleAttributeData>(particleAttribute)?.value;
+        if (impactParticle != null)
+        {
+            var ps = Instantiate(impactParticle, hitPoint + hitNormal / 7, Quaternion.identity);
+            ps.Play();
+        }
+    }
+
+    private static float ApplyShieldReduction(float attackDamage, float shieldDamageReduction)
+    {
+        return Math.Max(0, attackDamage - attackDamage * shieldDamageReduction);
     }
 }

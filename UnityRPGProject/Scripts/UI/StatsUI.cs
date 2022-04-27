@@ -12,6 +12,7 @@ public class UIStatInfo
     public string statName;
     public TextMeshProUGUI statText;
 }
+
 public class StatsUI : MonoBehaviour
 {
     [SerializeField] private StatModifierEventChannel onStatModifierChangeEventChannel;
@@ -20,19 +21,31 @@ public class StatsUI : MonoBehaviour
     private void Awake()
     {
         Debug.Log("stats ui awake");
+        // foreach (var stat in stats)
+        // {
+        //     stat.statText.text = stat.statName + " : " + "0";
+        // }
         // onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
+    }
+
+    private void Start()
+    {
+        Debug.Log("stats ui start");
     }
 
     public void Setup()
     {
         Debug.Log("stats ui setup");
-
+        // foreach (var stat in stats)
+        // {
+        //     stat.statText.text = stat.statName + " : " + "0";
+        // }
         onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
     }
+
     private void UpdateStatModifier(StatModifier statModifier)
     {
-        Debug.Log("stats ui update");
-
+        // Debug.Log("stats ui update");
         var statInfo = stats.Find(x => x.statType == statModifier.type);
         statInfo.statText.text = statInfo.statName + " : " + statModifier.value;
     }

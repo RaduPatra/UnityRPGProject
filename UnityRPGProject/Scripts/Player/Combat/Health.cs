@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    public float maxHealth;
-    private float currentHealth;
-    private CharacterStats characterStats;
+    [SerializeField] private float maxHealth;
     [SerializeField] private FloatEventChannel onHealthChangeEventChannel;
     [SerializeField] private FloatEventChannel onMaxHealthChangeEventChannel;
+    public Action OnDeath;
+    private float currentHealth;
+    private CharacterStats characterStats;
 
     private void Awake()
     {
@@ -17,11 +18,14 @@ public class Health : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        if (onHealthChangeEventChannel != null && onMaxHealthChangeEventChannel != null)
-        {
-            onMaxHealthChangeEventChannel.Raise(maxHealth);
-            onHealthChangeEventChannel.Raise(currentHealth);
-        }
+        SetupEvents();
+    }
+
+    private void SetupEvents()
+    {
+        if (onHealthChangeEventChannel == null || onMaxHealthChangeEventChannel == null) return;
+        onMaxHealthChangeEventChannel.Raise(maxHealth);
+        onHealthChangeEventChannel.Raise(currentHealth);
     }
 
     public void Heal(float amount)
@@ -32,7 +36,11 @@ public class Health : MonoBehaviour, IDamageable
 
     public void Damage(float amount)
     {
-        amount = characterStats != null ? characterStats.CalculateDamageReduction(amount) : amount;
+        if (characterStats != null)
+        {
+            // var defenceBonus = characterStats.ActiveModifiers[StatType.Defence];
+            amount = characterStats.CalculateDamageReduction(amount/*, defenceBonus*/);
+        }
 
         currentHealth = Math.Max(currentHealth - amount, 0);
 
@@ -44,6 +52,7 @@ public class Health : MonoBehaviour, IDamageable
         if (currentHealth == 0)
         {
             //handle death
+            OnDeath?.Invoke();
             Debug.Log("Ded");
         }
     }

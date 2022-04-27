@@ -4,11 +4,15 @@ using Sirenix.OdinInspector.Editor;
 [Serializable]
 public class ItemStack
 {
-    public ItemBase item;
+    // public ItemTest item;
+    public ItemWithAttributes item;
     public int quantity;
     public string id;
 
-    public ItemStack(ItemBase item, int quantity)
+    [NonSerialized]
+    public Action<ItemStack> OnStackReset;
+
+    public ItemStack(ItemWithAttributes item, int quantity)
     {
         this.item = item;
         this.quantity = quantity;
@@ -21,7 +25,21 @@ public class ItemStack
         quantity = 0;
         id = Guid.NewGuid().ToString();
     }
+    
+    public ItemStack Clone()
+    {
+        return MemberwiseClone() as ItemStack;
+    }
 
-    [field: NonSerialized]
-    public InventorySlot ParentSlot { get; set; }
+    public void ResetStack()
+    {
+        OnStackReset?.Invoke(this);
+        item = null;
+        quantity = 0;
+        OnStackReset = null;
+        id = Guid.NewGuid().ToString();
+    }
+
+    [field: NonSerialized] public InventorySlot ParentSlot { get; set; }
+    // public InventorySlot ParentSlot;
 }

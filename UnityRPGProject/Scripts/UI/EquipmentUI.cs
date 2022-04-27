@@ -13,8 +13,9 @@ public class EquipmentUI : MonoBehaviour
     public ItemEventChannel itemDropEventChannel;
     public ItemEventChannel itemPickupEventChannel;
     private EquipmentSlotUI[] equipmentSlots;
+    public AttributeBaseSO iconAttribute;
 
-    private void Awake()
+    private void Start()
     {
         SetupUISlots();
     }
@@ -25,7 +26,7 @@ public class EquipmentUI : MonoBehaviour
         var index = 0;
         foreach (var equipment in equipmentInventory.equipmentArmorSlots)
         {
-            if (equipmentSlots[index].slotItemType == equipment.Key)
+            if (equipmentSlots[index].slotCategory == equipment.Key)
             {
                 var slot = equipment.Value;
                 equipmentSlots[index].InventorySlot = slot;
@@ -36,8 +37,8 @@ public class EquipmentUI : MonoBehaviour
         }
     }
 
-    void UpdateSlotAtIndex(InventorySlot slot)
+    /*void UpdateSlotAtIndex(InventorySlot slot)
     {
         equipmentSlots[slot.slotIndex].UpdateUISlot(slot);
-    }
+    }*/
 }

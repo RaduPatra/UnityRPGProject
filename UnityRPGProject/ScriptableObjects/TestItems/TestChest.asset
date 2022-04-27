@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577c182609d84f91a3548bac658ba9e7, type: 3}
+  m_Name: TestChest
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemName: chestplate
+  itemIcon: {fileID: 21300000, guid: c9d48411a39cdc9429fca1da96828e34, type: 3}
+  dropItemPrefab: {fileID: 6589241664368204793, guid: 1e43f8ea5bc1f7c469b185a032aee1d3, type: 3}
+  isStackable: 0
+  maxStack: 1
+  itemEffectApplier:
+    effects: []
+  equipItemPrefab: {fileID: 6589241664368204793, guid: d3f07cbc65df5674dae99e049a35c16b, type: 3}
+  impactParticle: {fileID: 0}
+  statModifiers:
+  - type: 1
+    value: 12

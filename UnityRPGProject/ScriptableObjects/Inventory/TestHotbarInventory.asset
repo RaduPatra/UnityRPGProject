@@ -12,39 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fc8b06968f46c1b9a2956ee445a504, type: 3}
   m_Name: TestHotbarInventory
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   itemList:
-  - itemStack:
-      item: {fileID: 11400000, guid: 2c3b8d679b6b5df4a9d51b5d2fd0ba5b, type: 2}
+  - id: 388c16eb-fc24-4e4c-aca0-198f0601128d
+    itemStack:
+      item: {fileID: 11400000, guid: 7a910451f6d628949ae877008858b675, type: 2}
+      quantity: 2
+      id: a6602417-d788-42b6-9e4f-d81d21420bca
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 2bf93e8d-c180-4e5c-93ca-7e44ad34781a
+    itemStack:
+      item: {fileID: 11400000, guid: 35c7f9394b15456409cd01726f3e001b, type: 2}
+      quantity: 0
+      id: 4ebda8ba-4b33-42a3-bf48-b1384bae9ad5
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 4a1df9b2-e0d4-4527-8612-112328067628
+    itemStack:
+      item: {fileID: 11400000, guid: 05dbdc1ceac8ef14e804cc8be5f85126, type: 2}
+      quantity: 0
+      id: fcfdd891-354b-4b7e-91be-f99ecd88d2b0
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 5779a3ba-1c21-44e6-a8d0-ce2042cc2aa2
+    itemStack:
+      item: {fileID: 11400000, guid: b9670830de7d97d4cb2f6290479a52e7, type: 2}
+      quantity: 0
+      id: 268765ab-b974-4704-b583-2eac8403bde8
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  - id: 0b2eeb2a-b210-40b4-ad34-258da7f331c1
+    itemStack:
+      item: {fileID: 11400000, guid: 5573b6390b124aa438011b1052770555, type: 2}
       quantity: 1
-      id: 2c78fbf0-bd85-47de-83a0-acc0f37c4c92
-    slotType: 6
-    slotIndex: 0
-    isEquipped: 1
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 3d65157e-d6c7-480a-8036-c25b5f8d912d
-    slotType: 6
-    slotIndex: 1
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 59f0f6a2-6fd5-47c3-ab7e-dd4a17d12dc0
-    slotType: 6
-    slotIndex: 2
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: 94449166-dc8e-40b1-bb59-4610443b4e37
-    slotType: 6
-    slotIndex: 3
-    isEquipped: 0
-  - itemStack:
-      item: {fileID: 0}
-      quantity: 0
-      id: a7627d8f-ceeb-41f0-a480-7a3ac124e297
-    slotType: 6
-    slotIndex: 4
-    isEquipped: 0
+      id: 7d4be058-89e1-4b5f-9f99-d890401084b8
+    slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  inventoryCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}

@@ -20,18 +20,26 @@ public class InventoryHolder : MonoBehaviour
         itemPickupEventChannel.BoolListeners += PickUp;
     }
 
-    public bool PickUp(ItemBase item)
+    public bool PickUp(ItemWithAttributes item)
     {
         if (!item.isStackable) return hotbarInventory.TryAddToEmptySlot(item) || mainInventory.TryAddToEmptySlot(item);
-        if (hotbarInventory.TryAddToStack(item)) return true;   
+        if (hotbarInventory.TryAddToStack(item)) return true;
         if (mainInventory.TryAddToStack(item)) return true;
 
         return hotbarInventory.TryAddToEmptySlot(item) || mainInventory.TryAddToEmptySlot(item);
     }
 
-    private void DropItemOnGround(ItemBase item)
+    public AttributeBaseSO dropPrefabAttr;
+
+    private void DropItemOnGround(ItemWithAttributes item)
     {
         var transform1 = transform;
-        Instantiate(item.dropItemPrefab, transform1.position + dropOffset, transform1.rotation);
+        var attr = item.GetAttribute<GameObjectData>(dropPrefabAttr);
+
+        if (attr != null)
+        {
+            Instantiate(attr.value, transform1.position + dropOffset,
+                transform1.rotation); //get drop prefab attribute here
+        }
     }
 }

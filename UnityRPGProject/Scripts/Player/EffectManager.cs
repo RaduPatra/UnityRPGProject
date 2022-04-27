@@ -13,15 +13,17 @@ public class EffectManager : MonoBehaviour
         UpdateEffects();
     }
 
-    public void ConsumeItem(InventorySlot slot)
+    /*public void ConsumeItem(InventorySlot slot)
     {
-        if (!(slot.itemStack.item is ConsumableItem consumable)) return;
-        consumable.Use(gameObject);
+        var item = slot.GetItem();
+        if (item == null) return;
+        if (item.itemType != ItemType.Consumable) return;
+        item.itemEffectApplier.Use(gameObject);
         slot.DecreaseQuantity();
-        AddEffects(consumable.effects);
-    }
+        AddEffects(item.itemEffectApplier.effects);
+    }*/
 
-    private void AddEffects(EffectBase[] effects)
+    public void AddEffects(List<EffectBase> effects)
     {
         foreach (var effect in effects)
         {

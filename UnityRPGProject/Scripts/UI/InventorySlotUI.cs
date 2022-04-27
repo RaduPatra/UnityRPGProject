@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using JetBrains.Annotations;
 using TMPro;
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -21,6 +23,8 @@ public class InventorySlotUI : MonoBehaviour, ISlot
     public int SlotIndex { get; set; }
 
     private InventorySlot inventorySlot;
+    private ItemCategory equippedCategory;
+
 
     public InventorySlot InventorySlot
     {
@@ -30,16 +34,16 @@ public class InventorySlotUI : MonoBehaviour, ISlot
             if (inventorySlot != null)
             {
                 inventorySlot.OnSlotChanged -= UpdateUISlot;
-                inventorySlot.OnEquipActionChange -= EquipActionChanged;
+                // inventorySlot.OnEquipActionChange -= EquipActionChanged;
             }
 
             inventorySlot = value;
             UpdateUISlot(value);
-            EquipActionChanged();
+            // EquipActionChanged();
 
             if (inventorySlot == null) return;
             inventorySlot.OnSlotChanged += UpdateUISlot;
-            inventorySlot.OnEquipActionChange += EquipActionChanged;
+            // inventorySlot.OnEquipActionChange += EquipActionChanged;
         }
     }
 
@@ -52,19 +56,82 @@ public class InventorySlotUI : MonoBehaviour, ISlot
     {
         // Debug.Log("updated slot " + transform.name + " --- " + slot.itemStack.item);
         inventorySlot = slot;
-        itemIcon.sprite = slot.itemStack.item ? slot.itemStack.item.itemIcon : null;
+
+        var item = slot.GetItem();
+
+        Sprite icon = null;
+        if (item != null)
+        {
+            var attr = item.GetAttribute<SpriteAttributeData>(InventoryUI.iconAttribute);
+            icon = attr?.value;
+        }
+
+        itemIcon.sprite = icon;
+
         itemIcon.gameObject.SetActive(itemIcon.sprite);
         text.gameObject.SetActive(false);
+
+        panelBackground.color = defaultColor;
+        foreach (var equippedWeapon in InventoryUI.equipmentInventory.equippedWeaponItems)
+        {
+            if (slot.itemStack.id != equippedWeapon.Value.id) continue;
+            panelBackground.color = selectedColor;
+            break;
+        }
+        
+        // UpdateEquippedSlots(slot);
+
+
         // panelBackground.color = inventorySlot.IsEquipped ? selectedColor : defaultColor;
         if (slot.itemStack.item == null) return;
         if (!slot.itemStack.item.isStackable || slot.itemStack.quantity <= 1) return;
         text.gameObject.SetActive(true);
         text.SetText(slot.itemStack.quantity.ToString());
     }
-    
-    public bool CanAcceptSlot(InventorySlot slot)
+
+    private void UpdateEquippedSlots(InventorySlot slot)
     {
-        return true;
+        panelBackground.color = defaultColor;
+        var lastEquippedSlots = InventoryUI.uiManager.lastEquippedSlots;
+
+        /*we search the weapon inventory to see if a weapon is equipped
+        if its equipped we change the background color, 
+        reset the previously equipped slot and update it with the new one*/
+        foreach (var equippedWeapon in InventoryUI.equipmentInventory.equippedWeaponItems)
+        {
+            if (slot.itemStack.id != equippedWeapon.Value.id) continue;
+            panelBackground.color = selectedColor;
+
+            if (lastEquippedSlots.ContainsKey(equippedWeapon.Key))
+            {
+                var lastEquippedSlot = lastEquippedSlots[equippedWeapon.Key];
+
+                if (lastEquippedSlot != null)
+                {
+                    lastEquippedSlot.ResetEquipped();
+                }
+            }
+
+            lastEquippedSlots[equippedWeapon.Key] = this;
+            equippedCategory = equippedWeapon.Key;
+            break;
+        }
+
+        /*if the weapon is not equipped but still present in the dictionary, we reset the slot
+        (this happens when we remove a weapon from inventory)*/
+        if (panelBackground.color == defaultColor && equippedCategory != null)
+        {
+            if (lastEquippedSlots.ContainsKey(equippedCategory))
+            {
+                lastEquippedSlots[equippedCategory] = null;
+            }
+        }
+    }
+
+    private void ResetEquipped()
+    {
+        panelBackground.color = defaultColor;
+        equippedCategory = null;
     }
 
     private bool IsRightButton(PointerEventData eventData)
@@ -83,23 +150,13 @@ public class InventorySlotUI : MonoBehaviour, ISlot
 
         if (IsMiddleButton(eventData))
         {
-            if (inventorySlot.itemStack.item is EquipableItem equipableItem)
-            {
-                if (inventorySlot.IsEquipped)
-                    inventorySlot.OnSlotUnequip?.Invoke(equipableItem.itemType);
-            }
-
-            InventoryUI.itemDropEventChannel.Raise(InventorySlot.itemStack.item); //call drop event from holder
-            InventorySlot.ResetSlot();
+            var itemStack = inventorySlot.itemStack;
+            InventoryUI.itemDropEventChannel.Raise(itemStack.item); //call drop event from holder
+            InventorySlot.RemoveItem();
         }
         else if (IsRightButton(eventData))
         {
             InventoryUI.itemUseEventChannel.Raise(inventorySlot);
         }
-    }
-
-    private void EquipActionChanged()
-    {
-        panelBackground.color = inventorySlot.IsEquipped ? selectedColor : defaultColor;
     }
 }

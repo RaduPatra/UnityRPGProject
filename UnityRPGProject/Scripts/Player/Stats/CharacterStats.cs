@@ -1,23 +1,40 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
-public class CharacterStats : MonoBehaviour
+
+public enum StatType
+{
+    AttackDamage,
+    Defence,
+    MagicDamage
+}
+
+public class CharacterStats : SerializedMonoBehaviour
 {
     private EquipmentManager equipmentManager;
-    private Dictionary<InventorySlot, StatModifier> equipmentModifiers;
+
+    // private Dictionary<InventorySlot, StatModifier> equipmentModifiers;
 
     // [SerializeField] private CharacterAttributes characterAttributes;
-    [SerializeField] private VoidEventChannel onStatsChangeEventChannel;
+    // [SerializeField] private VoidEventChannel onStatsChangeEventChannel;
+
     [SerializeField] private StatModifierEventChannel onStatModifierChangeEventChannel;
     // public CharacterAttributes CharacterAttributes => characterAttributes;
 
-    private Dictionary<StatType, float> activeModifiers = new Dictionary<StatType, float>();
+    [SerializeField] private Dictionary<StatType, float> activeModifiers = new Dictionary<StatType, float>();
 
     public Dictionary<StatType, float> ActiveModifiers => activeModifiers;
 
+
+    [SerializeField] private AttributeBaseSO statModifiersAttribute;
+
     private void Awake()
     {
+        // Debug.Log("char stats awake");
+
         equipmentManager = GetComponent<EquipmentManager>();
         if (equipmentManager != null)
         {
@@ -27,118 +44,77 @@ public class CharacterStats : MonoBehaviour
 
     private void Setup()
     {
-        activeModifiers.Add(StatType.AttackDamage, 0);
-        activeModifiers.Add(StatType.Defence, 0);
-        
-        foreach (var slot in equipmentManager.equipmentInventory.equipmentArmorSlots)
-        {
-            // slot.Value.OnSlotChanged += AddItemStats;
-            // slot.Value.OnBeforeSlotChanged += RemoveItemStats;
-            slot.Value.OnSlotChanged += AddItemStatsTest;
-            slot.Value.OnBeforeSlotChanged += RemoveItemStatsTest;
-        }
+        equipmentManager.OnEquipItem += AddItemStatsTest;
+        equipmentManager.OnUnequipItem += RemoveItemStatsTest;
+    }
 
-        foreach (var slot in equipmentManager.hotbarInventory.ItemList)
+    private void Start()
+    {
+        // Debug.Log("char stats start");
+        foreach (var modifier in activeModifiers)
         {
-            // slot.OnSlotChanged += AddItemStats;
-            // slot.OnBeforeSlotChanged += RemoveItemStats;
-            slot.OnSlotChanged += AddItemStatsTest;
-            slot.OnBeforeSlotChanged += RemoveItemStatsTest;
-        }
-
-        foreach (var slot in equipmentManager.mainInventory.ItemList)
-        {
-            // slot.OnSlotChanged += AddItemStats;
-            // slot.OnBeforeSlotChanged += RemoveItemStats;
-            slot.OnSlotChanged += AddItemStatsTest;
-            slot.OnBeforeSlotChanged += RemoveItemStatsTest;
+            if (onStatModifierChangeEventChannel != null)
+                onStatModifierChangeEventChannel.Raise(new StatModifier(modifier.Key, modifier.Value));
         }
     }
 
-    public float CalculateDamageReduction(float amount)
+    public float CalculateDamageReduction(float damage/*, float defenceBonus*/)
     {
-        var def = activeModifiers[StatType.Defence];
-        if (def == 0) return amount;
-        amount -= def / 2;
-        return amount;
-    }
-    
-    /*public int CalculateDamageReductionTest(int amount)
-    {
-        if (CharacterAttributes.characterDefence == 0) return amount;
-        amount -= CharacterAttributes.characterDefence / 2;
-        return amount;
-    }*/
-    private void AddStatModifiers(EquipableItem item)
-    {
-        /*foreach (var modifier in item.statModifiers)
+        Debug.Log("Initial Damage " + damage);
+        var defenceBonus = ActiveModifiers[StatType.Defence];
+
+        if (defenceBonus < damage / 2)
         {
-            var statsOfType = activeModifiers.FindAll(x => x.type == modifier.type);
+            damage -= defenceBonus;
+            Debug.Log("First Damage Reduction" + damage);
+        }
+        else
+        {
+            damage = Mathf.Clamp01(damage / (defenceBonus * 4)) * damage;
+            Debug.Log("Second Damage Reduction" + damage);
 
-            foreach (var stat in statsOfType)
-            {
-                stat.
-            }
-        }*/
+        }
+
+        return damage;
     }
 
-    private void AddItemStatsTest(InventorySlot slot)
+    private void AddItemStatsTest(ItemWithAttributes item)
     {
         Debug.Log("add stats enable");
+        var attr = item.GetAttribute<StatModifierListData>(statModifiersAttribute);
+        if (attr == null) return;
+        var statModifiers = attr.value;
 
-        if (CanChangeStats(slot) == false) return;
-        var item = slot.TryGetEquipable();
-        if (item == null) return;
-
-        foreach (var modifier in item.statModifiers)
+        foreach (var modifier in statModifiers)
         {
             activeModifiers[modifier.type] += modifier.value;
-            onStatModifierChangeEventChannel.Raise(new StatModifier(modifier.type, activeModifiers[modifier.type]));
+            if (onStatModifierChangeEventChannel != null)
+                onStatModifierChangeEventChannel.Raise(new StatModifier(modifier.type, activeModifiers[modifier.type]));
         }
     }
 
-    private void RemoveItemStatsTest(InventorySlot slot)
+    private void RemoveItemStatsTest(ItemWithAttributes item)
     {
-        if (CanChangeStats(slot) == false) return;
-        var item = slot.TryGetEquipable();
-        if (item == null) return;
+        var attr = item.GetAttribute<StatModifierListData>(statModifiersAttribute);
+        if (attr == null) return;
+        var statModifiers = attr.value;
 
-        foreach (var modifier in item.statModifiers)
+        foreach (var modifier in statModifiers)
         {
             activeModifiers[modifier.type] -= modifier.value;
-            onStatModifierChangeEventChannel.Raise(new StatModifier(modifier.type, activeModifiers[modifier.type]));
+            if (onStatModifierChangeEventChannel != null)
+                onStatModifierChangeEventChannel.Raise(new StatModifier(modifier.type, activeModifiers[modifier.type]));
         }
     }
 
-    /*private void AddItemStats(InventorySlot slot)
+    /*private bool CanChangeStats(InventorySlot slot)
     {
-        if (CanChangeStats(slot) == false) return;
-        var item = slot.TryGetEquipable();
-        if (item == null) return;
-
-        characterAttributes.characterAttackDamage += item.meleeAttackDamage;
-        characterAttributes.characterDefence += item.defenceBonus;
-        onStatsChangeEventChannel.RaiseVoid();
-    }
-
-    private void RemoveItemStats(InventorySlot slot)
-    {
-        if (CanChangeStats(slot) == false) return;
-        var item = slot.TryGetEquipable();
-        if (item == null) return;
-
-        characterAttributes.characterAttackDamage -= item.meleeAttackDamage;
-        characterAttributes.characterDefence -= item.defenceBonus;
-        onStatsChangeEventChannel.RaiseVoid();
-    }*/
-
-    private bool CanChangeStats(InventorySlot slot)
-    {
-        var item = slot.TryGetEquipable();
+        var item = slot.GetItem();
         if (item == null) return false;
+        if (!item.IsEquipment()) return false;
 
         equipmentManager.equipmentInventory.equipmentArmorSlots.TryGetValue(item.itemType, out var slot1);
         equipmentManager.equipmentInventory.equippedWeaponItems.TryGetValue(item.itemType, out var stack1);
         return slot1 == slot || stack1 != null && stack1.id == slot.itemStack.id;
-    }
+    }*/
 }

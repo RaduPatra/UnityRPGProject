@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab74b494c224829811aa018f85edc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponItem: {fileID: 0}
+  particleAttr: {fileID: 11400000, guid: 3316c4af87eb60641862903383a1b2ca, type: 2}
 --- !u!33 &7005942126287924519
 MeshFilter:
   m_ObjectHideFlags: 0

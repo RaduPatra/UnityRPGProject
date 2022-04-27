@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c66e92141c14aebb2d1351682ade790, type: 3}
+  m_Name: New Test Item
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 70958d4134015dd4e9658afe55ba227c, type: 2}
+    - {fileID: 11400000, guid: 59b69707e1a411244a3efda06af4b0b3, type: 2}
+    - {fileID: 100000, guid: af5871ba53a7c294aa4b5fa1995768b7, type: 3}
+    - {fileID: 11400000, guid: d219afa06c077c94a8a02e6e9f0acdbe, type: 2}
+    - {fileID: 11400000, guid: 360ca78a37e1d07438a1d8f4b6ddfb52, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: attributes
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[AttributeBaseSO, Assembly-CSharp],[AttributeDataBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[AttributeBaseSO,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|MyTestClassData, Assembly-CSharp
+    - Name: value
+      Entry: 7
+      Data: 3|MyTestClass, Assembly-CSharp
+    - Name: intVal
+      Entry: 3
+      Data: 0
+    - Name: floatVal
+      Entry: 4
+      Data: 0
+    - Name: goVal
+      Entry: 6
+      Data: 
+    - Name: test2
+      Entry: 7
+      Data: 4|MyTestClass2, Assembly-CSharp
+    - Name: intVal2
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 5|GameObjectData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 6|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 7|IntAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  categoryParent: {fileID: 11400000, guid: 4f9bfc7f279d39044ab4af1024842065, type: 2}
+  attrToGetTest: {fileID: 11400000, guid: e9182c27f4e7c924e9d7fc4b4bd6fbeb, type: 2}
+  categToGetTest: {fileID: 11400000, guid: 7a30b0ce99a1f384d8a3336552ac6ebb, type: 2}

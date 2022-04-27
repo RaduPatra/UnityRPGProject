@@ -25,6 +25,10 @@ public class InputManager : ScriptableObject
     public Action sprintCancelledAction = delegate { };
     public Action toggleUIAction = delegate { };
     public Action attackAction = delegate { };
+    public Action specialAttackAction = delegate { };
+    public Action blockActionStart = delegate { };
+    public Action blockActionPerformed = delegate { };
+    public Action blockCancelledAction = delegate { };
 
     //todo - set callbacks instead of manually subscribing
     private void OnEnable()
@@ -44,12 +48,25 @@ public class InputManager : ScriptableObject
         playerControls.Gameplay.Movement.performed += OnMove;
         playerControls.Gameplay.Jump.performed += OnJump;
         playerControls.Gameplay.Interact.performed += OnInteract;
+
         playerControls.Gameplay.Sprint.performed += OnSprint;
         playerControls.Gameplay.Sprint.canceled += OnSprint;
+
         playerControls.Gameplay.TestButton.started += i => Debug.Log("composite btn test");
         playerControls.Gameplay.Attack.performed += OnAttack;
+        playerControls.Gameplay.SpecialAttack.performed += OnSpecialAttack;
+
+        playerControls.Gameplay.Block.performed += OnBlock;
+        playerControls.Gameplay.Block.canceled += OnBlock;
+        playerControls.Gameplay.Block.started += OnBlock;
+
         playerControls.General.Hotbar.performed += OnHotbarInput;
         playerControls.General.ToggleUI.performed += OnToggleUI;
+    }
+
+    private void OnSpecialAttack(InputAction.CallbackContext obj)
+    {
+        specialAttackAction?.Invoke();
     }
 
     // private bool isOn = true;
@@ -85,17 +102,38 @@ public class InputManager : ScriptableObject
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        Debug.Log("jump");
+        // Debug.Log("jump");
         jumpAction?.Invoke();
     }
 
     private void OnAttack(InputAction.CallbackContext ctx)
     {
-        // attackInput = true;
-        /*if (playerManager.isInteracting) return;
-        playerManager.PlayerAttack.AttackAction();
-        Debug.Log("attack");*/
+        /*attackInput = true;
+         if (playerManager.isInteracting) return;
+         playerManager.PlayerAttack.AttackAction();
+         Debug.Log("attack");*/
         attackAction?.Invoke();
+    }
+
+    private void OnBlock(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            Debug.Log("block started");
+            blockActionStart?.Invoke();
+        }
+
+        if (ctx.performed)
+        {
+            Debug.Log("block performed");
+            blockActionPerformed?.Invoke();
+        }
+
+        if (ctx.canceled)
+        {
+            Debug.Log("block canceled");
+            blockCancelledAction?.Invoke();
+        }
     }
 
     private void OnMove(InputAction.CallbackContext ctx) //called the frame wasd keys were pressed or released

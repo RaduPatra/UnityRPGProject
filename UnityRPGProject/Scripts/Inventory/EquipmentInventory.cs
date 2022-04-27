@@ -6,17 +6,27 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/Equipment", order = 2)]
-public class EquipmentInventory : SerializedScriptableObject
+public class EquipmentInventory : InventoryBase
 {
-    public readonly Dictionary<ItemType, InventorySlot> equipmentArmorSlots = new Dictionary<ItemType, InventorySlot>();
+    public readonly Dictionary<ItemCategory, InventorySlot> equipmentArmorSlots = new Dictionary<ItemCategory, InventorySlot>();
 
-    public readonly Dictionary<ItemType, ItemStack>
-        equippedWeaponItems = new Dictionary<ItemType, ItemStack>();
+    public readonly Dictionary<ItemCategory, ItemStack>
+        equippedWeaponItems = new Dictionary<ItemCategory, ItemStack>();
+    
+    // public  Dictionary<ItemCategory, EquippedInfo>
+    //     equippedWeaponsTest = new Dictionary<ItemCategory, EquippedInfo>();
     private void OnEnable()
     {
         foreach (var slot in equipmentArmorSlots)
         {
-            equipmentArmorSlots[slot.Key].slotType = slot.Key;
+            // equipmentArmorSlots[slot.Key].slotType = slot.Key;
+            equipmentArmorSlots[slot.Key].slotCategory = slot.Key;
         }
     }
+}
+
+public class EquippedInfo
+{
+    public ItemStack stack;
+    public InventorySlot lastSlot;
 }

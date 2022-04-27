@@ -9,20 +9,32 @@ public class PlayerManager : MonoBehaviour
 {
     //REFERENCES
     public PlayerAnimator PlayerAnimator { get; private set; }
-    public PlayerAttack PlayerAttack { get; private set; }
     public InventoryHolder InventoryHolder { get; private set; }
 
     //FLAGS
     public bool isGrounded;
     public bool isInteracting;
     
+    [SerializeField]
+    private bool isAiming;
+    
+    public bool IsAiming
+    {
+        get => isAiming;
+        set
+        {
+            isAiming = value;
+            PlayerAnimator.animator.SetBool(PlayerAnimator.IsAiming, value);
+        }
+    }
+
+
     private void Awake()
     {
         // InputManager = GetComponent<InputManager>();
         PlayerAnimator = GetComponent<PlayerAnimator>();
-        PlayerAttack = GetComponent<PlayerAttack>();
+        // PlayerAttack = GetComponent<PlayerAttack>();
         InventoryHolder = GetComponent<InventoryHolder>();
         //PlayerLocomotion = GetComponent<PlayerLocomotion>();
     }
-
 }

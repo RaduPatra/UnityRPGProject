@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577c182609d84f91a3548bac658ba9e7, type: 3}
+  m_Name: TestChestRoyal
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemName: chestplate royal
+  itemIcon: {fileID: 21300000, guid: c720139856ac0f44d894498956e1b55f, type: 3}
+  dropItemPrefab: {fileID: 5963470667501407362, guid: 6945d73309b4723498375683e0afca1b, type: 3}
+  isStackable: 0
+  maxStack: 1
+  itemEffectApplier:
+    effects: []
+  equipItemPrefab: {fileID: 5963470667501407362, guid: 62d3f25c1e4d71346bd8aaf07efc8b82, type: 3}
+  impactParticle: {fileID: 0}
+  statModifiers:
+  - type: 1
+    value: 20

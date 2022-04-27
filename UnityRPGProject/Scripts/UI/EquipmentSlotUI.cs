@@ -11,11 +11,13 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
 {
     private EquipmentUI EquipmentUI { get; set; }
     public ItemType slotItemType;
+    public ItemCategory slotCategory;
     [SerializeField] private Image itemIcon;
     [SerializeField] private Image panelBackground;
     [SerializeField] private Color acceptedColor;
     [SerializeField] private Color deniedColor;
     [SerializeField] private Color defaultColor;
+    
 
     private InventorySlot inventorySlot;
 
@@ -48,15 +50,19 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
     {
         // Debug.Log("updated slot " + transform.name + " --- " + slot.itemStack);
         inventorySlot = slot;
-        itemIcon.sprite = slot.itemStack.item ? slot.itemStack.item.itemIcon : null;
-        itemIcon.gameObject.SetActive(itemIcon.sprite);
-    }
+        // itemIcon.sprite = slot.itemStack.item ? slot.itemStack.item.itemIcon : null;//get attribute here
+        
+        var item = slot.GetItem();
 
-    public bool CanAcceptSlot(InventorySlot slot)
-    {
-        var equipable = slot.itemStack.item as EquipableItem;
-        panelBackground.color = defaultColor;
-        return equipable && equipable.itemType == slotItemType || slot.itemStack.item == null;
+        Sprite icon = null;
+        if (item != null)
+        {
+            var attr = item.GetAttribute<SpriteAttributeData>(EquipmentUI.iconAttribute);
+            icon = attr?.value;
+        }
+
+        itemIcon.sprite = icon;
+        itemIcon.gameObject.SetActive(itemIcon.sprite);
     }
 
     private bool IsRightButton(PointerEventData eventData)
@@ -75,13 +81,13 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
         if (IsMiddleButton(eventData))
         {
             EquipmentUI.itemDropEventChannel.Raise(InventorySlot.itemStack.item); //call drop event from holder
-            InventorySlot.ResetSlot();
+            InventorySlot.RemoveItem();
         }
         else if (IsRightButton(eventData))
         {
             var success = EquipmentUI.itemPickupEventChannel.RaiseBool(InventorySlot.itemStack.item);
             if (!success) return;
-            InventorySlot.ResetSlot();
+            InventorySlot.RemoveItem();
         }
     }
 
@@ -90,8 +96,9 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
         if (eventData.pointerDrag == null) return;
         var slot = eventData.pointerDrag.GetComponent<ISlot>();
         panelBackground.color = deniedColor;
-        if (!(slot.InventorySlot.itemStack.item is EquipableItem equipableItem)) return;
-        if (equipableItem.itemType == slotItemType)
+
+        var item = slot.InventorySlot.GetItem();
+        if (item.HasCategory(slotCategory))
             panelBackground.color = acceptedColor;
     }
 

@@ -18,6 +18,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private float baseJumpHeight = 2.5f;
     [SerializeField] private float sprintSpeedMultiplier = 2f;
     [SerializeField] private float inAirSpeedMultiplier = .5f;
+    [SerializeField] private float blockingSpeedMultiplier = .5f;
 
     //ROTATION
     [SerializeField] private float rotationSpeed = 10f;
@@ -28,6 +29,7 @@ public class PlayerLocomotion : MonoBehaviour
     private float gravity = -9.81f;
 
     [SerializeField] private float jumpHeight = 2.5f;
+    [SerializeField] private float jumpTimeout = 0.5f;
     [SerializeField] private float groundCheckRayDistance;
     [SerializeField] private float airTimeToBeginFall = .5f;
 
@@ -48,10 +50,12 @@ public class PlayerLocomotion : MonoBehaviour
     private Vector3 verticalVelocity;
     private float moveSpeed = 7f;
     private float inAirTime;
+    private float currentJumpTimeout;
 
 
     private Vector2 movementInput;
     private bool sprintInput;
+    private bool blockInput;
 
     public float WalkMoveSpeed
     {
@@ -73,6 +77,7 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         walkMoveSpeed = baseWalkSpeed;
         jumpHeight = baseJumpHeight;
+        currentJumpTimeout = jumpTimeout;
         //playerManager.isGrounded = false;
         SetupInput();
     }
@@ -83,6 +88,9 @@ public class PlayerLocomotion : MonoBehaviour
         inputManager.moveAction += OnMove;
         inputManager.sprintStartAction += OnSprintStart;
         inputManager.sprintCancelledAction += OnSprintCancel;
+
+        inputManager.blockActionStart += OnBlockStart;
+        inputManager.blockCancelledAction += OnBlockCancel;
     }
 
     private void Update()
@@ -90,7 +98,23 @@ public class PlayerLocomotion : MonoBehaviour
         SetMoveDirection();
         HandleMovement();
         HandleRotation();
+        HandleJumpTimeout();
     }
+
+    public bool canRotate;
+
+    private void HandleRotation()
+    {
+        if (playerManager.IsAiming || playerManager.PlayerAnimator.GetCanRotate())
+        {
+            RotateToCameraDirection();
+        }
+        else
+        {
+            RotateToMovementDirection();
+        }
+    }
+
 
     private void SetMoveDirection()
     {
@@ -138,11 +162,12 @@ public class PlayerLocomotion : MonoBehaviour
         //play fall animation if not grounded and in air for more than x seconds
         if (!playerManager.isGrounded && inAirTime > airTimeToBeginFall)
         {
-            playerManager.PlayerAnimator.PlayAnimation("Falling", false);
+            playerManager.PlayerAnimator.PlayAnimation("Falling", false, false);
             isFalling = true;
         }
 
         RaycastHit hit;
+
 
         //check if player is grounded
         if (Physics.SphereCast(groundCheck.position, controller.radius, -Vector3.up, out hit, groundCheckRayDistance,
@@ -168,6 +193,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         var currentAirSpeedMultiplier = 1f;
         var currentSprintSpeedMultiplier = 1f;
+        var currentAimSpeedMultiplier = 1f;
 
         moveSpeed = walkMoveSpeed;
 
@@ -177,23 +203,46 @@ public class PlayerLocomotion : MonoBehaviour
         if (sprintInput)
             currentSprintSpeedMultiplier = sprintSpeedMultiplier;
 
-        moveSpeed = walkMoveSpeed * currentSprintSpeedMultiplier * currentAirSpeedMultiplier;
+        if (playerManager.IsAiming)
+            currentAimSpeedMultiplier = blockingSpeedMultiplier;
+
+        moveSpeed = walkMoveSpeed * currentSprintSpeedMultiplier * currentAirSpeedMultiplier *
+                    currentAimSpeedMultiplier;
+    }
+
+
+    private void HandleJumpTimeout()
+    {
+        if (currentJumpTimeout >= 0.0f)
+            currentJumpTimeout -= Time.deltaTime;
     }
 
     private void HandleJump()
     {
-        //jump only when grounded
-        if (!playerManager.isGrounded) return;
+        if (controller.isGrounded)
+            currentJumpTimeout = -1;
+
+        if (!playerManager.isGrounded || currentJumpTimeout >= 0.0f) return;
+        currentJumpTimeout = jumpTimeout;
         verticalVelocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
         playerManager.PlayerAnimator.PlayAnimation("Jump", false);
     }
 
-    private void HandleRotation()
+    private void RotateToMovementDirection()
     {
         //rotate only if moving
         if (!(moveDirection.magnitude > .1f)) return;
 
         var targetRotation = Quaternion.LookRotation(moveDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void RotateToCameraDirection()
+    {
+        //rotate only if moving
+        // if (!(moveDirection.magnitude > .1f)) return;
+
+        var targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
@@ -204,11 +253,33 @@ public class PlayerLocomotion : MonoBehaviour
         if (sprintInput && moveAmount != 0)
             moveAmount = 2f;
 
-        playerManager.PlayerAnimator.UpdateLocomotionAnimation(moveAmount);
+        if (playerManager.IsAiming)
+        {
+            // playerManager.PlayerAnimator.PlayAnimation("blockingStance", false);
+            playerManager.PlayerAnimator.UpdateLocomotionAnimation(movementInput.y, movementInput.x);
+        }
+        else
+        {
+            playerManager.PlayerAnimator.UpdateLocomotionAnimation(moveAmount, 0);
+        }
     }
-    
-    
-    private void OnMove(Vector2 input) =>  movementInput = input;
+
+    public void EnableCanRotate()
+    {
+        playerManager.PlayerAnimator.SetCanRotate(true);
+    }
+
+    public void DisableCanRotate()
+    {
+        playerManager.PlayerAnimator.SetCanRotate(false);
+    }
+
+
+    private void OnMove(Vector2 input) => movementInput = input;
     private void OnSprintStart() => sprintInput = true;
     private void OnSprintCancel() => sprintInput = false;
+
+
+    private void OnBlockStart() => blockInput = true;
+    private void OnBlockCancel() => blockInput = false;
 }
