@@ -14,6 +14,7 @@ public class EquipmentUI : MonoBehaviour
     public ItemEventChannel itemPickupEventChannel;
     private EquipmentSlotUI[] equipmentSlots;
     public AttributeBaseSO iconAttribute;
+    public UIManager uiManager;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class EquipmentUI : MonoBehaviour
 
     private void SetupUISlots()
     {
+        uiManager = GetComponentInParent<UIManager>();
+
         equipmentSlots = itemsParent.GetComponentsInChildren<EquipmentSlotUI>();
         var index = 0;
         foreach (var equipment in equipmentInventory.equipmentArmorSlots)

@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  itemPickupPreviewEventChannel: {fileID: 11400000, guid: 1b7816472eca78c4294cb14b4f6b3e06, type: 2}
+  itemPickupExitPreviewEventChannel: {fileID: 11400000, guid: 5a4704a309873fd43874d68fdf96f766, type: 2}
 --- !u!54 &-6513108139157675028
 Rigidbody:
   m_ObjectHideFlags: 0

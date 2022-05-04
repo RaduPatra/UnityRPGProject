@@ -6,14 +6,14 @@ namespace Player
     public class Interactor : MonoBehaviour
     {
         // private PlayerManager playerManager;
-        public PlayerManager PlayerManager { get; set; }
+        // public PlayerManager PlayerManager { get; set; }
         private GameObject interactObject;
 
         [SerializeField] private InputManager inputManager;
 
         private void Start()
         {
-            PlayerManager = GetComponent<PlayerManager>();
+            // PlayerManager = GetComponent<PlayerManager>();
             inputManager.interactAction += StartInteract;
         }
 
@@ -32,10 +32,15 @@ namespace Player
         private void OnTriggerEnter(Collider other)
         {
             interactObject = other.gameObject;
+            var interactable = interactObject.GetComponent<IInteractable>();
+            interactable?.InteractPreview(this);
         }
 
         private void OnTriggerExit(Collider other)
         {
+            interactObject = other.gameObject;
+            var interactable = interactObject.GetComponent<IInteractable>();
+            interactable?.InteractExit(this);
             interactObject = null;
         }
     }

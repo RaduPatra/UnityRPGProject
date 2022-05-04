@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 //todo add a ItemDragHandler class into the actual item being dragged(implements drag events etc) and only implement the drop on the slot
-public class InventorySlotUI : MonoBehaviour, ISlot
+public class InventorySlotUI : MonoBehaviour, ISlot, IPointerExitHandler
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private Image panelBackground;
@@ -89,51 +89,6 @@ public class InventorySlotUI : MonoBehaviour, ISlot
         text.SetText(slot.itemStack.quantity.ToString());
     }
 
-    private void UpdateEquippedSlots(InventorySlot slot)
-    {
-        panelBackground.color = defaultColor;
-        var lastEquippedSlots = InventoryUI.uiManager.lastEquippedSlots;
-
-        /*we search the weapon inventory to see if a weapon is equipped
-        if its equipped we change the background color, 
-        reset the previously equipped slot and update it with the new one*/
-        foreach (var equippedWeapon in InventoryUI.equipmentInventory.equippedWeaponItems)
-        {
-            if (slot.itemStack.id != equippedWeapon.Value.id) continue;
-            panelBackground.color = selectedColor;
-
-            if (lastEquippedSlots.ContainsKey(equippedWeapon.Key))
-            {
-                var lastEquippedSlot = lastEquippedSlots[equippedWeapon.Key];
-
-                if (lastEquippedSlot != null)
-                {
-                    lastEquippedSlot.ResetEquipped();
-                }
-            }
-
-            lastEquippedSlots[equippedWeapon.Key] = this;
-            equippedCategory = equippedWeapon.Key;
-            break;
-        }
-
-        /*if the weapon is not equipped but still present in the dictionary, we reset the slot
-        (this happens when we remove a weapon from inventory)*/
-        if (panelBackground.color == defaultColor && equippedCategory != null)
-        {
-            if (lastEquippedSlots.ContainsKey(equippedCategory))
-            {
-                lastEquippedSlots[equippedCategory] = null;
-            }
-        }
-    }
-
-    private void ResetEquipped()
-    {
-        panelBackground.color = defaultColor;
-        equippedCategory = null;
-    }
-
     private bool IsRightButton(PointerEventData eventData)
     {
         return eventData.button == PointerEventData.InputButton.Right;
@@ -158,5 +113,17 @@ public class InventorySlotUI : MonoBehaviour, ISlot
         {
             InventoryUI.itemUseEventChannel.Raise(inventorySlot);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        var item = inventorySlot.GetItem();
+        if (item == null) return;
+        InventoryUI.uiManager.ItemInfoUI.ShowItemInfo(item);
+    }
+    
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        InventoryUI.uiManager.ItemInfoUI.HideItemInfo();
     }
 }

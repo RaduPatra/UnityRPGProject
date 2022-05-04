@@ -15,10 +15,6 @@ public class InventoryUI : MonoBehaviour
     public ItemSlotEventChannel itemUseEventChannel;
     public AttributeBaseSO iconAttribute;
     public UIManager uiManager;
-    
-
-
-
     private void Start()
     {
         uiManager = GetComponentInParent<UIManager>();

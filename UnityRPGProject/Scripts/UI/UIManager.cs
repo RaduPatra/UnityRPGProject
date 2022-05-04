@@ -9,24 +9,22 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> objectsToToggle;
     [SerializeField] private InputManager inputManager;
     private bool isInterfaceOn = false;
-    public Dictionary<ItemCategory, InventorySlotUI> lastEquippedSlots = new Dictionary<ItemCategory, InventorySlotUI>();
 
+    public ItemInfoUI ItemInfoUI { get; set; }
     private void Awake()
     {
         AwakeInactive();
+        ItemInfoUI = GetComponentInChildren<ItemInfoUI>(true);
+
     }
 
     private void AwakeInactive()
     {
         Debug.Log("stats ui awake");
-
-        foreach (var obj in objectsToToggle)
+        var objectsToInit = GetComponentsInChildren<IInitializable>(true);
+        foreach (var item in objectsToInit)
         {
-            var statsUI = obj.GetComponent<StatsUI>();
-            if (statsUI != null)
-            {
-                statsUI.Setup();
-            }
+            item.Initialize();
         }
     }
 

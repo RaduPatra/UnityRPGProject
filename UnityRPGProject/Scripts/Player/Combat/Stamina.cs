@@ -52,7 +52,7 @@ public class Stamina : MonoBehaviour
     {
         currentStaminaRegenTimer = 0;
         SetStamina(Math.Max(CurrentStamina - amount, 0));
-        Debug.Log("Damage , current stamina: " + CurrentStamina);
+        // Debug.Log("Damage , current stamina: " + CurrentStamina);
         /*if (currentStamina == 0)
         {
             //handle death

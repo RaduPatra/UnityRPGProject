@@ -13,33 +13,14 @@ public class UIStatInfo
     public TextMeshProUGUI statText;
 }
 
-public class StatsUI : MonoBehaviour
+public class StatsUI : MonoBehaviour, IInitializable
 {
     [SerializeField] private StatModifierEventChannel onStatModifierChangeEventChannel;
     [SerializeField] private List<UIStatInfo> stats;
 
-    private void Awake()
+    public void Initialize()
     {
-        Debug.Log("stats ui awake");
-        // foreach (var stat in stats)
-        // {
-        //     stat.statText.text = stat.statName + " : " + "0";
-        // }
-        // onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
-    }
-
-    private void Start()
-    {
-        Debug.Log("stats ui start");
-    }
-
-    public void Setup()
-    {
-        Debug.Log("stats ui setup");
-        // foreach (var stat in stats)
-        // {
-        //     stat.statText.text = stat.statName + " : " + "0";
-        // }
+        Debug.Log("stats ui init");
         onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
     }
 

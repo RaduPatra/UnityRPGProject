@@ -1,6 +1,6 @@
 using UnityEngine.EventSystems;
 
-public interface ISlot : IPointerClickHandler
+public interface ISlot : IPointerClickHandler, IPointerEnterHandler
 {
     public InventorySlot InventorySlot { get; set; }
     public void UpdateUISlot(InventorySlot slot);

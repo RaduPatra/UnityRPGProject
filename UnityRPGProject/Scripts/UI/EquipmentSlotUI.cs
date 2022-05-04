@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 //todo add a ItemDragHandler class into the actual item being dragged(implements drag events etc) and only implement the drop on the slot
-public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPointerExitHandler
+public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerExitHandler
 {
     private EquipmentUI EquipmentUI { get; set; }
     public ItemType slotItemType;
@@ -17,7 +17,7 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
     [SerializeField] private Color acceptedColor;
     [SerializeField] private Color deniedColor;
     [SerializeField] private Color defaultColor;
-    
+
 
     private InventorySlot inventorySlot;
 
@@ -51,7 +51,7 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
         // Debug.Log("updated slot " + transform.name + " --- " + slot.itemStack);
         inventorySlot = slot;
         // itemIcon.sprite = slot.itemStack.item ? slot.itemStack.item.itemIcon : null;//get attribute here
-        
+
         var item = slot.GetItem();
 
         Sprite icon = null;
@@ -93,6 +93,12 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        var itemInSlot = inventorySlot.GetItem();
+        if (itemInSlot != null)
+        {
+            EquipmentUI.uiManager.ItemInfoUI.ShowItemInfo(itemInSlot);
+        }
+
         if (eventData.pointerDrag == null) return;
         var slot = eventData.pointerDrag.GetComponent<ISlot>();
         panelBackground.color = deniedColor;
@@ -104,6 +110,7 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerEnterHandler, IPoin
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        EquipmentUI.uiManager.ItemInfoUI.HideItemInfo();
         panelBackground.color = defaultColor;
     }
 }
