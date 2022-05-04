@@ -18,6 +18,7 @@ public class InputManager : ScriptableObject
     [SerializeField] private InputActionReference mouseLookReference;
 
     public Action jumpAction = delegate { };
+    public Action rollAction = delegate { };
     public Action interactAction = delegate { };
     public Action<Vector2> moveAction = delegate { };
     public Action<int> hotbarUseAction = delegate { };
@@ -43,10 +44,11 @@ public class InputManager : ScriptableObject
         EnableGameplayActions();
     }
 
-    void SetupControls()
+    private void SetupControls()
     {
         playerControls.Gameplay.Movement.performed += OnMove;
         playerControls.Gameplay.Jump.performed += OnJump;
+        playerControls.Gameplay.Roll.performed += OnRoll;
         playerControls.Gameplay.Interact.performed += OnInteract;
 
         playerControls.Gameplay.Sprint.performed += OnSprint;
@@ -104,6 +106,12 @@ public class InputManager : ScriptableObject
     {
         // Debug.Log("jump");
         jumpAction?.Invoke();
+    }
+    
+    private void OnRoll(InputAction.CallbackContext ctx)
+    {
+        // Debug.Log("roll");
+        rollAction?.Invoke();
     }
 
     private void OnAttack(InputAction.CallbackContext ctx)

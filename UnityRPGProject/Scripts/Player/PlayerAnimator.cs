@@ -26,7 +26,10 @@ public class PlayerAnimator : MonoBehaviour
     public static readonly int IsEmpty = Animator.StringToHash("isEmpty");
     public static readonly int IsInteracting = Animator.StringToHash("isInteracting");
     public static readonly int IsAiming = Animator.StringToHash("isAiming");
+    public static readonly int Rolling = Animator.StringToHash("isRolling");
 
+    private static readonly int CanDoCombo = Animator.StringToHash("canDoCombo");
+    private static readonly int CanRotate = Animator.StringToHash("canRotate");
 
     public const string rightHandIdleDefault = "RightHandIdle2";
     public const string rightHandEmptyDefault = "RightHandEmpty";
@@ -34,7 +37,6 @@ public class PlayerAnimator : MonoBehaviour
     public const string leftHandEmptyDefault = "LeftHandEmpty";
 
     public const string shieldStartBlock = "ShieldStartBlock";
-    
     
     public const string lightAttack1 = "Attack";
     public const string lightAttack2 = "Attack2";
@@ -56,7 +58,6 @@ public class PlayerAnimator : MonoBehaviour
     public void UpdateLocomotionAnimation(float verticalMove, float horizontalMove)
     {
         //updates the locomotion animation blend tree
-        //animator.SetFloat(Horizontal, horizontalMove, dampTime, Time.deltaTime);
         animator.SetFloat(Vertical, verticalMove, dampTime, Time.deltaTime);
         animator.SetFloat(Horizontal, horizontalMove, dampTime, Time.deltaTime);
     }
@@ -118,50 +119,26 @@ public class PlayerAnimator : MonoBehaviour
     {
         animator.SetBool(CanRotate, status);
     }
-    
-    // public void EnableCanRotate() => canRotate = true;
-    // public void DisableCanRotate() => canRotate = false;
-    // public void GetCanRotate() => canRotate = false;
 
-    private void Update()
+    private bool isRolling;
+    public bool IsRolling
     {
-        playerManager.isInteracting = animator.GetBool(IsInteracting);
-        // animator.applyRootMotion = animator.GetBool(RootMotionOn);
-
-        #region Testing
-
-        /*if (canCallTest)
+        get => playerManager.PlayerAnimator.animator.GetBool(Rolling);
+        set
         {
-            PlayMode mode = PlayMode.StopSameLayer;
-            if (cntTest == 0)
-            {
-                animator.CrossFade("RightHandEmpty", 0.2f);
-            }
-            else if (cntTest == 1)
-            {
-                animator.CrossFade("RightHandIdle", 0.2f);
-            }
-            else
-            {
-                canCallTest = false;
-                cntTest = 0;
-            }
-
-            cntTest++;
-        }*/
-
-        #endregion
+            isRolling = value;
+            playerManager.PlayerAnimator.animator.SetBool(Rolling, value);
+        }
     }
 
-
-    public void OverrideDefaultAnimation(AnimatorOverrideController animationOverride, string animationName)
+    /*public void OverrideDefaultAnimationTest(AnimatorOverrideController animationOverride, string animationName)
     {
         var animatorOverrideController = overrideController;
         animatorOverrideController[animationName] = animationOverride[animationName];
         var x = animatorOverrideController[animationName];
-    }
+    }*/
 
-    public void OverrideDefaultAnimationTest(AnimatorOverrideController animationOverride)
+    public void OverrideDefaultAnimation(AnimatorOverrideController animationOverride)
     {
         if (animationOverride.runtimeAnimatorController != overrideController.runtimeAnimatorController) return;
         
@@ -181,7 +158,16 @@ public class PlayerAnimator : MonoBehaviour
         overrideController.ApplyOverrides(mainClipOverrides);
     }
 
-    public AnimationClipOverrides testclipoverr;
+    
+    public List<float> DefaultLayerWeights { get; } = new List<float>();
+    private void SetupDefaultLayerWeights()
+    {
+        for (var i = 0; i < animator.layerCount; i++)
+        {
+            var layerWeight = animator.GetLayerWeight(i);
+            DefaultLayerWeights.Add(layerWeight);
+        }
+    }
 
     //we can only CrossFade one animation per frame
     private IEnumerator PlayAfterOneFrame(string animationName, AnimationLayerData animationLayerData = null)
@@ -195,47 +181,16 @@ public class PlayerAnimator : MonoBehaviour
         StartCoroutine(PlayAfterOneFrame(animationName, animationLayerData));
     }
 
-    public AnimatorOverrideController testAnimOverride;
 
     #region Testing
-
-    private int cntTest = 0;
-    private bool canCallTest;
-    private static readonly int CanDoCombo = Animator.StringToHash("canDoCombo");
-    private static readonly int CanRotate = Animator.StringToHash("canRotate");
-    
-
-    [ContextMenu("test override")]
+    [ContextMenu("test unequip (idle->empty)")]
     public void TestOverride()
     {
         animator.CrossFade("RightHandIdle", 0.2f);
         animator.CrossFade("RightHandEmpty", 0.2f);
     }
 
-    [ContextMenu("test override 2")]
-    public void TestOverride2()
-    {
-        OverrideDefaultAnimationTest(testAnimOverride);
-    }
-
-    [ContextMenu("test override Update")]
-    public void TestOverrideUpdate()
-    {
-        canCallTest = true;
-    }
-
     #endregion
-
-
-    public List<float> DefaultLayerWeights { get; } = new List<float>();
-    private void SetupDefaultLayerWeights()
-    {
-        for (var i = 0; i < animator.layerCount; i++)
-        {
-            var layerWeight = animator.GetLayerWeight(i);
-            DefaultLayerWeights.Add(layerWeight);
-        }
-    }
 }
 
 
@@ -249,7 +204,7 @@ public class AnimationClipOverrides : List<KeyValuePair<AnimationClip, Animation
         get { return this.Find(x => x.Key.name.Equals(name)).Value; }
         set
         {
-            int index = this.FindIndex(x => x.Key.name.Equals(name));
+            var index = this.FindIndex(x => x.Key.name.Equals(name));
             if (index != -1)
                 this[index] = new KeyValuePair<AnimationClip, AnimationClip>(this[index].Key, value);
         }
@@ -260,11 +215,10 @@ public class AnimationClipOverrides : List<KeyValuePair<AnimationClip, Animation
         get { return this.Find(x => x.Key == name).Value; }
         set
         {
-            int index = this.FindIndex(x => x.Key == name);
+            var index = this.FindIndex(x => x.Key == name);
             if (index != -1)
                 this[index] = new KeyValuePair<AnimationClip, AnimationClip>(this[index].Key, value);
         }
     }
 
-    
 }

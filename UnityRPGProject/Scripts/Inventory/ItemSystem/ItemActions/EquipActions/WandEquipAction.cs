@@ -8,7 +8,7 @@ public class WandEquipAction : EquipItemAction
         GameObject gameObjectToEquip = null)
     {
         var playerAnimator = parentGO.GetComponent<PlayerAnimator>();
-        playerAnimator.OverrideDefaultAnimationTest(actionAnimationOverride);
+        playerAnimator.OverrideDefaultAnimation(actionAnimationOverride);
         var layerData = new AnimationLayerData
         {
             layerName = "LeftHand",

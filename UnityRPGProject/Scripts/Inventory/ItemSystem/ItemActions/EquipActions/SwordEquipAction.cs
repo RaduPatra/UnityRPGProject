@@ -17,7 +17,7 @@ public class SwordEquipAction : EquipItemAction
 
         if (weaponCol == null) return;
         weaponCol.Initialize(item);
-        playerAnimator.OverrideDefaultAnimationTest(actionAnimationOverride);
+        playerAnimator.OverrideDefaultAnimation(actionAnimationOverride);
         playerAnimator.PlayAfterOneFrameCoroutine(PlayerAnimator.rightHandIdleDefault);
     }
 

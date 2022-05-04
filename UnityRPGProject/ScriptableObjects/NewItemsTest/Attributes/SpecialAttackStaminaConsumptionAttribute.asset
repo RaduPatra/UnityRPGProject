@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c11b25de1be0462eb58706ddc8b89d67, type: 3}
-  m_Name: AttackAction
+  m_Script: {fileID: 11500000, guid: bf311c19ddc3490e8464ae45b1e40d37, type: 3}
+  m_Name: SpecialAttackStaminaConsumptionAttribute
   m_EditorClassIdentifier: 
-  staminaConsumptionAttribute: {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+  name: 
+  attributeData:
+    value: 20

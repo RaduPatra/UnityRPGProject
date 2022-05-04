@@ -34,6 +34,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 888dc8636153fcb4a9afab8601e1bba1, type: 2}
     - {fileID: 1722081097931586, guid: 6bb893eed4cfb794ba9fa5aca6b42c83, type: 3}
     - {fileID: 11400000, guid: 83ec11f3845193749824b751c7b1d437, type: 2}
+    - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -52,7 +53,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 11
+      Data: 12
     - Name: 
       Entry: 7
       Data: 
@@ -279,6 +280,24 @@ MonoBehaviour:
     - Name: value
       Entry: 4
       Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 18
+    - Name: $v
+      Entry: 7
+      Data: 16|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 12
     - Name: 
       Entry: 8
       Data: 

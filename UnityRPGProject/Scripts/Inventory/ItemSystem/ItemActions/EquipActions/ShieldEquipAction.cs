@@ -11,7 +11,7 @@ public class ShieldEquipAction : EquipItemAction
         var shieldColl = colliderHolder.shieldCollider.GetComponent<ShieldCollider>();
 
         shieldColl.Initialize(item);
-        playerAnimator.OverrideDefaultAnimationTest(actionAnimationOverride);
+        playerAnimator.OverrideDefaultAnimation(actionAnimationOverride);
         var layerData = new AnimationLayerData
         {
             layerName = "LeftHand",

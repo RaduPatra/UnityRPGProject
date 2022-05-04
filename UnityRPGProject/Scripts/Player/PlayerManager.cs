@@ -13,11 +13,14 @@ public class PlayerManager : MonoBehaviour
 
     //FLAGS
     public bool isGrounded;
-    public bool isInteracting;
-    
-    [SerializeField]
-    private bool isAiming;
-    
+    // private bool isInteracting;
+
+
+    //temp
+    public bool IsInteracting => PlayerAnimator.animator.GetBool(PlayerAnimator.IsInteracting);
+
+    [SerializeField] private bool isAiming;
+
     public bool IsAiming
     {
         get => isAiming;

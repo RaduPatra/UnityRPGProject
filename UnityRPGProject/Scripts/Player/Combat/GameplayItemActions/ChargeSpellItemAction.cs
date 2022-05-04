@@ -10,15 +10,18 @@ public class ChargeSpellItemAction : ItemGameplayActions
     [SerializeField] private AttributeBaseSO projectileShootAttribute;
     [SerializeField] private float projectileForce = 10f;
     [SerializeField] private float shootMaxDistance = 999f;
+    [SerializeField] private AttributeBaseSO staminaConsumptionAttribute;
 
     public override void StartAction(ItemWithAttributes item, GameObject go)
     {
         var playerAnimator = go.GetComponent<PlayerAnimator>();
         var playerManager = go.GetComponent<PlayerManager>();
         var playerEquipment = go.GetComponent<EquipmentManager>();
-        var playerAttack = go.GetComponent<PlayerAttack>();
+        var playerAttack = go.GetComponent<PlayerCombat>();
+        var playerStamina = go.GetComponent<Stamina>();
         playerAttack.CanCastSpell = false;
-        if (playerManager.isInteracting) return;
+        if (playerManager.IsInteracting) return;
+        if (playerStamina.CurrentStamina <= 0) return;
         playerAttack.CanCastSpell = true;
         playerAnimator.PlayAnimation(PlayerAnimator.leftHandCharge, false);
         playerManager.IsAiming = true;
@@ -32,8 +35,7 @@ public class ChargeSpellItemAction : ItemGameplayActions
 
     public override void PerformedAction(ItemWithAttributes item, GameObject go)
     {
-        
-        var playerAttacker = go.GetComponent<PlayerAttack>();
+        var playerAttacker = go.GetComponent<PlayerCombat>();
         var playerEquipment = go.GetComponent<EquipmentManager>();
 
         if (!playerAttacker.CanCastSpell) return;
@@ -50,12 +52,12 @@ public class ChargeSpellItemAction : ItemGameplayActions
     //drain stamina update if charge performed?
     public override void CancelledAction(ItemWithAttributes item, GameObject go)
     {
-        var playerAttacker = go.GetComponent<PlayerAttack>();
+        var playerAttacker = go.GetComponent<PlayerCombat>();
         var playerAnimator = go.GetComponent<PlayerAnimator>();
         var playerManager = go.GetComponent<PlayerManager>();
         var playerEquipment = go.GetComponent<EquipmentManager>();
-        
-        
+
+
         if (!playerAttacker.CanCastSpell) return;
         var spawnPosition = GetSpawnPosition(item, playerEquipment);
 
@@ -70,14 +72,12 @@ public class ChargeSpellItemAction : ItemGameplayActions
 
         playerAttacker.ChargePerformed = false;
         playerManager.IsAiming = false;
-
-        //shoot projectile
-        //drain stamina
     }
 
     public override void FinalizeAction(ItemWithAttributes item, GameObject go)
     {
         var playerEquipment = go.GetComponent<EquipmentManager>();
+        var playerStamina = go.GetComponent<Stamina>();
 
         var spawnPosition = GetSpawnPosition(item, playerEquipment);
         spawnPosition.transform.Clear();
@@ -109,8 +109,7 @@ public class ChargeSpellItemAction : ItemGameplayActions
             projectileGO.GetComponent<Rigidbody>().velocity = direction * projectileForce;
         }
 
-        //temp - make projectile handle destroy, collision, etc
-        // Destroy(projectile, 5f);
+        playerStamina.DrainItemStamina(item, staminaConsumptionAttribute);
     }
 
     private static Transform GetSpawnPosition(ItemWithAttributes item, EquipmentManager playerEquipment)

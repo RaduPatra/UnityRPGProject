@@ -1,6 +1,7 @@
 using System;
 using UnityEditor.Experimental;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.EventSystems;
 using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.Rendering.VirtualTexturing;
@@ -33,6 +34,9 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private float groundCheckRayDistance;
     [SerializeField] private float airTimeToBeginFall = .5f;
 
+    [SerializeField] private float sprintStaminaCost = 1;
+
+
     [Header("References")]
     //REFERENCES
     [SerializeField]
@@ -45,6 +49,7 @@ public class PlayerLocomotion : MonoBehaviour
 
 
     private PlayerManager playerManager;
+    private Stamina playerStamina;
     private Vector3 moveDirection;
     private Vector3 moveVelocity;
     private Vector3 verticalVelocity;
@@ -69,12 +74,14 @@ public class PlayerLocomotion : MonoBehaviour
         set => jumpHeight = value;
     }
 
+
     public float BaseWalkSpeed => baseWalkSpeed;
     public float BaseJumpHeight => baseJumpHeight;
 
     private void Start()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerStamina = GetComponent<Stamina>();
         walkMoveSpeed = baseWalkSpeed;
         jumpHeight = baseJumpHeight;
         currentJumpTimeout = jumpTimeout;
@@ -85,6 +92,7 @@ public class PlayerLocomotion : MonoBehaviour
     private void SetupInput()
     {
         inputManager.jumpAction += HandleJump;
+        inputManager.rollAction += HandleRoll;
         inputManager.moveAction += OnMove;
         inputManager.sprintStartAction += OnSprintStart;
         inputManager.sprintCancelledAction += OnSprintCancel;
@@ -105,12 +113,14 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void HandleRotation()
     {
+        if (playerManager.PlayerAnimator.IsRolling) return;
         if (playerManager.IsAiming || playerManager.PlayerAnimator.GetCanRotate())
         {
             RotateToCameraDirection();
         }
         else
         {
+            if (playerManager.IsInteracting) return;
             RotateToMovementDirection();
         }
     }
@@ -124,7 +134,7 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection = Vector3.zero;
 
         //don't calculate move if interacting
-        if (playerManager.isInteracting)
+        if (playerManager.IsInteracting)
             return;
 
         if (!(direction.magnitude > 0))
@@ -201,7 +211,11 @@ public class PlayerLocomotion : MonoBehaviour
             currentAirSpeedMultiplier = inAirSpeedMultiplier;
 
         if (sprintInput)
+        {
+            if (playerStamina.CurrentStamina <= 0) return;
             currentSprintSpeedMultiplier = sprintSpeedMultiplier;
+            playerStamina.Damage(sprintStaminaCost * Time.deltaTime);
+        }
 
         if (playerManager.IsAiming)
             currentAimSpeedMultiplier = blockingSpeedMultiplier;
@@ -228,6 +242,23 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager.PlayerAnimator.PlayAnimation("Jump", false);
     }
 
+
+    [SerializeField] private float rollingStaminaCost = 20f;
+    private void HandleRoll()
+    {
+        
+        if (playerStamina.CurrentStamina <= 0) return;
+        if (moveDirection.magnitude < .1f) return;
+        playerManager.PlayerAnimator.PlayAnimation("Roll", true);
+        playerManager.PlayerAnimator.IsRolling = true;
+
+        var dir = moveDirection;
+        dir.y = 0;
+        var targetRotation = Quaternion.LookRotation(dir);
+        transform.rotation = targetRotation;
+        playerStamina.Damage(rollingStaminaCost);
+    }
+    
     private void RotateToMovementDirection()
     {
         //rotate only if moving
@@ -239,9 +270,6 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void RotateToCameraDirection()
     {
-        //rotate only if moving
-        // if (!(moveDirection.magnitude > .1f)) return;
-
         var targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
@@ -250,12 +278,11 @@ public class PlayerLocomotion : MonoBehaviour
     {
         var moveAmount = Mathf.Clamp01(Mathf.Abs(movementInput.x) + Mathf.Abs(movementInput.y));
 
-        if (sprintInput && moveAmount != 0)
+        if (sprintInput && moveAmount != 0 && playerStamina.CurrentStamina > 0)
             moveAmount = 2f;
 
         if (playerManager.IsAiming)
         {
-            // playerManager.PlayerAnimator.PlayAnimation("blockingStance", false);
             playerManager.PlayerAnimator.UpdateLocomotionAnimation(movementInput.y, movementInput.x);
         }
         else

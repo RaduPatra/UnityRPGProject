@@ -12,7 +12,7 @@ public abstract class ItemGameplayActions : ScriptableObject
     public virtual void CancelledAction(ItemWithAttributes item, GameObject go)
     {
     }
-
+    
     public virtual void FinalizeAction(ItemWithAttributes item, GameObject go)
     {
     }

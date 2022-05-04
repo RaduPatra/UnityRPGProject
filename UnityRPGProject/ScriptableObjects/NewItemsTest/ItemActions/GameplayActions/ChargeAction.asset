@@ -17,3 +17,4 @@ MonoBehaviour:
   projectileShootAttribute: {fileID: 11400000, guid: 888dc8636153fcb4a9afab8601e1bba1, type: 2}
   projectileForce: 10
   shootMaxDistance: 999
+  staminaConsumptionAttribute: {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}

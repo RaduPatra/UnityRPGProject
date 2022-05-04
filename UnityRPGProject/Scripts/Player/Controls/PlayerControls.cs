@@ -97,6 +97,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""050e8a2b-3d7c-47af-92bd-dfa528c6702c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -273,6 +281,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ea3422a-855a-497f-8983-a88858c40698"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -473,6 +492,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
         m_Gameplay_TestButton = m_Gameplay.FindAction("TestButton", throwIfNotFound: true);
         m_Gameplay_MouseTest = m_Gameplay.FindAction("MouseTest", throwIfNotFound: true);
+        m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
         // Player Attack
         m_PlayerAttack = asset.FindActionMap("Player Attack", throwIfNotFound: true);
         m_PlayerAttack_Attack = m_PlayerAttack.FindAction("Attack", throwIfNotFound: true);
@@ -540,6 +560,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Sprint;
     private readonly InputAction m_Gameplay_TestButton;
     private readonly InputAction m_Gameplay_MouseTest;
+    private readonly InputAction m_Gameplay_Roll;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -554,6 +575,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         public InputAction @TestButton => m_Wrapper.m_Gameplay_TestButton;
         public InputAction @MouseTest => m_Wrapper.m_Gameplay_MouseTest;
+        public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -593,6 +615,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @MouseTest.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseTest;
                 @MouseTest.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseTest;
                 @MouseTest.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseTest;
+                @Roll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
+                @Roll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
+                @Roll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -627,6 +652,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @MouseTest.started += instance.OnMouseTest;
                 @MouseTest.performed += instance.OnMouseTest;
                 @MouseTest.canceled += instance.OnMouseTest;
+                @Roll.started += instance.OnRoll;
+                @Roll.performed += instance.OnRoll;
+                @Roll.canceled += instance.OnRoll;
             }
         }
     }
@@ -725,6 +753,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnTestButton(InputAction.CallbackContext context);
         void OnMouseTest(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
     }
     public interface IPlayerAttackActions
     {

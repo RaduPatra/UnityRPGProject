@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f43eee3ca746b5b485c20e3004a5eb, type: 3}
   m_Name: SpecialAttackAction
   m_EditorClassIdentifier: 
+  specialAttackStaminaConsumptionAttribute: {fileID: 11400000, guid: cf410384a3f3049498bed92a5cd7fd1f, type: 2}

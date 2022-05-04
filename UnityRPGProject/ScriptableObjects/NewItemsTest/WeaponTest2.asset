@@ -27,12 +27,12 @@ MonoBehaviour:
     - {fileID: 8358582471943564132, guid: 612305bd6df71914db5e1761cdff604d, type: 3}
     - {fileID: 11400000, guid: e1fd7dd538ae4fe479a3985bd71459f8, type: 2}
     - {fileID: 11400000, guid: d7e14d4b496084749b2f8e163fadd1e2, type: 2}
-    - {fileID: 11400000, guid: 4908ad2549caf0841bd86da4283316a7, type: 2}
-    - {fileID: 7400000, guid: e76d6ae518a003b4b9569cefb2a1a248, type: 2}
     - {fileID: 11400000, guid: 3d2a3dedf6f9ee343ba7bdea495ffa7a, type: 2}
     - {fileID: 11400000, guid: c0c9366c7b3ebd04d9143128d73aa295, type: 2}
     - {fileID: 11400000, guid: b8f71e2b4b9fd244b9998b31bbc0c5b2, type: 2}
     - {fileID: 11400000, guid: 4f3045c0fa8f4ac4f810b2f1d07f2479, type: 2}
+    - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+    - {fileID: 11400000, guid: cf410384a3f3049498bed92a5cd7fd1f, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -51,7 +51,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 10
+      Data: 11
     - Name: 
       Entry: 7
       Data: 
@@ -208,22 +208,10 @@ MonoBehaviour:
       Data: 11
     - Name: $v
       Entry: 7
-      Data: 11|AnimationsData, Assembly-CSharp
+      Data: 11|GameplayItemActionsData, Assembly-CSharp
     - Name: value
-      Entry: 7
-      Data: 12|ItemAnimations, Assembly-CSharp
-    - Name: leftIdle
       Entry: 10
       Data: 12
-    - Name: rightIdle
-      Entry: 6
-      Data: 
-    - Name: attack
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -238,7 +226,7 @@ MonoBehaviour:
       Data: 13
     - Name: $v
       Entry: 7
-      Data: 13|GameplayItemActionsData, Assembly-CSharp
+      Data: 12|GameplayItemActionsData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 14
@@ -256,10 +244,28 @@ MonoBehaviour:
       Data: 15
     - Name: $v
       Entry: 7
-      Data: 14|GameplayItemActionsData, Assembly-CSharp
+      Data: 13|FloatAttributeData, Assembly-CSharp
     - Name: value
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 10
       Data: 16
+    - Name: $v
+      Entry: 7
+      Data: 14|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 15
     - Name: 
       Entry: 8
       Data: 

@@ -7,19 +7,13 @@ public class ResetToDefaultAnimationWeight : StateMachineBehaviour
     public bool isFirstStateEnter = true;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        Debug.Log("SetAnimationWeight");
         if (isFirstStateEnter)
         {
-            Debug.Log("SetAnimationWeight First");
-
             isFirstStateEnter = false;
             return;
         }
         var playerAnimator = animator.GetComponent<PlayerAnimator>();
         ResetToDefaultWeight(playerAnimator, layerIndex);
-        
-        
     }
     private static void ResetToDefaultWeight(PlayerAnimator playerAnimator, int layerIndex)
     {

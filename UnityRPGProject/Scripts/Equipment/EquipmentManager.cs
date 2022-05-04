@@ -23,6 +23,9 @@ public class EquipmentManager : SerializedMonoBehaviour
     [NonSerialized] public Action<ItemWithAttributes> OnEquipItem;
     [NonSerialized] public Action<ItemWithAttributes> OnUnequipItem;
 
+    [SerializeField] AttributeBaseSO equipPrefabAttr;
+    [SerializeField] private AttributeBaseSO equipActionAttr;
+
     private void Start()
     {
         Debug.Log("eq man start");
@@ -65,8 +68,6 @@ public class EquipmentManager : SerializedMonoBehaviour
     }
 
 
-    public AttributeBaseSO equipPrefabAttr;
-
     private GameObject EquipItemOnCharacter(ItemWithAttributes item)
     {
         var equipLocation = GetEquippedItemInfo(item, equipmentLocations, out var equippedCategory);
@@ -108,8 +109,6 @@ public class EquipmentManager : SerializedMonoBehaviour
         equippedWeapons[equippedCategory] = new ItemStack();
     }
 
-
-    public AttributeBaseSO equipActionAttr;
 
     public void EquipItem(ItemStack stack) //onafterchange
     {
