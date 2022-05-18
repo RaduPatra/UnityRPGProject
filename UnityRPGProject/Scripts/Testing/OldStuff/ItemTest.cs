@@ -14,7 +14,7 @@ public enum ItemType
     Consumable,
     Any
 }
-[CreateAssetMenu(fileName = "New Item", menuName = "Items", order = 1)]
+// [CreateAssetMenu(fileName = "New Item", menuName = "Items", order = 1)]
 
 public class ItemTest : ScriptableObject
 {

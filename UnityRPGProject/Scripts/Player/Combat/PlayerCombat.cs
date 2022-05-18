@@ -93,7 +93,7 @@ public class PlayerCombat : MonoBehaviour
 
     private ItemWithAttributes GetHandItem(ItemCategory itemCategory)
     {
-        return equipmentManager.equipmentInventory.equippedWeaponItems[itemCategory].item;
+        return equipmentManager.equipmentWeaponInventory.equipmentSlots[itemCategory].itemStack.item;
     }
 
     #region Animation Events

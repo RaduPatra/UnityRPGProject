@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Messaging;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 
@@ -31,6 +32,7 @@ public class InventorySlot
         return MemberwiseClone() as InventorySlot;
     }
 
+    
     public void DecreaseQuantity() //?move to itemstack
     {
         if (itemStack.quantity > 1)
@@ -50,9 +52,9 @@ public class InventorySlot
     }
 
     // this = drop slot(destination), slot = dragged slot(source)
-    public void NewSwapTest(InventorySlot slot)
+    public void SwapSlot(InventorySlot slot)
     {
-        if (!(CanAcceptTest(slot.itemStack.item) && slot.CanAcceptTest(itemStack.item)))
+        if (!(CanAcceptItem(slot.itemStack.item) && slot.CanAcceptItem(itemStack.item)))
         {
             Debug.Log("failed");
             return;
@@ -99,7 +101,7 @@ public class InventorySlot
         OnSlotChanged?.Invoke(this);
     }
 
-    public bool CanAcceptTest(ItemWithAttributes item)
+    public bool CanAcceptItem(ItemWithAttributes item)
     {
         return item == null || item.HasCategory(slotCategory);
     }

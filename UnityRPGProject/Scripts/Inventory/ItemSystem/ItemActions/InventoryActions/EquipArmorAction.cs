@@ -9,11 +9,11 @@ public class EquipArmorAction : InventoryItemAction
     {
         var equipmentManager = user.GetComponent<EquipmentManager>();
         var item = slot.GetItem();
-        var inventory = equipmentManager.equipmentInventory.equipmentArmorSlots;
+        var inventory = equipmentManager.equipmentArmorInventory.equipmentSlots;
         var equippedCategory = equipmentManager.FindEquippedCategory(item, inventory);
 
         if (equippedCategory == null) return;
-        var oldSlot = equipmentManager.equipmentInventory.equipmentArmorSlots[equippedCategory];
-        slot.NewSwapTest(oldSlot);
+        var oldSlot = equipmentManager.equipmentArmorInventory.equipmentSlots[equippedCategory];
+        slot.SwapSlot(oldSlot);
     }
 }

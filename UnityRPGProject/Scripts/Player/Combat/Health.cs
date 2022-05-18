@@ -38,8 +38,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         if (characterStats != null)
         {
-            // var defenceBonus = characterStats.ActiveModifiers[StatType.Defence];
-            amount = characterStats.CalculateDamageReduction(amount/*, defenceBonus*/);
+            amount = characterStats.CalculateDamageReduction(amount);
         }
 
         currentHealth = Math.Max(currentHealth - amount, 0);

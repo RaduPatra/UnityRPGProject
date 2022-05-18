@@ -30,6 +30,7 @@ public class InputManager : ScriptableObject
     public Action blockActionStart = delegate { };
     public Action blockActionPerformed = delegate { };
     public Action blockCancelledAction = delegate { };
+    public Action cancelAction = delegate { };
 
     //todo - set callbacks instead of manually subscribing
     private void OnEnable()
@@ -49,12 +50,10 @@ public class InputManager : ScriptableObject
         playerControls.Gameplay.Movement.performed += OnMove;
         playerControls.Gameplay.Jump.performed += OnJump;
         playerControls.Gameplay.Roll.performed += OnRoll;
-        playerControls.Gameplay.Interact.performed += OnInteract;
 
         playerControls.Gameplay.Sprint.performed += OnSprint;
         playerControls.Gameplay.Sprint.canceled += OnSprint;
 
-        playerControls.Gameplay.TestButton.started += i => Debug.Log("composite btn test");
         playerControls.Gameplay.Attack.performed += OnAttack;
         playerControls.Gameplay.SpecialAttack.performed += OnSpecialAttack;
 
@@ -64,6 +63,17 @@ public class InputManager : ScriptableObject
 
         playerControls.General.Hotbar.performed += OnHotbarInput;
         playerControls.General.ToggleUI.performed += OnToggleUI;
+
+        playerControls.Interaction.Interact.performed += OnInteract;
+        playerControls.Interaction.Cancel.performed += CancelAction;
+
+        playerControls.Testing.TestButton.started += i => Debug.Log("composite btn test");
+    }
+
+    private void CancelAction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+            cancelAction?.Invoke();
     }
 
     private void OnSpecialAttack(InputAction.CallbackContext obj)
@@ -71,7 +81,6 @@ public class InputManager : ScriptableObject
         specialAttackAction?.Invoke();
     }
 
-    // private bool isOn = true;
     private void OnToggleUI(InputAction.CallbackContext ctx)
     {
         toggleUIAction?.Invoke();
@@ -80,13 +89,31 @@ public class InputManager : ScriptableObject
     public void EnableGameplayActions()
     {
         playerControls.Gameplay.Enable();
+        playerControls.Interaction.Enable();
         mouseLookReference.action.Enable();
     }
 
     public void EnableInterfaceActions()
     {
+        moveAction.Invoke(Vector2.zero);
         playerControls.Gameplay.Disable();
+        playerControls.Interaction.Disable();
         mouseLookReference.action.Disable();
+    }
+
+    public void ToggleChestActions(bool status)
+    {
+        if (status)
+        {
+            moveAction.Invoke(Vector2.zero);
+            playerControls.Gameplay.Disable();
+            playerControls.General.Disable();
+        }
+        else
+        {
+            playerControls.Gameplay.Enable();
+            playerControls.General.Enable();
+        }
     }
 
     private void DisableAllActions()
@@ -107,7 +134,7 @@ public class InputManager : ScriptableObject
         // Debug.Log("jump");
         jumpAction?.Invoke();
     }
-    
+
     private void OnRoll(InputAction.CallbackContext ctx)
     {
         // Debug.Log("roll");
@@ -116,10 +143,6 @@ public class InputManager : ScriptableObject
 
     private void OnAttack(InputAction.CallbackContext ctx)
     {
-        /*attackInput = true;
-         if (playerManager.isInteracting) return;
-         playerManager.PlayerAttack.AttackAction();
-         Debug.Log("attack");*/
         attackAction?.Invoke();
     }
 
@@ -150,7 +173,7 @@ public class InputManager : ScriptableObject
         moveAction.Invoke(movementInput);
     }
 
-    private void OnSprint(InputAction.CallbackContext ctx) //called the frame wasd keys were pressed or released
+    private void OnSprint(InputAction.CallbackContext ctx) 
     {
         if (ctx.performed)
             sprintStartAction?.Invoke();

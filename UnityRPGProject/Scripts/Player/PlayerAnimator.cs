@@ -45,6 +45,9 @@ public class PlayerAnimator : MonoBehaviour
     public const string leftHandCharge = "LeftHandCharge";
     public const string shieldBlockLoop = "ShieldBlockLoop";
     
+    public const string chestOpenAnimation = "PlayerOpenChest";
+    public const string takeItem = "TakeItem";
+    
     
 
     private void Awake()
@@ -172,7 +175,7 @@ public class PlayerAnimator : MonoBehaviour
     //we can only CrossFade one animation per frame
     private IEnumerator PlayAfterOneFrame(string animationName, AnimationLayerData animationLayerData = null)
     {
-        yield return null;
+        yield return WaitFor.Frames(2);
         PlayAnimation(animationName, false, true, animationLayerData);
     }
 
@@ -221,4 +224,16 @@ public class AnimationClipOverrides : List<KeyValuePair<AnimationClip, Animation
         }
     }
 
+}
+
+public static class WaitFor
+{
+    public static IEnumerator Frames(int frameCount)
+    {
+        while (frameCount > 0)
+        {
+            frameCount--;
+            yield return null;
+        }
+    }
 }

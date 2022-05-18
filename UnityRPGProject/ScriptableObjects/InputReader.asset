@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611f9d5773e1c4c4f89f12e9f879d5cd, type: 3}
   m_Name: InputReader
   m_EditorClassIdentifier: 
-  mouseLookReference: {fileID: 3045421601420752556, guid: bab50c5876162294b8f2e68981bc9ae1, type: 3}
+  mouseLookReference: {fileID: -5330384971008940994, guid: bab50c5876162294b8f2e68981bc9ae1, type: 3}

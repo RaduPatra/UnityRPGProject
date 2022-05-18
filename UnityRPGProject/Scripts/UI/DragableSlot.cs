@@ -53,7 +53,7 @@ public class DragableSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     {
         if (!IsLeftButton(eventData)) return;
         draggedSlot = eventData.pointerDrag.GetComponent<ISlot>();
-        thisSlot.InventorySlot.NewSwapTest(draggedSlot.InventorySlot);
+        thisSlot.InventorySlot.SwapSlot(draggedSlot.InventorySlot);
         Debug.Log("OnDrop1 " + transform.parent.gameObject);
         Debug.Log("OnDrop2 " + eventData.pointerDrag);
     }

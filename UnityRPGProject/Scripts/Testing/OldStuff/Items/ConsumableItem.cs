@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
-[CreateAssetMenu(fileName = "New Consumable", menuName = "Consumables/Consumable", order = 1)]
 public class ConsumableItem : ItemBase
 {
     

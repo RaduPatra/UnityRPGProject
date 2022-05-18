@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c66e92141c14aebb2d1351682ade790, type: 3}
+  m_Name: AxeWeaponItem
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: e7df154127b079644af854f2ad90db30, type: 2}
+    - {fileID: 3799708338192280572, guid: 40faf3d82231b934db6226a46695c52e, type: 3}
+    - {fileID: 11400000, guid: 8bc5e70e715e6c44c9f5c02d70aeaeac, type: 2}
+    - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
+    - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
+    - {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
+    - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
+    - {fileID: 2745421895338982650, guid: a019006cb084b2545964f2debe4680fb, type: 3}
+    - {fileID: 11400000, guid: 3316c4af87eb60641862903383a1b2ca, type: 2}
+    - {fileID: 8358582471943564132, guid: 612305bd6df71914db5e1761cdff604d, type: 3}
+    - {fileID: 11400000, guid: e1fd7dd538ae4fe479a3985bd71459f8, type: 2}
+    - {fileID: 11400000, guid: d7e14d4b496084749b2f8e163fadd1e2, type: 2}
+    - {fileID: 11400000, guid: 3d2a3dedf6f9ee343ba7bdea495ffa7a, type: 2}
+    - {fileID: 11400000, guid: c0c9366c7b3ebd04d9143128d73aa295, type: 2}
+    - {fileID: 11400000, guid: b8f71e2b4b9fd244b9998b31bbc0c5b2, type: 2}
+    - {fileID: 11400000, guid: 4f3045c0fa8f4ac4f810b2f1d07f2479, type: 2}
+    - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+    - {fileID: 11400000, guid: cf410384a3f3049498bed92a5cd7fd1f, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: attributes
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[AttributeBaseSO, Assembly-CSharp],[AttributeDataBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[AttributeBaseSO,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 11
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|GameObjectData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 3|StatModifierListData, Assembly-CSharp
+    - Name: value
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[StatModifier, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 5|StatModifier, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 0
+    - Name: value
+      Entry: 4
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 6|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: Axe
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 7|SpriteAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: 8|GameObjectData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: 9|ParticleAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 10
+    - Name: $v
+      Entry: 7
+      Data: 10|EquipActionData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 12
+    - Name: $v
+      Entry: 7
+      Data: 11|GameplayItemActionsData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 14
+    - Name: $v
+      Entry: 7
+      Data: 12|GameplayItemActionsData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 15
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 16
+    - Name: $v
+      Entry: 7
+      Data: 13|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 17
+    - Name: $v
+      Entry: 7
+      Data: 14|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 15
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  id: c0ca5ebd-8346-4929-ab55-13bb894bf51c
+  testString: WEP2
+  categoryParent: {fileID: 11400000, guid: e482dc76af1c40f4b94fe8b1efd314cb, type: 2}
+  isStackable: 0
+  maxStack: 1
+  attrToGetTest: {fileID: 0}
+  categToGetTest: {fileID: 0}

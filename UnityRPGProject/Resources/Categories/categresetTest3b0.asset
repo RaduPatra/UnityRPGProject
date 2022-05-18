@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e89badab9199a448872f9139bb3ba99, type: 3}
+  m_Name: categresetTest3b0
+  m_EditorClassIdentifier: 
+  id: 3b07761c-45b5-4f89-ab52-bd0d92d7a46b
+  testString: default
+  categoryParents: []
+  attributes: []
+  categoryUseAction: {fileID: 0}
+  attrToGetTest: {fileID: 0}

@@ -9,7 +9,7 @@ public class StatModifierListSO : AttributeSO<List<StatModifier>>
     {
         var val = new StatModifierListData
         {
-            value =  new List<StatModifier>(attributeData.value)
+            value =  new List<StatModifier>(/*attributeData.value*/)
         };
         return val;
     }

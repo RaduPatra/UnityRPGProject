@@ -19,6 +19,7 @@ public class EquipmentUI : MonoBehaviour
     private void Start()
     {
         SetupUISlots();
+        equipmentInventory.inventoryChanged += SetupUISlots;
     }
 
     private void SetupUISlots()
@@ -27,7 +28,15 @@ public class EquipmentUI : MonoBehaviour
 
         equipmentSlots = itemsParent.GetComponentsInChildren<EquipmentSlotUI>();
         var index = 0;
-        foreach (var equipment in equipmentInventory.equipmentArmorSlots)
+
+        foreach (var equipmentSlot in equipmentSlots)
+        {
+            var cat = equipmentSlot.slotCategory;
+            var slot = equipmentInventory.equipmentSlots[cat];
+            equipmentSlot.InventorySlot = slot;
+        }
+
+        /*foreach (var equipment in equipmentInventory.equipmentArmorSlots)
         {
             if (equipmentSlots[index].slotCategory == equipment.Key)
             {
@@ -37,7 +46,7 @@ public class EquipmentUI : MonoBehaviour
             }
 
             index++;
-        }
+        }*/
     }
 
     /*void UpdateSlotAtIndex(InventorySlot slot)

@@ -72,9 +72,9 @@ public class InventorySlotUI : MonoBehaviour, ISlot, IPointerExitHandler
         text.gameObject.SetActive(false);
 
         panelBackground.color = defaultColor;
-        foreach (var equippedWeapon in InventoryUI.equipmentInventory.equippedWeaponItems)
+        foreach (var equippedWeapon in InventoryUI.equipmentWeaponInventory.equipmentSlots)
         {
-            if (slot.itemStack.id != equippedWeapon.Value.id) continue;
+            if (slot.itemStack.id != equippedWeapon.Value.itemStack.id) continue;
             panelBackground.color = selectedColor;
             break;
         }

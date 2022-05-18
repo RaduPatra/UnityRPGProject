@@ -15,26 +15,15 @@ public enum StatType
 public class CharacterStats : SerializedMonoBehaviour
 {
     private EquipmentManager equipmentManager;
-
-    // private Dictionary<InventorySlot, StatModifier> equipmentModifiers;
-
-    // [SerializeField] private CharacterAttributes characterAttributes;
-    // [SerializeField] private VoidEventChannel onStatsChangeEventChannel;
-
     [SerializeField] private StatModifierEventChannel onStatModifierChangeEventChannel;
-    // public CharacterAttributes CharacterAttributes => characterAttributes;
 
     [SerializeField] private Dictionary<StatType, float> activeModifiers = new Dictionary<StatType, float>();
-
     public Dictionary<StatType, float> ActiveModifiers => activeModifiers;
-
 
     [SerializeField] private AttributeBaseSO statModifiersAttribute;
 
     private void Awake()
     {
-        // Debug.Log("char stats awake");
-
         equipmentManager = GetComponent<EquipmentManager>();
         if (equipmentManager != null)
         {
@@ -50,7 +39,6 @@ public class CharacterStats : SerializedMonoBehaviour
 
     private void Start()
     {
-        // Debug.Log("char stats start");
         foreach (var modifier in activeModifiers)
         {
             if (onStatModifierChangeEventChannel != null)
@@ -58,7 +46,7 @@ public class CharacterStats : SerializedMonoBehaviour
         }
     }
 
-    public float CalculateDamageReduction(float damage/*, float defenceBonus*/)
+    public float CalculateDamageReduction(float damage)//Valheim like damage reduction
     {
         Debug.Log("Initial Damage " + damage);
         var defenceBonus = ActiveModifiers[StatType.Defence];
@@ -80,7 +68,7 @@ public class CharacterStats : SerializedMonoBehaviour
 
     private void AddItemStatsTest(ItemWithAttributes item)
     {
-        Debug.Log("add stats enable");
+        Debug.Log("add stats");
         var attr = item.GetAttribute<StatModifierListData>(statModifiersAttribute);
         if (attr == null) return;
         var statModifiers = attr.value;
@@ -95,6 +83,8 @@ public class CharacterStats : SerializedMonoBehaviour
 
     private void RemoveItemStatsTest(ItemWithAttributes item)
     {
+        Debug.Log("remove stats");
+
         var attr = item.GetAttribute<StatModifierListData>(statModifiersAttribute);
         if (attr == null) return;
         var statModifiers = attr.value;
@@ -106,15 +96,4 @@ public class CharacterStats : SerializedMonoBehaviour
                 onStatModifierChangeEventChannel.Raise(new StatModifier(modifier.type, activeModifiers[modifier.type]));
         }
     }
-
-    /*private bool CanChangeStats(InventorySlot slot)
-    {
-        var item = slot.GetItem();
-        if (item == null) return false;
-        if (!item.IsEquipment()) return false;
-
-        equipmentManager.equipmentInventory.equipmentArmorSlots.TryGetValue(item.itemType, out var slot1);
-        equipmentManager.equipmentInventory.equippedWeaponItems.TryGetValue(item.itemType, out var stack1);
-        return slot1 == slot || stack1 != null && stack1.id == slot.itemStack.id;
-    }*/
 }

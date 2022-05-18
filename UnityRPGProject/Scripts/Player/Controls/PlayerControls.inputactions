@@ -38,22 +38,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "8084a81b-5479-47d1-87c0-b1eb279bac54",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "MouseLook",
-                    "type": "PassThrough",
-                    "id": "ecd131fa-8901-4ae4-a338-83118e435b52",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "c4f9d71b-0f77-4dae-9129-c9b15465301c",
@@ -70,26 +54,18 @@
                     "interactions": ""
                 },
                 {
-                    "name": "TestButton",
-                    "type": "Button",
-                    "id": "6277a552-8b48-40e1-a3ef-de233e8db93a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "MouseTest",
-                    "type": "Button",
-                    "id": "55d13b3e-3b7e-4870-89ec-2412ec164692",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "050e8a2b-3d7c-47af-92bd-dfa528c6702c",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseLook",
+                    "type": "PassThrough",
+                    "id": "334086f5-fa65-4cbf-89e0-85cf6a03ebb2",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -152,28 +128,6 @@
                 },
                 {
                     "name": "",
-                    "id": "740c4f93-9931-4e6f-b2c0-7e932fa65e6d",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e086ead1-a6d3-438f-8029-8846734324af",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseLook",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bae6cb5b-d680-42a4-a6a1-7e85a653b1b8",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -195,54 +149,10 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Button With One Modifier",
-                    "id": "48424258-f32f-42b1-8b36-cc109ddc9806",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestButton",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "be1b6efa-042f-4cf2-aeeb-984698ad486d",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestButton",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "84cb3c1d-4a73-48d8-82e8-3e3663d5800d",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestButton",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "a18db508-71d6-4a54-8766-e17d15d57a2e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseTest",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "",
                     "id": "bce09997-9a4f-47c0-a7f7-8fb61c398eb1",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "Hold(duration=0.7,pressPoint=0.2)",
+                    "interactions": "Hold(duration=0.4,pressPoint=0.2)",
                     "processors": "",
                     "groups": "",
                     "action": "Block",
@@ -279,6 +189,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3f06999-6d91-458d-9653-9df9878ecb49",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -459,6 +380,158 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToggleUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Interaction",
+            "id": "160c7e48-6340-4136-b897-52b7c70ce24e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "801ceb33-9cbb-45a7-a92c-b2d45f8c76a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "3509b9f0-be69-4aa3-bdba-9fd4434f7b26",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "11b7cd7c-ccb5-408c-b722-42ff43ead2e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b375138b-414e-4c75-be63-cb53774d80e4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5031f74a-39dd-49a6-a4b9-7d4f53191d80",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "375f6795-11ad-4aa0-8760-0ed11c4fe43e",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Testing",
+            "id": "464839a6-f97f-495e-95af-59868e441d8c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "dee3f529-f0dc-4c72-84d5-9c465312a378",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TestButton",
+                    "type": "Button",
+                    "id": "01fa09f5-f42e-4fa1-91c5-d1b3c24e64c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseTest",
+                    "type": "Button",
+                    "id": "d67cb070-3d35-431a-8b9c-5acbd45f02f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "48ace088-db0a-4e1a-806f-184f1a683d87",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "37d0e336-b1d4-4295-bb62-8abeee4696db",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestButton",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "050f9d37-f3ba-43c7-9273-16901d6b2bf7",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestButton",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "7eb769d0-0242-435c-9d52-1349b9a5d388",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestButton",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a7331161-04c8-4570-af0a-4d8a86ba528c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseTest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

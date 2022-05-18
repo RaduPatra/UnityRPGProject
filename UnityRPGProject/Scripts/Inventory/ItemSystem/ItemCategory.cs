@@ -11,8 +11,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Category", menuName = "ItemCategory", order = 1)]
-public class ItemCategory : ScriptableObject
+public class ItemCategory : ScriptableObject, IDatabaseItem
 {
+
+    [SerializeField]
+    public string id= Guid.NewGuid().ToString(); 
+    public string Id => id;
+
+    public string testString = "default";
+
     [ReadOnly] public List<ItemCategory> categoryParents = new List<ItemCategory>();//private get?
     public List<AttributeBaseSO> attributes = new List<AttributeBaseSO>();
 
@@ -156,4 +163,6 @@ public class ItemCategory : ScriptableObject
     }
 
     #endregion
+
+
 }

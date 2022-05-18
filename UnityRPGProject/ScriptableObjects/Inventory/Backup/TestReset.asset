@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fc8b06968f46c1b9a2956ee445a504, type: 3}
+  m_Name: TestReset
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  inventoryContainer:
+    itemList:
+    - id: 838d2335-648b-4df6-b95a-a63a7d62575e
+      itemStack:
+        item: {fileID: 0}
+        itemId: 
+        quantity: 0
+        id: 30687a71-222c-4b8a-bda5-bb70f2d6b8dc
+      slotCategory: {fileID: 0}
+    - id: 8dab01af-8e63-4808-88e2-81e4afa617dc
+      itemStack:
+        item: {fileID: 0}
+        itemId: 
+        quantity: 0
+        id: c7f9d61f-56d3-4838-8f57-1cb3baa34534
+      slotCategory: {fileID: 0}
+    - id: e1fe5456-990b-4852-b445-41c11e6e3867
+      itemStack:
+        item: {fileID: 0}
+        itemId: 
+        quantity: 0
+        id: a9899eed-75c3-4479-80e7-329ebc0722ae
+      slotCategory: {fileID: 0}
+    - id: 8c830461-1343-416c-a7a9-6fa77d37c547
+      itemStack:
+        item: {fileID: 0}
+        itemId: 
+        quantity: 0
+        id: 29814063-0af9-4622-bf0b-950b106997cf
+      slotCategory: {fileID: 0}
+  inventoryCategory: {fileID: 0}
+  testString: lokomdojodmodomndd

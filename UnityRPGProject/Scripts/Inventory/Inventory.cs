@@ -8,22 +8,22 @@ using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
 [Serializable]
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/Inventory", order = 2)]
+[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/Inventory", order = 1)]
 public class Inventory : InventoryBase
 {
-    [SerializeField] private List<InventorySlot> itemList = new List<InventorySlot>();
-    public List<InventorySlot> ItemList => itemList;
+    [SerializeField] public InventoryContainer inventoryContainer = new InventoryContainer();
+    public List<InventorySlot> ItemList => inventoryContainer.itemList;
 
     public ItemCategory inventoryCategory;
 
-    private void OnEnable()
+    [NonSerialized] public Action inventoryChanged;
+
+    public void Setup()
     {
-        for (var i = 0; i < itemList.Count; i++)
+        for (var i = 0; i < ItemList.Count; i++)
         {
-            itemList[i].itemStack.ParentSlot = itemList[i];
-            // itemList[i].slotType = ItemType.Any;
-            itemList[i].slotCategory = inventoryCategory;
-            // itemList[i].slotIndex = i;
+            ItemList[i].itemStack.ParentSlot = ItemList[i];
+            ItemList[i].slotCategory = inventoryCategory;
         }
     }
 
@@ -47,18 +47,20 @@ public class Inventory : InventoryBase
 
     public InventorySlot FindStack(ItemWithAttributes item)
     {
-        return itemList.Find(slot => slot.itemStack.item == item && slot.itemStack.quantity < item.maxStack);
+        return ItemList.Find(slot => slot.itemStack.item == item && slot.itemStack.quantity < item.maxStack);
     }
 
     public InventorySlot FindEmptySlot()
     {
-        return itemList.Find(slot => slot.itemStack.item == null);
+        return ItemList.Find(slot => slot.itemStack.item == null);
     }
+
+    #region Testing
 
     [ContextMenu("get hash")]
     public void GetHashTest()
     {
-        foreach (var item in itemList)
+        foreach (var item in ItemList)
         {
             var hc = item.itemStack.GetHashCode();
             Debug.Log(hc);
@@ -69,10 +71,39 @@ public class Inventory : InventoryBase
     {
         (itemList[index], itemList[index2]) = (itemList[index2], itemList[index]);
     }*/
-    
+
+    #endregion
+
+
+    //call this if you load items from inspector
+    //TODO - add this to onvalidate
+    [ContextMenu("Load item ids")]
+    public void LoadItemIds()
+    {
+        foreach (var slot in ItemList)
+        {
+            var stack = slot.itemStack;
+            if (stack == null) continue;
+            if (stack.item != null)
+                stack.itemId = stack.item.Id;
+        }
+    }
+
+    [ContextMenu("refresh asset test")]
+    public void RefreshAssetTest()
+    {
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        // AssetDatabase.Refresh();
+    }
 }
 
-public abstract class InventoryBase :  SerializedScriptableObject
+[Serializable]
+public class InventoryContainer
 {
-    
+    public List<InventorySlot> itemList = new List<InventorySlot>();
+}
+
+public abstract class InventoryBase : SerializedScriptableObject
+{
 }

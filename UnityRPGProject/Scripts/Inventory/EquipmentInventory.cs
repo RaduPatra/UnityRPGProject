@@ -1,32 +1,56 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEditor.U2D;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UnityEditor;
 
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/Equipment", order = 2)]
-public class EquipmentInventory : InventoryBase
+[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/Equipment", order = 1)]
+public class EquipmentInventory : SerializedScriptableObject
 {
-    public readonly Dictionary<ItemCategory, InventorySlot> equipmentArmorSlots = new Dictionary<ItemCategory, InventorySlot>();
-
-    public readonly Dictionary<ItemCategory, ItemStack>
-        equippedWeaponItems = new Dictionary<ItemCategory, ItemStack>();
-    
-    // public  Dictionary<ItemCategory, EquippedInfo>
-    //     equippedWeaponsTest = new Dictionary<ItemCategory, EquippedInfo>();
+    public  Dictionary<ItemCategory, InventorySlot> equipmentSlots = new Dictionary<ItemCategory, InventorySlot>();
+    [NonSerialized]
+    public Action inventoryChanged;
     private void OnEnable()
     {
-        foreach (var slot in equipmentArmorSlots)
+        Setup();
+    }
+
+    public void Setup()
+    {
+        foreach (var slot in equipmentSlots)
         {
-            // equipmentArmorSlots[slot.Key].slotType = slot.Key;
-            equipmentArmorSlots[slot.Key].slotCategory = slot.Key;
+            equipmentSlots[slot.Key].slotCategory = slot.Key;
         }
     }
-}
 
-public class EquippedInfo
-{
-    public ItemStack stack;
-    public InventorySlot lastSlot;
+
+    [ContextMenu("Load item ids")]
+    public void LoadItemIds()
+    {
+        foreach (var invItem in equipmentSlots)
+        {
+            var slot = invItem.Value;
+            if (slot.itemStack != null)
+            {
+                if (slot.itemStack.item != null)
+                {
+                    slot.itemStack.itemId = slot.itemStack.item.Id;
+                }
+                    
+            }
+        }
+    }
+    
+    [ContextMenu("refresh asset test")]
+    public void RefreshAssetTest()
+    {
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        // AssetDatabase.Refresh();
+    }
+
 }

@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5336fdd8fe4eee47b8a45762110bd0f, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 48a4c7ec90359774b8d0d597c8a1303e, type: 2}
+    - {fileID: 11400000, guid: 7a910451f6d628949ae877008858b675, type: 2}
+    - {fileID: 11400000, guid: 157ad8a1a6ac7874a9b6a7336cf4fae8, type: 2}
+    - {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+    - {fileID: 11400000, guid: eba3a501043522d4dbfc5e474cf76f4a, type: 2}
+    - {fileID: 11400000, guid: e6524d1b1bcef9c4496edf8bbe66a7a3, type: 2}
+    - {fileID: 11400000, guid: e64939b5b90b0fc4e988441f00e1a06f, type: 2}
+    - {fileID: 11400000, guid: 5573b6390b124aa438011b1052770555, type: 2}
+    - {fileID: 11400000, guid: 05dbdc1ceac8ef14e804cc8be5f85126, type: 2}
+    - {fileID: 11400000, guid: 7a71a52bf5b5cec49885b32c4ad11aaf, type: 2}
+    - {fileID: 11400000, guid: fc1ef20e14f5e724abbec4838d791c68, type: 2}
+    - {fileID: 11400000, guid: b9670830de7d97d4cb2f6290479a52e7, type: 2}
+    - {fileID: 11400000, guid: 35c7f9394b15456409cd01726f3e001b, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: database
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[ItemWithAttributes,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 13
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: dbf9417d-16fc-4210-983f-34a7333939da
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 5c54a053-8fa1-440d-ad18-a132c8cc2b9c
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 12ccab8e-4b40-46d6-a68f-eedde726a1ef
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 2da90aef-1029-4081-a59e-ad985a9cf77f
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: aa31810b-d5ac-4528-b3e6-dc6a9520a8cd
+    - Name: $v
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: b2fc18e7-96e1-4f3b-99e5-951216e5ed7e
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: c3d14502-d70f-4355-85d1-69acc04ea19c
+    - Name: $v
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 08bf81a4-c007-4c91-9750-8c6333b6df15
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: e447b699-e17b-4f78-9ced-fa5ad9df5ab7
+    - Name: $v
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: db03b895-ec5b-43e9-b9d8-f7c21757ee7f
+    - Name: $v
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: b3a5124b-4346-4f4b-82ae-296d2c31cc18
+    - Name: $v
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: b53b9d60-b0c7-43d7-b5b1-868c81ccb1aa
+    - Name: $v
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: c0ca5ebd-8346-4929-ab55-13bb894bf51c
+    - Name: $v
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  path: Items

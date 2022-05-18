@@ -9,18 +9,10 @@ public class SlotAbilityUser : MonoBehaviour
     [SerializeField] private InputManager inputManager;
     [SerializeField] private Inventory hotbarInventory;
     public ItemSlotEventChannel itemUseEventChannel;
-    
-    private EquipmentManager equipmentManager;
-    private InventoryHolder inventoryHolder;
-    private EffectManager effectManager;
 
     private void Awake()
     {
-        equipmentManager = GetComponent<EquipmentManager>();
-        inventoryHolder = GetComponent<InventoryHolder>();
-        effectManager = GetComponent<EffectManager>();
-        // itemUseEventChannel.Listeners += UseItem;
-        itemUseEventChannel.Listeners += UseItemTest;
+        itemUseEventChannel.Listeners += UseItem;
         inputManager.hotbarUseAction += HotbarUseStarted;
     }
 
@@ -32,31 +24,24 @@ public class SlotAbilityUser : MonoBehaviour
     private void HotbarUseStarted(int slotIndex)
     {
         var slot = hotbarInventory.ItemList[slotIndex];
-        // UseItem(slot);
-        UseItemTest(slot);
+        UseItem(slot);
     }
-    /*private void UseItem(InventorySlot slot)//right click action (main)
-    {
-        effectManager.ConsumeItem(slot);
-        equipmentManager.ToggleUsableItemAction(slot);
-        equipmentManager.EquipArmorAction(slot);
-    }*/
 
-    private void UseItemTest(InventorySlot slot)
+    private void UseItem(InventorySlot slot)
     {
         var item = slot.GetItem();
         if (item == null) return;
         foreach (var category in item.GetCategoryAncestors())
         {
-            var useAction = category.categoryUseAction;
+            var useAction = category.categoryUseAction;//this is hardcoded atm - need to add category actions
             if (useAction == null) continue;
             useAction.Execute(gameObject, slot);
         }
     }
 
-    public void UnequipTest(InventorySlot slot)
+    /*public void UnequipTest(InventorySlot slot)
     {
         inventoryHolder.PickUp(slot.itemStack.item);
         slot.RemoveItem();
-    }
+    }*/
 }

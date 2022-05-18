@@ -8,11 +8,17 @@ using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Test Item", menuName = "Item Atr Testing", order = 1)]
-public class ItemWithAttributes : SerializedScriptableObject
+[CreateAssetMenu(fileName = "New Test Item", menuName = "Item", order = 1)]
+public class ItemWithAttributes : SerializedScriptableObject, IDatabaseItem
 {
     [SerializeField]
-    private ItemCategory categoryParent;
+    private string id = Guid.NewGuid().ToString();
+
+    public string Id => id;
+    public string testString = "default";
+
+
+    [SerializeField] private ItemCategory categoryParent;
     private ItemCategory lastCategory;
 
     [DictionaryDrawerSettings(IsReadOnly = true), DictionaryHideReferenceObjectPicker, SerializeField]
@@ -114,12 +120,11 @@ public class ItemWithAttributes : SerializedScriptableObject
     }
 
 
-
     public bool HasCategory(ItemCategory category)
     {
         return categoryParent.HasCategory(category);
     }
-    
+
     #region Testing
 
     [ContextMenu("Reset test")]
@@ -191,6 +196,12 @@ public class ItemWithAttributes : SerializedScriptableObject
     {
         return categoryParent.ancestorCategories;
     }
+    [ContextMenu("Debug Test")]
+    public void DebugTest()
+    {
+        
+    }
 
     #endregion
+
 }

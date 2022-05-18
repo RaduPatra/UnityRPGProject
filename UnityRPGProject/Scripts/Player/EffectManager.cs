@@ -13,16 +13,6 @@ public class EffectManager : MonoBehaviour
         UpdateEffects();
     }
 
-    /*public void ConsumeItem(InventorySlot slot)
-    {
-        var item = slot.GetItem();
-        if (item == null) return;
-        if (item.itemType != ItemType.Consumable) return;
-        item.itemEffectApplier.Use(gameObject);
-        slot.DecreaseQuantity();
-        AddEffects(item.itemEffectApplier.effects);
-    }*/
-
     public void AddEffects(List<EffectBase> effects)
     {
         foreach (var effect in effects)

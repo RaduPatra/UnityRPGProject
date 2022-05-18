@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fb09cb6fc3437abd0fcb3d64c1a224, type: 3}
+  m_Name: CategoryDatabase
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 167dff0f4a886c540937d1a3ff621e77, type: 2}
+    - {fileID: 11400000, guid: 5797dbf29df95fb4a882fd356a74cfd6, type: 2}
+    - {fileID: 11400000, guid: 2615ba26983e8844f92ce0261a612a06, type: 2}
+    - {fileID: 11400000, guid: 4783761c9dfb31c4b89691f4446fb109, type: 2}
+    - {fileID: 11400000, guid: c85b97f8b364dd046b537a0d13d8439d, type: 2}
+    - {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+    - {fileID: 11400000, guid: bbe441acbeb663947bbecfc92e47bbdf, type: 2}
+    - {fileID: 11400000, guid: f8aed848f02b78e4c87b74087475b570, type: 2}
+    - {fileID: 11400000, guid: 49f4f3d33f819764c9a01e3f106afb5b, type: 2}
+    - {fileID: 11400000, guid: aa84ccfbea484ad44ac0b7af08f05664, type: 2}
+    - {fileID: 11400000, guid: ecc15c08461097842919ae2b383f9b6f, type: 2}
+    - {fileID: 11400000, guid: f5ef371d8fbddaf40a6092765800c507, type: 2}
+    - {fileID: 11400000, guid: e482dc76af1c40f4b94fe8b1efd314cb, type: 2}
+    - {fileID: 11400000, guid: cb859c1149343a84484702566f17e5c3, type: 2}
+    - {fileID: 11400000, guid: 8571dbf4093e7fd459790707baa57008, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: database
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[ItemCategory,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 15
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: f8d685dd-90c1-4dfb-a05d-ed08a6683a35
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 3a7e0fc6-6961-4a53-b78c-8db8add2b5f5
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 3b07761c-45b5-4f89-ab52-bd0d92d7a46b
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: cdce571e-edb9-4b90-8698-c20eb2e9c7f1
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 1195a71f-6782-4d62-b75b-4030d6efc51c
+    - Name: $v
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 0007f9ac-46f0-4cab-aff2-6da456dbcb97
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 8a38502c-8016-46a2-b3dc-ef0b330036c1
+    - Name: $v
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 1d6a0dc2-9257-4da5-9efc-0fb69162f221
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 5a775da0-393e-4146-83ca-d356f97a76d4
+    - Name: $v
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: a13e0385-7287-43d9-8f52-dcde6c00c0db
+    - Name: $v
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: d06f905b-d0a4-4cc5-aeea-9304b6108685
+    - Name: $v
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 1c844195-edc7-4ff0-8a2f-8b047d6c4f9a
+    - Name: $v
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: bbd28c0f-0a87-4403-a364-7d671c74f453
+    - Name: $v
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: cf3b8fa9-3e48-4631-90bd-361887d7e724
+    - Name: $v
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: 8968a829-e102-4c42-b12e-05ec10c91452
+    - Name: $v
+      Entry: 10
+      Data: 14
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  path: Categories

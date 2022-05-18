@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e14e0e74e54174b387261ec46a1959, type: 3}
+  m_Name: TestEquipmentArmorInventory
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: f8aed848f02b78e4c87b74087475b570, type: 2}
+    - {fileID: 11400000, guid: eba3a501043522d4dbfc5e474cf76f4a, type: 2}
+    - {fileID: 11400000, guid: 4783761c9dfb31c4b89691f4446fb109, type: 2}
+    - {fileID: 11400000, guid: 48a4c7ec90359774b8d0d597c8a1303e, type: 2}
+    - {fileID: 11400000, guid: aa84ccfbea484ad44ac0b7af08f05664, type: 2}
+    - {fileID: 11400000, guid: 5797dbf29df95fb4a882fd356a74cfd6, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: equipmentSlots
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[ItemCategory, Assembly-CSharp],[InventorySlot,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[ItemCategory,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: a990dc77-f2c8-48ee-b649-46767345168e
+    - Name: itemStack
+      Entry: 7
+      Data: 3|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 10
+      Data: 1
+    - Name: itemId
+      Entry: 1
+      Data: aa31810b-d5ac-4528-b3e6-dc6a9520a8cd
+    - Name: quantity
+      Entry: 3
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: 786be590-5b7d-4a3d-ac02-8055ad794a90
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 4|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: e568c641-e6f6-4ecf-8ea2-f5d926c3db68
+    - Name: itemStack
+      Entry: 7
+      Data: 5|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 10
+      Data: 3
+    - Name: itemId
+      Entry: 1
+      Data: dbf9417d-16fc-4210-983f-34a7333939da
+    - Name: quantity
+      Entry: 3
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: c05bacf3-0dea-4b7b-b68c-de58568309b8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 6|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 9ecbe074-4cf5-4cfa-93ff-6f7ce60d5201
+    - Name: itemStack
+      Entry: 7
+      Data: 7|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 34be262a-9f70-4bb4-b154-80a9eedc585e
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 8|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: d3c8633f-b968-4088-b48f-fed9cb1c00ff
+    - Name: itemStack
+      Entry: 7
+      Data: 9|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: a85dc5b2-5487-4406-a6cd-639e1a6a2e3a
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

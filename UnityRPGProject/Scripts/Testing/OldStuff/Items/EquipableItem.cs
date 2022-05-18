@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
-[CreateAssetMenu(fileName = "New Equipable Item", menuName = "Equipables/Equipable", order = 1)]
 public class EquipableItem : ItemBase
 {
     public GameObject equipItemPrefab;
