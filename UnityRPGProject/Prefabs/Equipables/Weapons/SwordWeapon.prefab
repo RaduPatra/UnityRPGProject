@@ -88,12 +88,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4300000, guid: 21ca816de6f3abd4cbee2c0462c8a186, type: 3}
     - target: {fileID: 7836107185449520720, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836107185449520720, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9143637579007157869, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}
       propertyPath: m_Name
       value: SwordWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143637579007157869, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f52ed7a74bc1cf48bd2f28861837a7a, type: 3}

@@ -11,6 +11,8 @@ public class ResetBool : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // Debug.Log("start enter reset bool" + boolName + " " + boolStatus + " " + layerIndex);
         animator.SetBool(boolName, boolStatus);
+        // Debug.Log("reset bool enter");
     }
 }

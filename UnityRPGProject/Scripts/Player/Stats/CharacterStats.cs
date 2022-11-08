@@ -9,7 +9,9 @@ public enum StatType
 {
     AttackDamage,
     Defence,
-    MagicDamage
+    MagicDamage,
+    StaggerDamage,
+    Poise
 }
 
 public class CharacterStats : SerializedMonoBehaviour
@@ -46,10 +48,10 @@ public class CharacterStats : SerializedMonoBehaviour
         }
     }
 
-    public float CalculateDamageReduction(float damage)//Valheim like damage reduction
+    public float CalculateDamageReduction(float damage,StatType statType = StatType.Defence)//Valheim like damage reduction
     {
         Debug.Log("Initial Damage " + damage);
-        var defenceBonus = ActiveModifiers[StatType.Defence];
+        var defenceBonus = ActiveModifiers[statType];
 
         if (defenceBonus < damage / 2)
         {

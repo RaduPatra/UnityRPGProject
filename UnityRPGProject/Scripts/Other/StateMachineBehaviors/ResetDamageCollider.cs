@@ -12,7 +12,7 @@ public class ResetDamageCollider : StateMachineBehaviour
         if (colliderHolder == null)
         {
             // Debug.Log("anim col set");
-            colliderHolder = animator.gameObject.GetComponent<ItemColliderHolder>();
+            colliderHolder = animator.gameObject.GetComponentInParent<ItemColliderHolder>();
         }
 
         if (isWeaponCollider)

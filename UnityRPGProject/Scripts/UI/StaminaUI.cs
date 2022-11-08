@@ -22,8 +22,8 @@ public class StaminaUI : MonoBehaviour
 
     private void UpdateStamina(float amount)
     {
-        staminaStatText.text = "Stamina: " + amount;
-        healthSlider.value = maxStamina != 0 ? amount / maxStamina : 0;
+        staminaStatText.text = "" + (int)amount;
+        healthSlider.value = maxStamina != 0 ? (amount / maxStamina) : 0;
     }
 
     private void UpdateMaxStamina(float max)

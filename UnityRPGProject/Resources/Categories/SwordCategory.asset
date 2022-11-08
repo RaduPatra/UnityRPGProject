@@ -19,5 +19,6 @@ MonoBehaviour:
   attributes:
   - {fileID: 11400000, guid: 3316c4af87eb60641862903383a1b2ca, type: 2}
   - {fileID: 11400000, guid: cf410384a3f3049498bed92a5cd7fd1f, type: 2}
+  - {fileID: 11400000, guid: f166468cfddf1b14abcff6deef32525c, type: 2}
   categoryUseAction: {fileID: 0}
   attrToGetTest: {fileID: 0}

@@ -20,45 +20,45 @@ public class EffectManager : MonoBehaviour
             AddEffect(effect);
         }
     }
-    private void AddEffect(EffectBase item)
+    private void AddEffect(EffectBase effect)
     {
         //only apply the last effect of the same type that was used
-        var sameType = GetEffectOfSameType(item);
+        var sameType = GetEffectOfSameType(effect);
         if (sameType != null)
         {
             effectsToRemove.Add(sameType);
         }
 
-        activeEffects.Add(item);
+        activeEffects.Add(effect);
     }
 
-    private EffectBase GetEffectOfSameType(EffectBase item)
+    private EffectBase GetEffectOfSameType(EffectBase effect)
     {
-        foreach (var effect in activeEffects)
+        foreach (var activeEffect in activeEffects)
         {
-            if (item.GetType() != effect.GetType()) continue;
-            Debug.Log("same type " + item.GetType());
-            return effect;
+            if (effect.GetType() != activeEffect.GetType()) continue;
+            Debug.Log("same type " + effect.GetType());
+            return activeEffect;
         }
 
         return null;
     }
 
-    private void AddEffectToRemove(EffectBase item)
+    private void AddEffectToRemove(EffectBase effect)
     {
-        effectsToRemove.Add(item);
+        effectsToRemove.Add(effect);
         Debug.Log("effect removed------------");
     }
 
     private void UpdateEffects()
     {
-        foreach (var item in activeEffects)
+        foreach (var effect in activeEffects)
         {
-            item.UpdateEffect(Time.deltaTime);
+            effect.UpdateEffect(Time.deltaTime);
 
-            if (item.IsDone())
+            if (effect.IsDone())
             {
-                AddEffectToRemove(item);
+                AddEffectToRemove(effect);
             }
         }
 

@@ -18,7 +18,7 @@ public class ItemCategory : ScriptableObject, IDatabaseItem
     public string id= Guid.NewGuid().ToString(); 
     public string Id => id;
 
-    public string testString = "default";
+    public string testName = "default";
 
     [ReadOnly] public List<ItemCategory> categoryParents = new List<ItemCategory>();//private get?
     public List<AttributeBaseSO> attributes = new List<AttributeBaseSO>();
@@ -37,6 +37,10 @@ public class ItemCategory : ScriptableObject, IDatabaseItem
 
     #endregion
 
+    private void OnEnable()
+    {
+        ancestorCategories = new HashSet<ItemCategory>(GetAllCategories());
+    }
 
     private void OnValidate()
     {

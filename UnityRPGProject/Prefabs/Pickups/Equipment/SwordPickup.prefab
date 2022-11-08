@@ -41,11 +41,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3614954340540500708, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3614954340540500708, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3614954340540500708, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
       propertyPath: m_LocalRotation.y
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3614954340540500708, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3614954340540500708, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -71,6 +71,30 @@ PrefabInstance:
       propertyPath: item
       value: 
       objectReference: {fileID: 11400000, guid: b9670830de7d97d4cb2f6290479a52e7, type: 2}
+    - target: {fileID: 6415322428895006574, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4832974
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415322428895006574, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4906976
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415322428895006574, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
+      propertyPath: m_Size.z
+      value: 0.4866874
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415322428895006574, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0071278512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415322428895006574, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
+      propertyPath: m_Center.y
+      value: 0.4952839
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415322428895006574, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
+      propertyPath: m_Center.z
+      value: 0.1233425
+      objectReference: {fileID: 0}
     - target: {fileID: 8050191873490027225, guid: 6a10acb13c4ad4443aa4a4963c61fa55, type: 3}
       propertyPath: m_Mesh
       value: 

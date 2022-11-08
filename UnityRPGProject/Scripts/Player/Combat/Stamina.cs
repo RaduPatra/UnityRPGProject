@@ -75,4 +75,5 @@ public class Stamina : MonoBehaviour
         if (staminaConsumptionData != null) staminaConsumption = staminaConsumptionData.value;
         Damage(staminaConsumption);
     }
+    
 }

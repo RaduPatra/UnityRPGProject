@@ -7,15 +7,15 @@ public class ToggleUsableItemAction : InventoryItemAction
 {
     public override void Execute(GameObject user, InventorySlot slot)
     {
-        var playerManager = user.GetComponent<PlayerManager>();
-        if (playerManager.IsInteracting) return;
+        var playerAnimator = user.GetComponent<CharacterAnimator>();
+        if (playerAnimator.IsInteracting) return;
 
 
         var equipmentManager = user.GetComponent<EquipmentManager>();
 
 
         var item = slot.GetItem();
-        var equippedWeaponItems = equipmentManager.equipmentWeaponInventory.equipmentSlots;
+        var equippedWeaponItems = equipmentManager.equipmentWeaponInventory.equipmentSlots.value;
         var eqSlot = equipmentManager.GetEquippedItemInfo(item, equippedWeaponItems, out var equippedCategory);
         var oldStack = eqSlot?.itemStack;
         if (oldStack == null) return;
@@ -32,7 +32,7 @@ public class ToggleUsableItemAction : InventoryItemAction
             oldSlot.itemStack.OnStackReset -= equipmentManager.RemoveWeapon;
         }
 
-        if (slot.itemStack != null && oldStack.id == slot.itemStack.id) return;
+        if (slot.itemStack != null && oldStack.id == slot.itemStack.id) return;//toggle off if old was equipped
         equippedWeaponItems[equippedCategory].itemStack = slot.itemStack;
 
         if (slot.itemStack != null)

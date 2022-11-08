@@ -17,6 +17,11 @@ public class ShieldCollider : MonoBehaviour, IDamageCollider
         shieldCollider = GetComponent<BoxCollider>();
     }
 
+    public void DisableCollider(AnimationEvent evt)
+    {
+        throw new NotImplementedException();
+    }
+
     public void Initialize(ItemWithAttributes item)
     {
         currentItem = item;

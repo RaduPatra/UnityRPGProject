@@ -38,12 +38,6 @@ public class MeshEquipper : SerializedMonoBehaviour, IEquipper
 
     public void Unequip()
     {
-        /*go through each child as above
-        get equipment type
-        enable default type associated with equipment type
-        toggle defaultPartsToToggle back on 
-        destroy children from equipLocation*/
-        
         defaultTransform.gameObject.SetActive(true);
         for (var i = 0; i < defaultTransform.childCount; i++)
         {

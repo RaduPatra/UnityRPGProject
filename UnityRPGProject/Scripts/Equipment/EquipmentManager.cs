@@ -11,13 +11,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class EquipmentManager : SerializedMonoBehaviour
+public interface IEquipment
+{
+    public Dictionary<ItemCategory, Transform> EquipmentLocations { get; }
+}
+
+
+public class EquipmentManager : SerializedMonoBehaviour, IEquipment
 {
     [SerializeField]
-    public readonly Dictionary<ItemCategory, Transform> equipmentLocations = new Dictionary<ItemCategory, Transform>();
+    private readonly Dictionary<ItemCategory, Transform> equipmentLocations = new Dictionary<ItemCategory, Transform>();
 
+    public Dictionary<ItemCategory, Transform> EquipmentLocations => equipmentLocations;
     public EquipmentInventory equipmentArmorInventory;
     public EquipmentInventory equipmentWeaponInventory;
+
     public Inventory hotbarInventory;
     public Inventory mainInventory;
 
@@ -27,104 +35,127 @@ public class EquipmentManager : SerializedMonoBehaviour
     [SerializeField] AttributeBaseSO equipPrefabAttr;
     [SerializeField] private AttributeBaseSO equipActionAttr;
 
+    private bool armorFirstLoad = true;
+    private bool weaponFirstLoad = true;
+
     private void Awake()
     {
-        // SaveSystem.OnLoad += LoadEquipment;
-        mainInventory.inventoryChanged += SetupEquippedMainInventoryWeapons;
-        hotbarInventory.inventoryChanged += SetupEquippedHotbarWeapons;
+        SaveSystem.OnInitSaveData += InitSaveData;
+        SaveSystem.OnBeforeLoad += InitLoadEquipment;
         SaveSystem.OnLoad += LoadEquipment;
+    }
+
+    private void OnDestroy()
+    {
+        SaveSystem.OnInitSaveData -= InitSaveData;
+        SaveSystem.OnBeforeLoad -= InitLoadEquipment;
+        SaveSystem.OnLoad -= LoadEquipment;
     }
 
     private void Start()
     {
         Debug.Log("eq man start");
-        InitSlots();
-
-        foreach (var armor in equipmentArmorInventory.equipmentSlots)
-            SaveData.Current.equipmentArmorSave.Add(armor.Key.Id, armor.Value);
-
-        foreach (var weapon in equipmentWeaponInventory.equipmentSlots)
-            SaveData.Current.equippedWeaponSave.Add(weapon.Key.Id, weapon.Value);
-    }
-
-    private void InitSlots()
-    {
-        //setup slot events/equip
-        foreach (var slot in equipmentArmorInventory.equipmentSlots)
-        {
-            slot.Value.OnSlotAdd += EquipItem;
-            slot.Value.OnSlotRemove += UnequipItem;
-            EquipItem(slot.Value.itemStack);
-        }
-
-        SetupEquippedMainInventoryWeapons();
-        SetupEquippedHotbarWeapons();
     }
 
     private void LoadEquipment(SaveData saveData)
     {
-        //unequip items before load
-        foreach (var itemInfo in equipmentArmorInventory.equipmentSlots)
-        {
-            var item = itemInfo.Value.GetItem();
-            if (item == null) continue;
-            UnequipItem(itemInfo.Value.itemStack);
-        }
-
-        foreach (var itemInfo in equipmentWeaponInventory.equipmentSlots)
-        {
-            if (itemInfo.Value == null) continue;
-            var item = itemInfo.Value.GetItem();
-            if (item == null) continue;
-            UnequipItem(itemInfo.Value.itemStack);
-        }
-
-        equipmentArmorInventory.equipmentSlots.Clear();
-        equipmentWeaponInventory.equipmentSlots.Clear();
-
-        //update data
-        var db = SaveSystemManager.Instance.categoryDb;
-
-        foreach (var key in saveData.equipmentArmorSave.Keys)
-        {
-            var cat = db.GetById(key);
-            if (cat == null) continue;
-            equipmentArmorInventory.equipmentSlots[cat] = saveData.equipmentArmorSave[key];
-        }
-
-        foreach (var key in saveData.equippedWeaponSave.Keys)
-        {
-            var cat = db.GetById(key);
-            if (cat == null) continue;
-            equipmentWeaponInventory.equipmentSlots[cat] = saveData.equippedWeaponSave[key];
-        }
-        equipmentArmorInventory.Setup();
-        equipmentWeaponInventory.Setup();
-
-        //equip armor after load
-        foreach (var itemInfo in equipmentArmorInventory.equipmentSlots)
-        {
-            itemInfo.Value.OnSlotAdd += EquipItem;
-            itemInfo.Value.OnSlotRemove += UnequipItem;
-            var item = itemInfo.Value.GetItem();
-            if (item == null) continue;
-            EquipItem(itemInfo.Value.itemStack);
-        }
-
-        equipmentArmorInventory.inventoryChanged?.Invoke();
-        
-        // equipmentArmorInventory.RefreshAssetTest();
-        // equipmentWeaponInventory.RefreshAssetTest();
-    }
-
-    private void SetupEquippedMainInventoryWeapons()
-    {
+        SetupEquippedWeaponInInventory(hotbarInventory);
         SetupEquippedWeaponInInventory(mainInventory);
     }
 
-    private void SetupEquippedHotbarWeapons()
+    private void InitLoadEquipment(SaveData saveData)
     {
-        SetupEquippedWeaponInInventory(hotbarInventory);
+        equipmentArmorInventory.equipmentSlots.Init(InitArmorTest);
+        equipmentWeaponInventory.equipmentSlots.Init(InitWeaponTest);
+
+        Dictionary<ItemCategory, InventorySlot> InitArmorTest()
+        {
+            // saveData = SaveSystem.GetDataFromFile();
+            if (!armorFirstLoad)
+            {
+                foreach (var itemInfo in equipmentArmorInventory.equipmentSlots.ValueNoInit)
+                {
+                    var item = itemInfo.Value.GetItem();
+                    if (item == null) continue;
+                    UnequipItem(itemInfo.Value.itemStack);
+                }
+            }
+
+            armorFirstLoad = false;
+
+            // equipmentArmorInventory.equipmentSlots.Clear();
+            var newInv = new Dictionary<ItemCategory, InventorySlot>();
+
+            var db = SaveSystemManager.Instance.categoryDb;
+
+            foreach (var key in saveData.equipmentArmorSave.Keys)
+            {
+                var cat = db.GetById(key);
+                if (cat == null) continue;
+                newInv[cat] = saveData.equipmentArmorSave[key];
+            }
+
+            SetupSlotCategs(newInv);
+
+            foreach (var itemInfo in newInv)
+            {
+                itemInfo.Value.OnSlotAdd += EquipItem;
+                itemInfo.Value.OnSlotRemove += UnequipItem;
+                var item = itemInfo.Value.GetItem();
+                if (item == null) continue;
+                EquipItem(itemInfo.Value.itemStack);
+            }
+
+            return newInv;
+        }
+
+        Dictionary<ItemCategory, InventorySlot> InitWeaponTest()
+        {
+            // saveData = SaveSystem.GetDataFromFile();
+            var db = SaveSystemManager.Instance.categoryDb;
+            var newInv = new Dictionary<ItemCategory, InventorySlot>();
+            if (!weaponFirstLoad)
+            {
+                foreach (var itemInfo in equipmentWeaponInventory.equipmentSlots.ValueNoInit)
+                {
+                    if (itemInfo.Value == null) continue;
+                    var item = itemInfo.Value.GetItem();
+                    if (item == null) continue;
+                    UnequipItem(itemInfo.Value.itemStack);
+                }
+            }
+
+            weaponFirstLoad = false;
+
+            foreach (var key in saveData.equippedWeaponSave.Keys)
+            {
+                var cat = db.GetById(key);
+                if (cat == null) continue;
+                newInv[cat] = saveData.equippedWeaponSave[key];
+            }
+
+            SetupSlotCategs(newInv);
+            return newInv;
+        }
+    }
+
+    private void SetupSlotCategs(Dictionary<ItemCategory, InventorySlot> equipmentSlots)
+    {
+        foreach (var slot in equipmentSlots)
+        {
+            equipmentSlots[slot.Key].slotCategory = slot.Key;
+        }
+    }
+
+    private void InitSaveData()
+    {
+        Debug.Log("eq man OnBeforeLoadTest");
+
+        foreach (var armor in equipmentArmorInventory.equipmentSlots.ValueNoInit)
+            SaveData.Current.equipmentArmorSave[armor.Key.Id] = armor.Value;
+
+        foreach (var weapon in equipmentWeaponInventory.equipmentSlots.ValueNoInit)
+            SaveData.Current.equippedWeaponSave[weapon.Key.Id] = weapon.Value;
     }
 
     private void SetupEquippedWeaponInInventory(Inventory inventory)
@@ -135,19 +166,19 @@ public class EquipmentManager : SerializedMonoBehaviour
         }
     }
 
-
     private void SetupEquippedWeapon(InventorySlot slot) //cleanup
     {
         var item = slot.GetItem();
         if (item == null) return;
-        var eqSlot = GetEquippedItemInfo(item, equipmentWeaponInventory.equipmentSlots, out var equippedCategory);
+        var eqSlot = GetEquippedItemInfo(item, equipmentWeaponInventory.equipmentSlots.value,
+            out var equippedCategory);
         if (eqSlot?.itemStack == null) return;
         var stack = eqSlot.itemStack;
 
         if (slot.itemStack.id != stack.id) return;
-        /*-> we have to reassign the reference for it to update when swapping
+        /*-> we have to reassign the reference for it to update when toggling
          https://forum.unity.com/threads/losing-reference-when-hitting-play-not-a-use-serializefield-to-fix.690829/*/
-        equipmentWeaponInventory.equipmentSlots[equippedCategory].itemStack = slot.itemStack;
+        equipmentWeaponInventory.equipmentSlots.value[equippedCategory].itemStack = slot.itemStack;
         slot.itemStack.OnStackReset += UnequipItem;
         slot.itemStack.OnStackReset += RemoveWeapon;
 
@@ -201,7 +232,7 @@ public class EquipmentManager : SerializedMonoBehaviour
     public void RemoveWeapon(ItemStack stack)
     {
         var item = stack.item;
-        var equippedWeapons = equipmentWeaponInventory.equipmentSlots;
+        var equippedWeapons = equipmentWeaponInventory.equipmentSlots.value;
         var equippedCategory =
             FindEquippedCategory(item, equippedWeapons);
 

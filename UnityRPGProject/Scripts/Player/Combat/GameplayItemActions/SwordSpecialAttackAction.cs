@@ -8,19 +8,18 @@ public class SwordSpecialAttackAction : ItemGameplayActions
 
     public override void StartAction(ItemWithAttributes item, GameObject go)
     {
-        var playerAnimator = go.GetComponent<PlayerAnimator>();
+        var playerAnimator = go.GetComponent<CharacterAnimator>();
         var playerAttacker = go.GetComponent<PlayerCombat>();
-        var playerManager = go.GetComponent<PlayerManager>();
         
         var playerStamina = go.GetComponent<Stamina>();
         
         
-        if (playerManager.IsInteracting) return;
+        if (playerAnimator.IsInteracting) return;
         if (playerStamina.CurrentStamina <= 0) return;
         
         
-        playerAnimator.PlayAnimation(PlayerAnimator.specialAttack, true);
-        playerAttacker.LastAttack = PlayerAnimator.specialAttack;
+        playerAnimator.PlayAnimation(CharacterAnimator.specialAttack, true);
+        playerAttacker.LastAttack = CharacterAnimator.specialAttack;
         
         
         //todo - spawn particles

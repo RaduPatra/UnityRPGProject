@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306749145cea4521ac032a9516e9c18f, type: 3}
+  m_Name: StartQuestDialogueEvent2
+  m_EditorClassIdentifier: 
+  questToStart: {fileID: 11400000, guid: 17e56fc35d6edf146906b17df225246b, type: 2}
+  defaultDialogueAfterStart: {fileID: 11400000, guid: 2daf99bfff10ed343a3f79dd8e125cef, type: 2}

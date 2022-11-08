@@ -54,6 +54,9 @@ MonoBehaviour:
     - Name: item
       Entry: 6
       Data: 
+    - Name: itemId
+      Entry: 6
+      Data: 
     - Name: quantity
       Entry: 3
       Data: 0
@@ -81,3 +84,30 @@ MonoBehaviour:
   equipmentArmorSlots:
     keys: []
     values: []
+  testRef:
+  - id: 0
+  - id: 1
+  - id: 2
+  testLazy:
+    _value: 0
+  lazyResult: -2
+  test123: 2
+  cnt: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: TestB, ns: , asm: Assembly-CSharp}
+      data:
+        testIntField1: 116
+        testFloatField3: 4.09
+        testStringField: kk
+    00000001:
+      type: {class: TestBase, ns: , asm: Assembly-CSharp}
+      data:
+        testIntField1: 0
+    00000002:
+      type: {class: TestA, ns: , asm: Assembly-CSharp}
+      data:
+        testIntField1: 0
+        testFloatField1: 0
+        testFloatField2: 0

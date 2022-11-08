@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d740b22c8f4526b370f9d1f0c412dc, type: 3}
+  m_Name: EnemyConfig
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  chaseAngle: 360
+  idleChaseAngle: 80
+  idlePitch: 7
+  chasePitch: 360
+  chaseStrafeSpeed: 3
+  strafeDirectionChangeCooldown: 2
+  strafeDistance: 5
+  strafeDetectionDistance: 1
+  combatDistance: 15
+  attackDistance: 2
+  attackCooldown: 3
+  comboChance: 100
+  maxComboNumber: 2
+  enemyAttacks:
+  - {fileID: 11400000, guid: 7d0bda1b90c7ae04ca6881924c832959, type: 2}
+  - {fileID: 11400000, guid: 85ac1319c306dc646a96d560403510cd, type: 2}
+  switchWaypointTimer: 4
+  backToIdleDistance: 40
+  destReachedDistance: 1.7
+  deathParticlesPrefab: {fileID: 6401963395995273252, guid: 8394e3a8bf2399b4da0e2d2fe1fc5aa2, type: 3}
+  canRespawn: 0
+  enemyDropTable:
+  - {fileID: 11400000, guid: 490a024b97fa1914b89c91005af4faf9, type: 2}
+  - {fileID: 11400000, guid: 7a910451f6d628949ae877008858b675, type: 2}
+  - {fileID: 11400000, guid: 35c7f9394b15456409cd01726f3e001b, type: 2}
+  - {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+  dropPrefabAttr: {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}

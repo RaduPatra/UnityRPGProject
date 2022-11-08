@@ -24,6 +24,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 6d91d533c905b47459cf4c3f1a3f618e, type: 3}
     - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
     - {fileID: 2339998336291182891, guid: a776b6b90ba80074081466c829922b3a, type: 3}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -42,7 +43,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -124,7 +125,7 @@ MonoBehaviour:
       Data: 7|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Hat
+      Data: Adventurer Hat
     - Name: 
       Entry: 8
       Data: 
@@ -168,13 +169,31 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: 10|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A hat fit for an adventurer
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   id: aa31810b-d5ac-4528-b3e6-dc6a9520a8cd
-  testString: HELM2
+  testName: default
   categoryParent: {fileID: 11400000, guid: f8aed848f02b78e4c87b74087475b570, type: 2}
   isStackable: 0
   maxStack: 1

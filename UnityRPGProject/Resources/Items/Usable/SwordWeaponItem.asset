@@ -21,7 +21,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8bc5e70e715e6c44c9f5c02d70aeaeac, type: 2}
     - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
     - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
-    - {fileID: 21300000, guid: d31aa8412a4d374458c912d11686642a, type: 3}
+    - {fileID: 21300000, guid: 009d4fc67f3ecc341a5229c548eea9a0, type: 3}
     - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
     - {fileID: 2745421895338982650, guid: 755de1207a183d04f88177aa1019c380, type: 3}
     - {fileID: 11400000, guid: 3316c4af87eb60641862903383a1b2ca, type: 2}
@@ -34,6 +34,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4f3045c0fa8f4ac4f810b2f1d07f2479, type: 2}
     - {fileID: 11400000, guid: cf410384a3f3049498bed92a5cd7fd1f, type: 2}
     - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+    - {fileID: 11400000, guid: f166468cfddf1b14abcff6deef32525c, type: 2}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -52,7 +54,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 11
+      Data: 13
     - Name: 
       Entry: 7
       Data: 
@@ -274,13 +276,49 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 18
+    - Name: $v
+      Entry: 7
+      Data: 15|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 19
+    - Name: $v
+      Entry: 7
+      Data: 16|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A sword fit for an adventurer
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   id: b53b9d60-b0c7-43d7-b5b1-868c81ccb1aa
-  testString: WEP
+  testName: default
   categoryParent: {fileID: 11400000, guid: e482dc76af1c40f4b94fe8b1efd314cb, type: 2}
   isStackable: 0
   maxStack: 1

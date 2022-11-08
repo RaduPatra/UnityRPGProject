@@ -184,7 +184,7 @@
                 {
                     "name": "",
                     "id": "7ea3422a-855a-497f-8983-a88858c40698",
-                    "path": "<Keyboard>/alt",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -296,6 +296,33 @@
             ]
         },
         {
+            "name": "PauseMenu",
+            "id": "14a7171a-e7ed-4778-9a2a-a3c72bb6b1d3",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "3726c6f6-ea75-4c18-87b9-05e014f96455",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ad7ddc42-0bab-4923-882f-09d51128e44e",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "General",
             "id": "3fa43944-b329-495f-90f9-a9fd7d167b95",
             "actions": [
@@ -311,6 +338,14 @@
                     "name": "ToggleUI",
                     "type": "Button",
                     "id": "2342be97-14a5-4d9c-982a-bd3ca26a607b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "fa7b973c-50b8-4c2c-94e3-bd7db0bb9423",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -374,12 +409,34 @@
                 },
                 {
                     "name": "",
+                    "id": "ab21f9eb-a916-4e91-9c75-b9808945b3bf",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "Hotbar(valueShift=5)",
+                    "groups": "",
+                    "action": "Hotbar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2465b9cb-ff01-45d7-ac91-e982a0e3f046",
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ToggleUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c0da344-6bb2-427c-b3d4-9e9ac33e6ff0",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -409,6 +466,14 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "11b7cd7c-ccb5-408c-b722-42ff43ead2e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DialogueInteractTest",
+                    "type": "Button",
+                    "id": "87d16b35-40e3-45cc-bc44-42756c74de9e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -445,6 +510,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63558d8d-cbfa-4399-bfbb-b6835cdac52e",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueInteractTest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

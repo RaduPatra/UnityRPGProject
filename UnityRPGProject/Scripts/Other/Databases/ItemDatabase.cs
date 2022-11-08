@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -8,15 +9,9 @@ using UnityEngine;
 public class ItemDatabase : Database<ItemWithAttributes>
 {
     [ContextMenu("Populate Database")]
-    public void PopulateDatabase()
+    public override void PopulateDatabase()
     {
-        var items = Resources.LoadAll<ItemWithAttributes>(path).ToList();
-        database.Clear();
-
-        foreach (var item in items)
-        {
-            database.Add(item.Id, item);
-        }
+        base.PopulateDatabase();
     }
 }
 

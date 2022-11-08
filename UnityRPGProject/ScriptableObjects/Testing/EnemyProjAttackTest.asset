@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ae2a52772f423180fa3d5dcdf1909e, type: 3}
+  m_Name: EnemyProjAttackTest
+  m_EditorClassIdentifier: 
+  attackMinRange: 3
+  attackMaxRange: 15
+  attackAngle: 180
+  animTransitionTime: 0.2
+  attackAnimStateName: OffhandShoot
+  attackHandType: {fileID: 11400000, guid: 49f4f3d33f819764c9a01e3f106afb5b, type: 2}
+  nextComboAttack: {fileID: 11400000, guid: 7d0bda1b90c7ae04ca6881924c832959, type: 2}
+  overrideController: {fileID: 22100000, guid: 01b74c6dfc58e2b468255b524d8083c0, type: 2}
+  clipToOverride: {fileID: 7400000, guid: 6afd4b63d89b6154c9d8e2ca989e2128, type: 2}
+  overrideClip: {fileID: 7400000, guid: 6afd4b63d89b6154c9d8e2ca989e2128, type: 2}
+  projectileFXPrefab: {fileID: 1722081097931586, guid: 6bb893eed4cfb794ba9fa5aca6b42c83, type: 3}
+  shootMaxDistance: 999
+  projectileForce: 30

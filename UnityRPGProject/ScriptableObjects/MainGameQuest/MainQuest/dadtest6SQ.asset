@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f03bfb069e43e296cf6a15f1a1b7b5, type: 3}
+  m_Name: dadtest6SQ
+  m_EditorClassIdentifier: 
+  dialogueText: Thank you so much! I hope you both make it out alive...
+  characterName: 
+  dialogueOptions: []
+  nextDialogue: {fileID: 0}
+  dialogueNodeStartEvent: {fileID: 11400000, guid: a2654b3bf1a71af4cb45a8fa5f977292, type: 2}
+  dialogueNodeEndEvent: {fileID: 11400000, guid: 3426092ee63c9fa4891ce00bfcce64b1, type: 2}
+  <Id>k__BackingField: fc126451-5704-45f6-9a75-87aa9e929a4b

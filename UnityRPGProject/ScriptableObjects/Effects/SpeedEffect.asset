@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: SpeedEffect
   m_EditorClassIdentifier: 
   effectExpireTime: 5
+  effectParticlePrefab: {fileID: 198587703769245278, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+  effectColor: {r: 0.32766104, g: 0.78659004, b: 0.9811321, a: 1}
   speedModifier: 15

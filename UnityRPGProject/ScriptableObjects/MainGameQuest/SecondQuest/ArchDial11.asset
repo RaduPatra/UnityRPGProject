@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f03bfb069e43e296cf6a15f1a1b7b5, type: 3}
+  m_Name: ArchDial11
+  m_EditorClassIdentifier: 
+  dialogueText: Unfortunately I can't search for it as it seems to be guarded by
+    monsters!
+  characterName: 
+  dialogueOptions: []
+  nextDialogue: {fileID: 11400000, guid: 44ed8b6b15ecd534bb2ce07c61d3e4c5, type: 2}
+  dialogueNodeStartEvent: {fileID: 11400000, guid: a2654b3bf1a71af4cb45a8fa5f977292, type: 2}
+  dialogueNodeEndEvent: {fileID: 0}
+  <Id>k__BackingField: 76cba153-74ff-4786-8b73-722c2a05d191

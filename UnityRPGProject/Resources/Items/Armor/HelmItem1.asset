@@ -21,9 +21,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8bc5e70e715e6c44c9f5c02d70aeaeac, type: 2}
     - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
     - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
-    - {fileID: 21300000, guid: eddb0f61210d2f4429ae92bc08d1b3ba, type: 3}
+    - {fileID: 21300000, guid: fd203893f058f084ab23e6e7170fb587, type: 3}
     - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
     - {fileID: 2339998336291182891, guid: a666d87528dcfdb48b5fc16fe4849946, type: 3}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -42,7 +43,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -76,7 +77,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 5|StatModifier, Assembly-CSharp
@@ -85,7 +86,19 @@ MonoBehaviour:
       Data: 1
     - Name: value
       Entry: 4
-      Data: 8
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|StatModifier, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 4
+    - Name: value
+      Entry: 4
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -109,10 +122,10 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 6|StringAttributeData, Assembly-CSharp
+      Data: 7|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Helm1
+      Data: Leather Mask
     - Name: 
       Entry: 8
       Data: 
@@ -127,7 +140,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 7|SpriteAttributeData, Assembly-CSharp
+      Data: 8|SpriteAttributeData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 5
@@ -145,10 +158,28 @@ MonoBehaviour:
       Data: 6
     - Name: $v
       Entry: 7
-      Data: 8|GameObjectData, Assembly-CSharp
+      Data: 9|GameObjectData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: 10|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A leather plague mask
     - Name: 
       Entry: 8
       Data: 
@@ -162,7 +193,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   id: d449b327-a49d-4000-831f-7d12e17aef16
-  testString: helm test3
+  testName: default
   categoryParent: {fileID: 11400000, guid: f8aed848f02b78e4c87b74087475b570, type: 2}
   isStackable: 0
   maxStack: 1

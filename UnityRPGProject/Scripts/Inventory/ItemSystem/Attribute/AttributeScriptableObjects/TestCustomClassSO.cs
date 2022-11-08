@@ -25,10 +25,25 @@ public class MyTestClass
     public float floatVal;
     public GameObject goVal;
     public MyTestClass2 test2;
+
+    [SerializeReference]
+    public TestBase testBase;
+}
+
+[Serializable]
+
+public class MyTestDerived : MyTestClass
+{
+    public string stringVal;
 }
 
 [Serializable]
 public class MyTestClass2
 {
+
+    public MyTestClass2(int a)
+    {
+        intVal2 = a;
+    }
     public int intVal2;
 }

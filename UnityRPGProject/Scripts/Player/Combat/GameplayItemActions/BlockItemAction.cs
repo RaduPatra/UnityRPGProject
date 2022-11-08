@@ -5,22 +5,22 @@ public class BlockItemAction : ItemGameplayActions
 {
     public override void StartAction(ItemWithAttributes item, GameObject go)
     {
-        var playerManager = go.GetComponent<PlayerManager>();
-        if (playerManager.IsInteracting) return;
-        var playerAnimator = go.GetComponent<PlayerAnimator>();
+        var playerAnimator = go.GetComponent<CharacterAnimator>();
+        if (playerAnimator.IsInteracting) return;
+        
         var colliderHolder = go.GetComponent<ItemColliderHolder>();
         colliderHolder.OpenShieldCollider();
 
-        playerAnimator.PlayAnimation(PlayerAnimator.shieldBlockLoop, false);
-        playerManager.IsAiming = true;
+        playerAnimator.PlayAnimation(CharacterAnimator.shieldBlockLoop, false);
+        playerAnimator.IsAiming = true;
         //enable collider
     }
 
     public override void CancelledAction(ItemWithAttributes item, GameObject go)
     {
-        var playerManager = go.GetComponent<PlayerManager>();
+        var playerAnimator = go.GetComponent<CharacterAnimator>();
         var colliderHolder = go.GetComponent<ItemColliderHolder>();
-        playerManager.IsAiming = false;
+        playerAnimator.IsAiming = false;
         colliderHolder.CloseShieldCollider();
     }
 }

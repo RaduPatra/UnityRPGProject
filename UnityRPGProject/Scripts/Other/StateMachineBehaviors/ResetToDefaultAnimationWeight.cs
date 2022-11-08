@@ -12,10 +12,10 @@ public class ResetToDefaultAnimationWeight : StateMachineBehaviour
             isFirstStateEnter = false;
             return;
         }
-        var playerAnimator = animator.GetComponent<PlayerAnimator>();
+        var playerAnimator = animator.GetComponentInParent<CharacterAnimator>();
         ResetToDefaultWeight(playerAnimator, layerIndex);
     }
-    private static void ResetToDefaultWeight(PlayerAnimator playerAnimator, int layerIndex)
+    private static void ResetToDefaultWeight(CharacterAnimator playerAnimator, int layerIndex)
     {
         var defaultWeighs = playerAnimator.DefaultLayerWeights;
         playerAnimator.animator.SetLayerWeight(layerIndex, defaultWeighs[layerIndex]);

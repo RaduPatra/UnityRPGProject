@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef09a36a28f43e9b5b25d4abc693406, type: 3}
+  m_Name: Ch1_Options1_Choice1
+  m_EditorClassIdentifier: 
+  optionText: Whats wrong?
+  optionNode: {fileID: 11400000, guid: 1d0291e83339ecd48b47239eeaf00356, type: 2}

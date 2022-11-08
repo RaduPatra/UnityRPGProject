@@ -26,22 +26,41 @@ public class GroundItem : MonoBehaviour, IInteractable
             rotation = transform.rotation,
             itemId = item.Id
         };
+        // Debug.Log("awake ground item");
         SaveSystem.OnLoad += LoadGroundItem;
+        // SaveSystem.OnInitSaveData += InitSave;
+        SaveData.Current.sceneData.droppedGroundItems[GetComponent<GameObjectId>().Id] = groundItemData;
+
     }
 
-    private void LoadGroundItem(SaveData saveData)
+    /*private void InitSave()
     {
-        var objectId = GetComponent<GameObjectId>().Id;
-        if (saveData.collectedGroundItems.Contains(objectId) || saveData.droppedGroundItems.ContainsKey(objectId))
-        {
-            Destroy(gameObject);
-        }
-    }
+        SaveData.Current.droppedGroundItems[GetComponent<GameObjectId>().Id] = groundItemData;
+    }*/
 
     private void OnDestroy()
     {
         SaveSystem.OnLoad -= LoadGroundItem;
+        // SaveSystem.OnInitSaveData -= InitSave;
+
     }
+
+    private void Start() //data gets updated when it instantiates
+    {
+        // InitSave();
+    }
+
+    private void LoadGroundItem(SaveData saveData)
+    {
+        Debug.Log("load ground item");
+        var objectId = GetComponent<GameObjectId>().Id;
+        Destroy(gameObject);
+        /*if (saveData.collectedGroundItems.Contains(objectId) || saveData.droppedGroundItems.ContainsKey(objectId))
+        {
+            Destroy(gameObject);
+        }*/
+    }
+
 
     public void Interact(Interactor user)
     {
@@ -51,8 +70,8 @@ public class GroundItem : MonoBehaviour, IInteractable
         if (pickupSuccess)
         {
             var objectId = GetComponent<GameObjectId>().Id;
-            SaveData.Current.collectedGroundItems.Add(objectId);
-            var droppedItems = SaveData.Current.droppedGroundItems;
+            // SaveData.Current.collectedGroundItems.Add(objectId);
+            var droppedItems = SaveData.Current.sceneData.droppedGroundItems;
             if (droppedItems.ContainsKey(objectId))
             {
                 droppedItems.Remove(objectId);

@@ -6,12 +6,14 @@ using UnityEngine;
 public interface IInitializable
 {
     public void Initialize();
+
+    public void Destroy();
 }
 
 public class InteractablePreviewUI : MonoBehaviour, IInitializable
 {
     [SerializeField] private TextMeshProUGUI previewText;
-    
+
     [SerializeField] private StringEventChannel interactPreviewEventChannel;
     [SerializeField] private VoidEventChannel interactExitPreviewEventChannel;
 
@@ -19,6 +21,15 @@ public class InteractablePreviewUI : MonoBehaviour, IInitializable
     {
         interactPreviewEventChannel.Listeners += ShowPreview;
         interactExitPreviewEventChannel.Listeners += HidePreview;
+        // var initialActiveState = gameObject.activeSelf;
+        // gameObject.SetActive(true);
+        // gameObject.SetActive(initialActiveState);
+    }
+
+    public void Destroy()
+    {
+        interactPreviewEventChannel.Listeners -= ShowPreview;
+        interactExitPreviewEventChannel.Listeners -= HidePreview;
     }
 
     private void ShowPreview(string preview)

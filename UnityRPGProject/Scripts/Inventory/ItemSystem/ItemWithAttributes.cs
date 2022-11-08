@@ -11,11 +11,11 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Test Item", menuName = "Item", order = 1)]
 public class ItemWithAttributes : SerializedScriptableObject, IDatabaseItem
 {
-    [SerializeField]
+    [SerializeField, ReadOnly]
     private string id = Guid.NewGuid().ToString();
 
     public string Id => id;
-    public string testString = "default";
+    public string testName = "default";
 
 
     [SerializeField] private ItemCategory categoryParent;
@@ -118,7 +118,6 @@ public class ItemWithAttributes : SerializedScriptableObject, IDatabaseItem
         attributes.TryGetValue(atr, out var data);
         return data as T;
     }
-
 
     public bool HasCategory(ItemCategory category)
     {

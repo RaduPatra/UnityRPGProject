@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c66e92141c14aebb2d1351682ade790, type: 3}
+  m_Name: DamageCons
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 8f44a76c42dd7c9468411bc320f78feb, type: 2}
+    - {fileID: 11400000, guid: dcf4df5ecf552e440956860f4f972ac7, type: 2}
+    - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
+    - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
+    - {fileID: 21300000, guid: 71daf48db5446bb43ad40c0c00bea9eb, type: 3}
+    - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
+    - {fileID: 2290540312554670874, guid: ad388bf08d69c274086da2a298186ba4, type: 3}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: attributes
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[AttributeBaseSO, Assembly-CSharp],[AttributeDataBase,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[AttributeBaseSO,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|EffectListAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[EffectBase, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 4|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: Damage Boost Potion
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 5|SpriteAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 6|GameObjectData, Assembly-CSharp
+    - Name: value
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 7|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: Drink this to hit harder
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  id: c95739a4-05dd-4137-8bd0-3e4ecaa2df41
+  testName: default
+  categoryParent: {fileID: 11400000, guid: c85b97f8b364dd046b537a0d13d8439d, type: 2}
+  isStackable: 1
+  maxStack: 7
+  attrToGetTest: {fileID: 0}
+  categToGetTest: {fileID: 0}

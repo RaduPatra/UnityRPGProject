@@ -47,9 +47,10 @@ public class InventorySlotUI : MonoBehaviour, ISlot, IPointerExitHandler
         }
     }
 
-    private void Awake()
+    public void Initialize(InventoryUI inventoryUI)
     {
-        InventoryUI = GetComponentInParent<InventoryUI>();
+        // InventoryUI = GetComponentInParent<InventoryUI>();
+        InventoryUI = inventoryUI;
     }
 
     public void UpdateUISlot(InventorySlot slot)
@@ -72,17 +73,13 @@ public class InventorySlotUI : MonoBehaviour, ISlot, IPointerExitHandler
         text.gameObject.SetActive(false);
 
         panelBackground.color = defaultColor;
-        foreach (var equippedWeapon in InventoryUI.equipmentWeaponInventory.equipmentSlots)
+        foreach (var equippedWeapon in InventoryUI.equipmentWeaponInventory.equipmentSlots.value)
         {
             if (slot.itemStack.id != equippedWeapon.Value.itemStack.id) continue;
             panelBackground.color = selectedColor;
             break;
         }
-        
-        // UpdateEquippedSlots(slot);
 
-
-        // panelBackground.color = inventorySlot.IsEquipped ? selectedColor : defaultColor;
         if (slot.itemStack.item == null) return;
         if (!slot.itemStack.item.isStackable || slot.itemStack.quantity <= 1) return;
         text.gameObject.SetActive(true);
@@ -121,7 +118,7 @@ public class InventorySlotUI : MonoBehaviour, ISlot, IPointerExitHandler
         if (item == null) return;
         InventoryUI.uiManager.ItemInfoUI.ShowItemInfo(item);
     }
-    
+
     public void OnPointerExit(PointerEventData eventData)
     {
         InventoryUI.uiManager.ItemInfoUI.HideItemInfo();

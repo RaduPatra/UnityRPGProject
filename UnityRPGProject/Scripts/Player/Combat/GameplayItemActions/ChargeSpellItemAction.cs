@@ -1,5 +1,8 @@
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
+using ExtensionMethods;
 
 
 [CreateAssetMenu(fileName = "New Gameplay Action", menuName = "Gameplay Actions/ChargeItemAction", order = 1)]
@@ -14,17 +17,17 @@ public class ChargeSpellItemAction : ItemGameplayActions
 
     public override void StartAction(ItemWithAttributes item, GameObject go)
     {
-        var playerAnimator = go.GetComponent<PlayerAnimator>();
-        var playerManager = go.GetComponent<PlayerManager>();
+        var playerAnimator = go.GetComponent<CharacterAnimator>();
         var playerEquipment = go.GetComponent<EquipmentManager>();
         var playerAttack = go.GetComponent<PlayerCombat>();
         var playerStamina = go.GetComponent<Stamina>();
+
         playerAttack.CanCastSpell = false;
-        if (playerManager.IsInteracting) return;
+        if (playerAnimator.IsInteracting) return;
         if (playerStamina.CurrentStamina <= 0) return;
         playerAttack.CanCastSpell = true;
-        playerAnimator.PlayAnimation(PlayerAnimator.leftHandCharge, false);
-        playerManager.IsAiming = true;
+        playerAnimator.PlayAnimation(CharacterAnimator.leftHandCharge, false);
+        playerAnimator.IsAiming = true;
 
         var warmupFXPrefab = item.GetAttribute<GameObjectData>(projectileWarmupFXAttribute)?.value;
         if (!warmupFXPrefab) return;
@@ -53,17 +56,15 @@ public class ChargeSpellItemAction : ItemGameplayActions
     public override void CancelledAction(ItemWithAttributes item, GameObject go)
     {
         var playerAttacker = go.GetComponent<PlayerCombat>();
-        var playerAnimator = go.GetComponent<PlayerAnimator>();
-        var playerManager = go.GetComponent<PlayerManager>();
+        var playerAnimator = go.GetComponent<CharacterAnimator>();
         var playerEquipment = go.GetComponent<EquipmentManager>();
-
 
         if (!playerAttacker.CanCastSpell) return;
         var spawnPosition = GetSpawnPosition(item, playerEquipment);
 
         if (playerAttacker.ChargePerformed)
         {
-            playerAnimator.PlayAnimation(PlayerAnimator.offHandShoot, true);
+            playerAnimator.PlayAnimation(CharacterAnimator.offHandShoot, true);
         }
         else
         {
@@ -71,44 +72,23 @@ public class ChargeSpellItemAction : ItemGameplayActions
         }
 
         playerAttacker.ChargePerformed = false;
-        playerManager.IsAiming = false;
+        playerAnimator.IsAiming = false;
     }
 
     public override void FinalizeAction(ItemWithAttributes item, GameObject go)
     {
         var playerEquipment = go.GetComponent<EquipmentManager>();
+        var rayProvider = go.GetComponent<IRayProvider>();
         var playerStamina = go.GetComponent<Stamina>();
 
-        var spawnPosition = GetSpawnPosition(item, playerEquipment);
-        spawnPosition.transform.Clear();
-
+        var weaponLocation = GetWeaponLocation(item, playerEquipment);
         var chargedFXPrefab = item.GetAttribute<GameObjectData>(projectileShootAttribute)?.value;
-        if (!chargedFXPrefab) return;
-        var projectileGO = Instantiate(chargedFXPrefab, spawnPosition);
-        var projectile = projectileGO.GetComponent<FireBallProjectile>();
-        projectile.Initialize(item, go);
+        var projFactory = new ProjectileFactory(go, chargedFXPrefab);
+        var projectile = projFactory.CreateProjectileWithItem(item, weaponLocation);
 
-        //move this to its own class for shooting rays
-        var cam = Camera.main;
-        var center = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        if (cam is { })
-        {
-            var ray = cam.ScreenPointToRay(center);
-            Vector3 direction;
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, shootMaxDistance))
-            {
-                direction = (hitInfo.point - spawnPosition.position).normalized;
-            }
-            else
-            {
-                var endPoint = ray.GetPoint(shootMaxDistance);
-                direction = (endPoint - spawnPosition.position).normalized;
-            }
-
-            projectileGO.transform.parent = null;
-            projectileGO.GetComponent<Rigidbody>().velocity = direction * projectileForce;
-        }
-
+        var ray = rayProvider.CreateRay();
+        var shooter = new ProjectileShooter(go);
+        shooter.ShootProjectile(ray, shootMaxDistance, projectileForce, projectile);
         playerStamina.DrainItemStamina(item, staminaConsumptionAttribute);
     }
 
@@ -118,23 +98,9 @@ public class ChargeSpellItemAction : ItemGameplayActions
         var spawnPosition = equipLocation.GetComponentInChildren<ProjectileSpawnPosition>().transform;
         return spawnPosition;
     }
-}
 
-
-public static class TransformEx
-{
-    public static Transform Clear(this Transform transform)
+    private static Transform GetWeaponLocation(ItemWithAttributes item, EquipmentManager playerEquipment)
     {
-        foreach (Transform child in transform)
-        {
-            Object.Destroy(child.gameObject);
-        }
-
-        return transform;
+        return playerEquipment.GetEquippedItemLocation(item);
     }
 }
-
-/*
- var equippedCategory = playerEquipment.FindEquippedCategory(item, playerEquipment.equipmentLocations);
- var equipLocation = playerEquipment.equipmentLocations[equippedCategory];
- var spawnPosition = equipLocation.GetComponentInChildren<ProjectileSpawnPosition>().transform;*/

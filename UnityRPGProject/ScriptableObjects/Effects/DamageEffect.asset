@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f57db1f2574443a4be45d21254291f, type: 3}
+  m_Name: DamageEffect
+  m_EditorClassIdentifier: 
+  effectExpireTime: 7
+  effectParticlePrefab: {fileID: 198587703769245278, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+  effectColor: {r: 1, g: 0.27372342, b: 0, a: 1}
+  attackDamageModifier: 100
+  magicDamageModifier: 100

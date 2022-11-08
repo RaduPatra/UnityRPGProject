@@ -6,7 +6,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EquipmentUI : MonoBehaviour
+public class EquipmentUI : MonoBehaviour, IInitializable
 {
     [SerializeField] private Transform itemsParent;
     [SerializeField] public EquipmentInventory equipmentInventory;
@@ -16,37 +16,35 @@ public class EquipmentUI : MonoBehaviour
     public AttributeBaseSO iconAttribute;
     public UIManager uiManager;
 
-    private void Start()
+    public void Initialize()
+    {
+        SaveSystem.OnLoad += LoadEquipmentUI;
+    }
+
+    public void Destroy()
+    {
+        SaveSystem.OnLoad -= LoadEquipmentUI;
+    }
+
+    private void LoadEquipmentUI(SaveData obj)
     {
         SetupUISlots();
-        equipmentInventory.inventoryChanged += SetupUISlots;
     }
 
     private void SetupUISlots()
     {
         uiManager = GetComponentInParent<UIManager>();
 
-        equipmentSlots = itemsParent.GetComponentsInChildren<EquipmentSlotUI>();
+        equipmentSlots = itemsParent.GetComponentsInChildren<EquipmentSlotUI>(true);
         var index = 0;
 
         foreach (var equipmentSlot in equipmentSlots)
         {
+            equipmentSlot.Initialize(this);
             var cat = equipmentSlot.slotCategory;
-            var slot = equipmentInventory.equipmentSlots[cat];
+            var slot = equipmentInventory.equipmentSlots.value[cat];
             equipmentSlot.InventorySlot = slot;
         }
-
-        /*foreach (var equipment in equipmentInventory.equipmentArmorSlots)
-        {
-            if (equipmentSlots[index].slotCategory == equipment.Key)
-            {
-                var slot = equipment.Value;
-                equipmentSlots[index].InventorySlot = slot;
-                // slot.OnSlotChanged?.Invoke(slot);
-            }
-
-            index++;
-        }*/
     }
 
     /*void UpdateSlotAtIndex(InventorySlot slot)

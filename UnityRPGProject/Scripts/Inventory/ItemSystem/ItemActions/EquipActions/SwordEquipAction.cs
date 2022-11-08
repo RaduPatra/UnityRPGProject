@@ -9,7 +9,7 @@ public class SwordEquipAction : EquipItemAction
 
     public override void ExecuteOnEquip(ItemWithAttributes item, GameObject parentGO, GameObject gameObjectToEquip = null)
     {
-        var playerAnimator = parentGO.GetComponent<PlayerAnimator>();
+        var playerAnimator = parentGO.GetComponent<CharacterAnimator>();
         if (!gameObjectToEquip) return;
         var weaponCol = gameObjectToEquip.GetComponent<WeaponCollider>();
         /*var equipmentManager = gameObjectToEquip.GetComponentInParent<EquipmentManager>();
@@ -18,12 +18,14 @@ public class SwordEquipAction : EquipItemAction
         if (weaponCol == null) return;
         weaponCol.Initialize(item);
         playerAnimator.OverrideDefaultAnimation(actionAnimationOverride);
-        playerAnimator.PlayAfterOneFrameCoroutine(PlayerAnimator.rightHandIdleDefault);
+        // playerAnimator.PlayAfterOneFrameCoroutine(CharacterAnimator.rightHandIdleDefault);
+        playerAnimator.PlayAfterOneFrameCoroutine(CharacterAnimator.rightHandIdleDefault, playerAnimator.IsInteracting);
+
     }
 
     public override void ExecuteOnUnequip(ItemWithAttributes item, GameObject parentGO, GameObject gameObjectToEquip = null)
     {
-        var playerAnimator = parentGO.GetComponent<PlayerAnimator>();
-        playerAnimator.PlayAnimation(PlayerAnimator.rightHandEmptyDefault, false);
+        var playerAnimator = parentGO.GetComponent<CharacterAnimator>();
+        playerAnimator.PlayAnimation(CharacterAnimator.rightHandEmptyDefault, playerAnimator.IsInteracting);
     }
 }

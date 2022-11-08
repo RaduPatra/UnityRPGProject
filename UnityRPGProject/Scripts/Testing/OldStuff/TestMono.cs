@@ -1,13 +1,28 @@
+using System;
 using UnityEngine;
 
 
-    public class TestMono : MonoBehaviour
-    {
-        public AttributeBaseSO baseTest;
+public class TestMono : MonoBehaviour
+{
+    public Rigidbody rb;
+    public KeyCode moveKey;
+    public float moveSpeed;
+    public int moveDir = 1;
+    
 
-        [ContextMenu("TestType")]
-        public void Test()
+
+    [ContextMenu("TestType")]
+    public void Test()
+    {
+        rb = GetComponent<Rigidbody>();
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(moveKey))
         {
-            Debug.Log(baseTest.GetType());
+            rb.AddForce(0, 0, moveSpeed * moveDir * Time.deltaTime);
         }
     }
+}

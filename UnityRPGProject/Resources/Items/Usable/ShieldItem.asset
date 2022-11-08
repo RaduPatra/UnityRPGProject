@@ -21,7 +21,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8bc5e70e715e6c44c9f5c02d70aeaeac, type: 2}
     - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
     - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
-    - {fileID: 21300000, guid: a42b3b2bb82524b4c9e97aca1cb294fe, type: 3}
+    - {fileID: 21300000, guid: c67f6060700f79d4f842b3632c073ff9, type: 3}
     - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
     - {fileID: 9114827444833234364, guid: 44136512abaa0434f94e9433832b297f, type: 3}
     - {fileID: 11400000, guid: e1fd7dd538ae4fe479a3985bd71459f8, type: 2}
@@ -30,6 +30,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7b6193cbcc3833b48936d3c3eddff588, type: 2}
     - {fileID: 11400000, guid: a956195cf6fc3e14e8a84ff3b5cfd002, type: 2}
     - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -48,7 +49,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 10
     - Name: 
       Entry: 7
       Data: 
@@ -118,7 +119,7 @@ MonoBehaviour:
       Data: 6|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Shield
+      Data: Wooden Shield
     - Name: 
       Entry: 8
       Data: 
@@ -234,13 +235,31 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 14
+    - Name: $v
+      Entry: 7
+      Data: 13|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A wooden shield
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   id: e447b699-e17b-4f78-9ced-fa5ad9df5ab7
-  testString: SHIELD
+  testName: default
   categoryParent: {fileID: 11400000, guid: f5ef371d8fbddaf40a6092765800c507, type: 2}
   isStackable: 0
   maxStack: 1

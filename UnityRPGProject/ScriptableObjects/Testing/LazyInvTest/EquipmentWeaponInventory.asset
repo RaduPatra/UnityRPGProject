@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fad64094c814cebbad6684c03587997, type: 3}
+  m_Name: EquipmentWeaponInventory
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 49f4f3d33f819764c9a01e3f106afb5b, type: 2}
+    - {fileID: 11400000, guid: ecc15c08461097842919ae2b383f9b6f, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: equipmentSlots
+      Entry: 7
+      Data: 0|LazyValueTest`1[[System.Collections.Generic.Dictionary`2[[ItemCategory,
+        Assembly-CSharp],[InventorySlot, Assembly-CSharp]], mscorlib]], Assembly-CSharp
+    - Name: _value
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[ItemCategory, Assembly-CSharp],[InventorySlot,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 2|System.Collections.Generic.ObjectEqualityComparer`1[[ItemCategory,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 3|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 84afabd7-37cb-4870-94cf-e47d9171a3a5
+    - Name: itemStack
+      Entry: 7
+      Data: 4|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 1287e584-ef94-41a2-a8b5-c58a5ea156b6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 5|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 1ddb9faf-3cd9-4fbc-86da-fd419423eca4
+    - Name: itemStack
+      Entry: 7
+      Data: 6|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 654ab0a5-abb6-4ca3-90ee-b3f214b1be72
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

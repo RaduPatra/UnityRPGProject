@@ -65,19 +65,19 @@ public abstract class CategoryAction
     
 }
 
-public class AttackAction : CategoryAction
-{
-    public override void Execute(GameObject go)
-    {
-    }
-}
-
-public class ShootAction : CategoryAction
-{
-    public override void Execute(GameObject go)
-    {
-    }
-}
+// public partial class AttackAction : CategoryAction
+// {
+//     public override void Execute(GameObject go)
+//     {
+//     }
+// }
+//
+// public class ShootAction : CategoryAction
+// {
+//     public override void Execute(GameObject go)
+//     {
+//     }
+// }
 
 public class UseEffectsAction : CategoryAction
 {

@@ -23,7 +23,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8bc5e70e715e6c44c9f5c02d70aeaeac, type: 2}
     - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
     - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
-    - {fileID: 21300000, guid: 23e3487bd159e544bbce0a44b6faadc4, type: 3}
+    - {fileID: 21300000, guid: 3fa53af4c50543b469421a6895537de8, type: 3}
     - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
     - {fileID: 9114827444833234364, guid: b5a5b0f6873f9ed4baf8b0bf83c4c456, type: 3}
     - {fileID: 11400000, guid: cd271e8f2aff0514eadd57f79991235c, type: 2}
@@ -36,6 +36,8 @@ MonoBehaviour:
     - {fileID: 1722081097931586, guid: 6bb893eed4cfb794ba9fa5aca6b42c83, type: 3}
     - {fileID: 11400000, guid: 83ec11f3845193749824b751c7b1d437, type: 2}
     - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+    - {fileID: 11400000, guid: f166468cfddf1b14abcff6deef32525c, type: 2}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -54,7 +56,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 12
+      Data: 14
     - Name: 
       Entry: 7
       Data: 
@@ -106,22 +108,10 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 6|StatModifier, Assembly-CSharp
-    - Name: type
-      Entry: 3
-      Data: 0
-    - Name: value
-      Entry: 4
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|StatModifier, Assembly-CSharp
     - Name: type
       Entry: 3
       Data: 2
@@ -151,10 +141,10 @@ MonoBehaviour:
       Data: 5
     - Name: $v
       Entry: 7
-      Data: 8|StringAttributeData, Assembly-CSharp
+      Data: 7|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Wand
+      Data: Fire Wand
     - Name: 
       Entry: 8
       Data: 
@@ -169,7 +159,7 @@ MonoBehaviour:
       Data: 6
     - Name: $v
       Entry: 7
-      Data: 9|SpriteAttributeData, Assembly-CSharp
+      Data: 8|SpriteAttributeData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 7
@@ -187,7 +177,7 @@ MonoBehaviour:
       Data: 8
     - Name: $v
       Entry: 7
-      Data: 10|GameObjectData, Assembly-CSharp
+      Data: 9|GameObjectData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 9
@@ -205,7 +195,7 @@ MonoBehaviour:
       Data: 10
     - Name: $v
       Entry: 7
-      Data: 11|GameplayItemActionsData, Assembly-CSharp
+      Data: 10|GameplayItemActionsData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 11
@@ -223,7 +213,7 @@ MonoBehaviour:
       Data: 12
     - Name: $v
       Entry: 7
-      Data: 12|GameObjectData, Assembly-CSharp
+      Data: 11|GameObjectData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 13
@@ -241,7 +231,7 @@ MonoBehaviour:
       Data: 14
     - Name: $v
       Entry: 7
-      Data: 13|GameObjectData, Assembly-CSharp
+      Data: 12|GameObjectData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 15
@@ -259,7 +249,7 @@ MonoBehaviour:
       Data: 16
     - Name: $v
       Entry: 7
-      Data: 14|GameObjectData, Assembly-CSharp
+      Data: 13|GameObjectData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 17
@@ -277,10 +267,10 @@ MonoBehaviour:
       Data: 18
     - Name: $v
       Entry: 7
-      Data: 15|FloatAttributeData, Assembly-CSharp
+      Data: 14|FloatAttributeData, Assembly-CSharp
     - Name: value
       Entry: 4
-      Data: 5
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -295,10 +285,46 @@ MonoBehaviour:
       Data: 19
     - Name: $v
       Entry: 7
-      Data: 16|FloatAttributeData, Assembly-CSharp
+      Data: 15|FloatAttributeData, Assembly-CSharp
     - Name: value
       Entry: 4
       Data: 12
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 20
+    - Name: $v
+      Entry: 7
+      Data: 16|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 30
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 21
+    - Name: $v
+      Entry: 7
+      Data: 17|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A magical item that has the ability to shoot fireballs
     - Name: 
       Entry: 8
       Data: 
@@ -312,7 +338,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   id: b3a5124b-4346-4f4b-82ae-296d2c31cc18
-  testString: WAND
+  testName: WAND
   categoryParent: {fileID: 11400000, guid: 8571dbf4093e7fd459790707baa57008, type: 2}
   isStackable: 0
   maxStack: 1

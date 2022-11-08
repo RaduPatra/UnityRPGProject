@@ -12,19 +12,27 @@ public class SlotAbilityUser : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("hb awake");
+    }
+
+    private void OnEnable()
+    {
         itemUseEventChannel.Listeners += UseItem;
         inputManager.hotbarUseAction += HotbarUseStarted;
     }
 
-    private void Start()
-    {
-        // itemUnequipEventChannel.Listeners += UnequipTest;
-    }
-
     private void HotbarUseStarted(int slotIndex)
     {
+        Debug.Log("hb use " + slotIndex);
         var slot = hotbarInventory.ItemList[slotIndex];
         UseItem(slot);
+    }
+
+    private void OnDisable()
+    {
+        itemUseEventChannel.Listeners -= UseItem;
+        inputManager.hotbarUseAction -= HotbarUseStarted;
+        Debug.Log("hb destr");
     }
 
     private void UseItem(InventorySlot slot)
@@ -38,10 +46,4 @@ public class SlotAbilityUser : MonoBehaviour
             useAction.Execute(gameObject, slot);
         }
     }
-
-    /*public void UnequipTest(InventorySlot slot)
-    {
-        inventoryHolder.PickUp(slot.itemStack.item);
-        slot.RemoveItem();
-    }*/
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
@@ -24,10 +25,16 @@ public class StatsUI : MonoBehaviour, IInitializable
         onStatModifierChangeEventChannel.Listeners += UpdateStatModifier;
     }
 
+    public void Destroy()
+    {
+        onStatModifierChangeEventChannel.Listeners -= UpdateStatModifier;
+    }
+
     private void UpdateStatModifier(StatModifier statModifier)
     {
         // Debug.Log("stats ui update");
         var statInfo = stats.Find(x => x.statType == statModifier.type);
+        if (statInfo == null) return;
         statInfo.statText.text = statInfo.statName + " : " + statModifier.value;
     }
 }

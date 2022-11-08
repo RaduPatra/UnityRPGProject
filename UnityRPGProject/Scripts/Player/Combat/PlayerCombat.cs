@@ -2,15 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class PlayerCombat : MonoBehaviour
 {
-    // Start is called before the first frame update
-
 
     [SerializeField] private InputManager inputManager;
 
@@ -24,16 +20,14 @@ public class PlayerCombat : MonoBehaviour
     public bool ChargePerformed { get; set; }
     public bool CanCastSpell { get; set; }
 
-    private PlayerManager playerManager;
-    private PlayerAnimator playerAnimator;
+    private CharacterAnimator playerAnimator;
     private EquipmentManager equipmentManager;
     private WeaponCollider weaponCollider;
     private Dictionary<ItemCategory, WeaponCollider> slotColliders = new Dictionary<ItemCategory, WeaponCollider>();
 
     private void Start()
     {
-        playerManager = GetComponent<PlayerManager>();
-        playerAnimator = playerManager.PlayerAnimator;
+        playerAnimator = GetComponent<CharacterAnimator>();
         equipmentManager = GetComponent<EquipmentManager>();
 
         inputManager.attackAction += MainHandLeftClickAction;
@@ -41,6 +35,18 @@ public class PlayerCombat : MonoBehaviour
         inputManager.blockActionStart += OffHandRightClickActionStart;
         inputManager.blockActionPerformed += OffHandRightClickActionPerformed;
         inputManager.blockCancelledAction += OffHandRightClickActionCancelled;
+
+        playerAnimator.animationEvents.shootProjectileAnimEvent += FinalizeRightAction;
+    }
+
+    private void OnDestroy()
+    {
+        inputManager.attackAction -= MainHandLeftClickAction;
+        inputManager.specialAttackAction -= MainHandMiddleClickAction;
+        inputManager.blockActionStart -= OffHandRightClickActionStart;
+        inputManager.blockActionPerformed -= OffHandRightClickActionPerformed;
+        inputManager.blockCancelledAction -= OffHandRightClickActionCancelled;
+        playerAnimator.animationEvents.shootProjectileAnimEvent -= FinalizeRightAction;
     }
 
     private void MainHandLeftClickAction()
@@ -64,6 +70,7 @@ public class PlayerCombat : MonoBehaviour
         var action = GetHandAction(offhandItemCategory, rightClickActionAttribute);
         if (!action) return;
         var item = GetHandItem(offhandItemCategory);
+
         action.StartAction(item, gameObject);
     }
 
@@ -93,22 +100,11 @@ public class PlayerCombat : MonoBehaviour
 
     private ItemWithAttributes GetHandItem(ItemCategory itemCategory)
     {
-        return equipmentManager.equipmentWeaponInventory.equipmentSlots[itemCategory].itemStack.item;
+        return equipmentManager.equipmentWeaponInventory.equipmentSlots.value[itemCategory].itemStack.item;
     }
 
     #region Animation Events
-
-    public void EnableCombo()
-    {
-        playerAnimator.SetCanDoComboBool(true);
-    }
-
-    public void DisableCombo()
-    {
-        playerAnimator.SetCanDoComboBool(false);
-    }
-    
-    public void ShootProjectile()
+    private void FinalizeRightAction()
     {
         var action = GetHandAction(offhandItemCategory, rightClickActionAttribute);
         if (!action) return;

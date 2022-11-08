@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class AttributeBaseSO : ScriptableObject
 {
     public string name;
-    
     public abstract AttributeDataBase CreateData();
 
     

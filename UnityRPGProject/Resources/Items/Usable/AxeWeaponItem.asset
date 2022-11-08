@@ -27,13 +27,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3316c4af87eb60641862903383a1b2ca, type: 2}
     - {fileID: 8358582471943564132, guid: 612305bd6df71914db5e1761cdff604d, type: 3}
     - {fileID: 11400000, guid: e1fd7dd538ae4fe479a3985bd71459f8, type: 2}
-    - {fileID: 11400000, guid: d7e14d4b496084749b2f8e163fadd1e2, type: 2}
+    - {fileID: 11400000, guid: 1089134f9afc46b418b82048b5b9b8a6, type: 2}
     - {fileID: 11400000, guid: 3d2a3dedf6f9ee343ba7bdea495ffa7a, type: 2}
     - {fileID: 11400000, guid: c0c9366c7b3ebd04d9143128d73aa295, type: 2}
     - {fileID: 11400000, guid: b8f71e2b4b9fd244b9998b31bbc0c5b2, type: 2}
     - {fileID: 11400000, guid: 4f3045c0fa8f4ac4f810b2f1d07f2479, type: 2}
     - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
     - {fileID: 11400000, guid: cf410384a3f3049498bed92a5cd7fd1f, type: 2}
+    - {fileID: 11400000, guid: f166468cfddf1b14abcff6deef32525c, type: 2}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -52,7 +54,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 11
+      Data: 13
     - Name: 
       Entry: 7
       Data: 
@@ -122,7 +124,7 @@ MonoBehaviour:
       Data: 6|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Axe
+      Data: Greataxe
     - Name: 
       Entry: 8
       Data: 
@@ -274,13 +276,49 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 18
+    - Name: $v
+      Entry: 7
+      Data: 15|FloatAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 30
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 19
+    - Name: $v
+      Entry: 7
+      Data: 16|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A powerful axe forged by the ancient dwarves
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   id: c0ca5ebd-8346-4929-ab55-13bb894bf51c
-  testString: WEP2
+  testName: default
   categoryParent: {fileID: 11400000, guid: e482dc76af1c40f4b94fe8b1efd314cb, type: 2}
   isStackable: 0
   maxStack: 1

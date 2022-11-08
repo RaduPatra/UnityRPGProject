@@ -1,29 +1,30 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
+
 
 [Serializable]
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/Inventory", order = 1)]
+[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/InventoryTestLazy", order = 1)]
 public class Inventory : InventoryBase
 {
-    [SerializeField] public InventoryContainer inventoryContainer = new InventoryContainer();
-    public List<InventorySlot> ItemList => inventoryContainer.itemList;
+    public LazyValueTest<InventoryContainer> lazyInventoryContainer = new LazyValueTest<InventoryContainer>();
+    public List<InventorySlot> ItemList => lazyInventoryContainer.value.itemList;
 
     public ItemCategory inventoryCategory;
 
-    [NonSerialized] public Action inventoryChanged;
+    [NonSerialized]
+    public Action<ItemWithAttributes> OnPickup;
 
-    public void Setup()
+    public void Init(InventoryContainer inventoryContainer) //called in on before load
     {
-        for (var i = 0; i < ItemList.Count; i++)
+        lazyInventoryContainer.Init(() => InitContainer(inventoryContainer));
+
+        InventoryContainer InitContainer(InventoryContainer saveDataInv)
         {
-            ItemList[i].itemStack.ParentSlot = ItemList[i];
-            ItemList[i].slotCategory = inventoryCategory;
+            var newInv = saveDataInv;
+            newInv.Setup(inventoryCategory);
+            return newInv;
         }
     }
 
@@ -32,6 +33,7 @@ public class Inventory : InventoryBase
         var slot = FindEmptySlot();
         if (slot == null) return false;
         slot.AddItem(new ItemStack(item, 1));
+        OnPickup?.Invoke(item);
         return true;
     }
 
@@ -42,6 +44,7 @@ public class Inventory : InventoryBase
         slot.AddItem(new ItemStack(item,
             slot.itemStack.quantity +
             1));
+        OnPickup?.Invoke(item);
         return true;
     }
 
@@ -67,11 +70,6 @@ public class Inventory : InventoryBase
         }
     }
 
-    /*public void SwapTest(int index, int index2)
-    {
-        (itemList[index], itemList[index2]) = (itemList[index2], itemList[index]);
-    }*/
-
     #endregion
 
 
@@ -92,18 +90,11 @@ public class Inventory : InventoryBase
     [ContextMenu("refresh asset test")]
     public void RefreshAssetTest()
     {
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
+#endif
+        
         // AssetDatabase.Refresh();
     }
-}
-
-[Serializable]
-public class InventoryContainer
-{
-    public List<InventorySlot> itemList = new List<InventorySlot>();
-}
-
-public abstract class InventoryBase : SerializedScriptableObject
-{
 }

@@ -35,8 +35,27 @@ public class RewardChest : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+
         animator = GetComponent<Animator>();
         SaveSystem.OnLoad += LoadChest;
+        if (!canOpen) chestCanOpenParticlesTransform.gameObject.SetActive(true);
+
+
+        if (chestLocation != null)
+        {
+            var locationManager = chestLocation.GetComponent<EnemyLocationManager>();
+            if (locationManager != null)
+                locationManager.OnLocationCleared += LocationCleared;
+        }
+        
+    }
+
+
+    private void OnDestroy()
+    {
+        SaveSystem.OnLoad -= LoadChest;
+        inputManager.interactAction -= TryTakeReward;
+        inputManager.cancelAction -= CloseChest;
     }
 
     private void Update()
@@ -53,37 +72,54 @@ public class RewardChest : MonoBehaviour, IInteractable
         {
             rewardTaken = true;
             animator.Play(ChestOpenAnimation);
+            GetComponent<BoxCollider>().enabled = false;
             chestLootBeamParticles.SetActive(false);
+            chestCanOpenParticlesTransform.gameObject.SetActive(false);
         }
         else
         {
             rewardTaken = false;
             animator.Play(ChestCloseAnimation);
             chestLootBeamParticles.SetActive(true);
+            if (!canOpen) chestCanOpenParticlesTransform.gameObject.SetActive(true);
+
         }
+
         ExitChest();
         isInteracting = false;
         toggleInventoryFullEventChannel.Raise(false);
     }
 
+    public Transform chestLocation;
+    public Transform chestCanOpenParticlesTransform;
+    private void LocationCleared()
+    {
+        canOpen = true;
+        chestCanOpenParticlesTransform.gameObject.SetActive(false);
+    }
+
+    [SerializeField]
+    private bool canOpen = true;
+
     public void Interact(Interactor user)
     {
         if (isInteracting) return;
         if (rewardTaken) return;
+        if (!canOpen) return;
 
         //only interact if facing towards chest
         var directionFromChestToPlayer = (user.transform.position - transform.position).normalized;
         var dot = Vector3.Dot(user.transform.forward, directionFromChestToPlayer);
         if (dot > -1 + lootOffset) return;
-
-
+        
         inputManager.ToggleChestActions(true);
-        var playerAnimator = user.GetComponent<PlayerAnimator>();
+        var playerAnimator = user.GetComponent<CharacterAnimator>();
+        chestLootBeamParticles.GetComponent<ParticleSystem>().Play();
         isInteracting = true;
         chestUser = user;
         InteractExit(user);
 
-        playerAnimator.PlayAnimation(PlayerAnimator.chestOpenAnimation, true);
+        playerAnimator.PlayAnimation(CharacterAnimator.chestOpenAnimation, true);
         StartCoroutine(OpenChestAnimation(ChestOpenAnimation));
     }
 
@@ -136,8 +172,9 @@ public class RewardChest : MonoBehaviour, IInteractable
             hideChestLootEventChannel.Raise(item);
             inputManager.ToggleChestActions(false);
             chestLootBeamParticles.SetActive(false); //set active for now, add cool fade effect on disable later
-            var playerAnimator = chestUser.GetComponent<PlayerAnimator>();
-            playerAnimator.PlayAnimation(PlayerAnimator.takeItem, true);
+            var playerAnimator = chestUser.GetComponent<CharacterAnimator>();
+            playerAnimator.PlayAnimation(CharacterAnimator.takeItem, true);
+            GetComponent<BoxCollider>().enabled = false;
             return;
         }
 
@@ -166,7 +203,7 @@ public class RewardChest : MonoBehaviour, IInteractable
         hideChestLootEventChannel.Raise(item);
         inputManager.interactAction -= TryTakeReward;
         inputManager.cancelAction -= CloseChest;
-        inputManager.ToggleChestActions(false);
+        if (isInteracting) inputManager.ToggleChestActions(false);
     }
 
     public void InteractPreview(Interactor user)

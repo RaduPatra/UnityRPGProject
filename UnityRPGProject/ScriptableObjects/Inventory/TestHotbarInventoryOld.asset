@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fc8b06968f46c1b9a2956ee445a504, type: 3}
+  m_Name: TestHotbarInventoryOld
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  inventoryContainer:
+    itemList:
+    - id: 33261c17-de3d-481a-bfa5-0451da1b9599
+      itemStack:
+        item: {fileID: 11400000, guid: b9670830de7d97d4cb2f6290479a52e7, type: 2}
+        itemId: b53b9d60-b0c7-43d7-b5b1-868c81ccb1aa
+        quantity: 1
+        id: 2366eefe-c443-45e5-8d85-64d725f60207
+      slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+    - id: 0380cade-35c8-45f7-a29b-adb0adeb5f37
+      itemStack:
+        item: {fileID: 11400000, guid: fc1ef20e14f5e724abbec4838d791c68, type: 2}
+        itemId: b3a5124b-4346-4f4b-82ae-296d2c31cc18
+        quantity: 1
+        id: 391d990b-3a94-4d8e-81a3-45f270a77925
+      slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+    - id: afe94f05-cef8-433c-bee4-c3100008e7ab
+      itemStack:
+        item: {fileID: 11400000, guid: 257cda36fe3a2df41bd668ffba540c07, type: 2}
+        itemId: 2da90aef-1029-4081-a59e-ad985a9cf77f
+        quantity: 1
+        id: 523f3091-96cd-44e2-b169-8c37cfc7138d
+      slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+    - id: acfaacf7-9017-41e3-bc6c-4f5577e35741
+      itemStack:
+        item: {fileID: 11400000, guid: 7a71a52bf5b5cec49885b32c4ad11aaf, type: 2}
+        itemId: db03b895-ec5b-43e9-b9d8-f7c21757ee7f
+        quantity: 1
+        id: ef8ab489-1fef-4c5a-80c9-fe7edcedd77d
+      slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+    - id: 8c25ded5-b20a-4cb7-bc39-a870c83029bd
+      itemStack:
+        item: {fileID: 0}
+        itemId: 
+        quantity: 0
+        id: dc393838-6261-4b04-9121-f06ddf570a9e
+      slotCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+  inventoryCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}

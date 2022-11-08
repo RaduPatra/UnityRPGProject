@@ -15,6 +15,13 @@ namespace Player
         {
             // PlayerManager = GetComponent<PlayerManager>();
             inputManager.interactAction += StartInteract;
+            interactObject = null;
+        }
+
+        private void OnDestroy()
+        {
+            inputManager.interactAction -= StartInteract;
+
         }
 
         private void StartInteract()

@@ -1,17 +1,13 @@
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Category Database", menuName = "Databases/Category Database", order = 1)]
 public class CategoryDatabase : Database<ItemCategory>
 {
     [ContextMenu("Populate Database")]
-    public void PopulateDatabase()
+    public override void PopulateDatabase()
     {
-        var items = Resources.LoadAll<ItemCategory>(path).ToList();
-        database.Clear();
-        foreach (var item in items)
-        {
-            database.Add(item.Id, item);
-        }
+        base.PopulateDatabase();
     }
 }

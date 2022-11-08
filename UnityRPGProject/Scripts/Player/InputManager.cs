@@ -13,9 +13,8 @@ public class InputManager : ScriptableObject
 {
     //todo implement the interface for setcallbacks so you dont have to manually subscribe to actions multiple times
     private PlayerControls playerControls;
-    private PlayerManager playerManager;
     private Vector2 movementInput;
-    [SerializeField] private InputActionReference mouseLookReference;
+    public InputActionReference mouseLookReference;
 
     public Action jumpAction = delegate { };
     public Action rollAction = delegate { };
@@ -31,6 +30,8 @@ public class InputManager : ScriptableObject
     public Action blockActionPerformed = delegate { };
     public Action blockCancelledAction = delegate { };
     public Action cancelAction = delegate { };
+    public Action interactTestAction = delegate { };
+    public Action pauseGameAction = delegate { };
 
     //todo - set callbacks instead of manually subscribing
     private void OnEnable()
@@ -41,12 +42,17 @@ public class InputManager : ScriptableObject
             SetupControls();
         }
 
-        playerControls.General.Enable();
-        EnableGameplayActions();
+        // playerControls.General.Enable();
+        // EnableGameplayActions();
+        ToggleAllActions(true);
+
+        mouseLookReference.action.Enable();
+        Debug.Log("input enable");
     }
 
     private void SetupControls()
     {
+        Debug.Log("setup controls");
         playerControls.Gameplay.Movement.performed += OnMove;
         playerControls.Gameplay.Jump.performed += OnJump;
         playerControls.Gameplay.Roll.performed += OnRoll;
@@ -66,8 +72,24 @@ public class InputManager : ScriptableObject
 
         playerControls.Interaction.Interact.performed += OnInteract;
         playerControls.Interaction.Cancel.performed += CancelAction;
+        playerControls.Interaction.DialogueInteractTest.performed += InteractTest;
+
+        playerControls.PauseMenu.Pause.performed += PauseGame;
 
         playerControls.Testing.TestButton.started += i => Debug.Log("composite btn test");
+    }
+
+    private void PauseGame(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("pause pressed");
+        if (ctx.performed)
+            pauseGameAction?.Invoke();
+    }
+
+    private void InteractTest(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+            interactTestAction?.Invoke();
     }
 
     private void CancelAction(InputAction.CallbackContext ctx)
@@ -86,41 +108,6 @@ public class InputManager : ScriptableObject
         toggleUIAction?.Invoke();
     }
 
-    public void EnableGameplayActions()
-    {
-        playerControls.Gameplay.Enable();
-        playerControls.Interaction.Enable();
-        mouseLookReference.action.Enable();
-    }
-
-    public void EnableInterfaceActions()
-    {
-        moveAction.Invoke(Vector2.zero);
-        playerControls.Gameplay.Disable();
-        playerControls.Interaction.Disable();
-        mouseLookReference.action.Disable();
-    }
-
-    public void ToggleChestActions(bool status)
-    {
-        if (status)
-        {
-            moveAction.Invoke(Vector2.zero);
-            playerControls.Gameplay.Disable();
-            playerControls.General.Disable();
-        }
-        else
-        {
-            playerControls.Gameplay.Enable();
-            playerControls.General.Enable();
-        }
-    }
-
-    private void DisableAllActions()
-    {
-        playerControls.Gameplay.Disable();
-        playerControls.General.Disable();
-    }
 
     private void OnHotbarInput(InputAction.CallbackContext ctx)
     {
@@ -173,7 +160,7 @@ public class InputManager : ScriptableObject
         moveAction.Invoke(movementInput);
     }
 
-    private void OnSprint(InputAction.CallbackContext ctx) 
+    private void OnSprint(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
             sprintStartAction?.Invoke();
@@ -188,9 +175,98 @@ public class InputManager : ScriptableObject
         Debug.Log("interact");
     }
 
+    public void EnableGameplayActions()
+    {
+        playerControls.Gameplay.Enable();
+        playerControls.Interaction.Enable();
+        mouseLookReference.action.Enable();
+    }
+
+    public void EnableInterfaceActions()
+    {
+        moveAction.Invoke(Vector2.zero);
+        playerControls.Gameplay.Disable();
+        playerControls.Interaction.Disable();
+        mouseLookReference.action.Disable();
+    }
+
+    public void ToggleChestActions(bool status)
+    {
+        if (status)
+        {
+            moveAction.Invoke(Vector2.zero);
+            playerControls.Gameplay.Disable();
+            playerControls.General.Disable();
+        }
+        else
+        {
+            playerControls.Gameplay.Enable();
+            playerControls.General.Enable();
+        }
+    }
+
+    public void ToggleDialogueActions(bool status)
+    {
+        if (status)
+        {
+            moveAction.Invoke(Vector2.zero);
+            playerControls.Gameplay.Disable();
+            playerControls.General.Disable();
+            mouseLookReference.action.Disable();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            playerControls.Gameplay.Enable();
+            playerControls.General.Enable();
+            mouseLookReference.action.Enable();
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public void DisableAllActions()
+    {
+        playerControls.Gameplay.Disable();
+        playerControls.General.Disable();
+    }
+
+    public void ToggleAllActions(bool status)
+    {
+        if (status)
+        {
+            playerControls.Gameplay.Enable();
+            playerControls.General.Enable();
+            playerControls.Interaction.Enable();
+            playerControls.PauseMenu.Enable();
+        }
+        else
+        {
+            moveAction.Invoke(Vector2.zero);
+            playerControls.Gameplay.Disable();
+            playerControls.General.Disable();
+            playerControls.Interaction.Disable();
+        }
+    }
+
     private void OnDisable()
     {
+        Debug.Log("input disable");
         playerControls.Disable();
-        DisableAllActions();
+        // DisableAllActions();
+        ToggleAllActions(false);
+    }
+
+    [ContextMenu("test toggle")]
+    public void TestToggle()
+    {
+        ToggleAllActions(true);
+    }
+
+    [ContextMenu("reset controls")]
+    public void ResetControls()
+    {
+        playerControls = null;
     }
 }

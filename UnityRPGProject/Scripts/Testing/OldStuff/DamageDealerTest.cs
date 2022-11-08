@@ -8,6 +8,11 @@ public class DamageDealerTest : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var damageable = other.GetComponent<IDamageable>();
-        damageable?.Damage(damageAmount);
+        var damageInfo = new DamageInfo
+        {
+            damageAmount = damageAmount,
+            damager = gameObject
+        };
+        damageable?.Damage(damageInfo);
     }
 }

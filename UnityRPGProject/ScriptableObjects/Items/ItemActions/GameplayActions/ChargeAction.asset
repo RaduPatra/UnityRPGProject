@@ -15,6 +15,6 @@ MonoBehaviour:
   projectileWarmupFXAttribute: {fileID: 11400000, guid: b7ec69aad2989234dab79cd0c96a543d, type: 2}
   projectileChargeFXAttribute: {fileID: 11400000, guid: 592597a5167e33749a7aa9bdff05747e, type: 2}
   projectileShootAttribute: {fileID: 11400000, guid: 888dc8636153fcb4a9afab8601e1bba1, type: 2}
-  projectileForce: 10
+  projectileForce: 30
   shootMaxDistance: 999
   staminaConsumptionAttribute: {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}

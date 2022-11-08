@@ -17,13 +17,14 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: e7df154127b079644af854f2ad90db30, type: 2}
-    - {fileID: 2335054256659011253, guid: fab7b4d120f58dd45af3a0ff4df537b1, type: 3}
+    - {fileID: 1040037821766626378, guid: 7405faff7aa43ef40a0bf69b627460ea, type: 3}
     - {fileID: 11400000, guid: 8bc5e70e715e6c44c9f5c02d70aeaeac, type: 2}
     - {fileID: 11400000, guid: 34832b4e21c616a40b75ecad6a2731f7, type: 2}
     - {fileID: 11400000, guid: 7bc81c16817e3db46be76a9af0ac4172, type: 2}
     - {fileID: 21300000, guid: e89ca016d404a6a4687a5ee741e2d2b5, type: 3}
     - {fileID: 11400000, guid: c3f5a44703a8af44d8893de136f62774, type: 2}
-    - {fileID: 2339998336291182891, guid: b4780c55d195a604084ab0ba81f67b3c, type: 3}
+    - {fileID: 2339998336291182891, guid: 12b1428243d054b4586c02c06901ac44, type: 3}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -42,7 +43,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -76,7 +77,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 5|StatModifier, Assembly-CSharp
@@ -86,6 +87,18 @@ MonoBehaviour:
     - Name: value
       Entry: 4
       Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|StatModifier, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 4
+    - Name: value
+      Entry: 4
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -109,10 +122,10 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 6|StringAttributeData, Assembly-CSharp
+      Data: 7|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Boots3
+      Data: Soldier Boots
     - Name: 
       Entry: 8
       Data: 
@@ -127,7 +140,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 7|SpriteAttributeData, Assembly-CSharp
+      Data: 8|SpriteAttributeData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 5
@@ -145,10 +158,28 @@ MonoBehaviour:
       Data: 6
     - Name: $v
       Entry: 7
-      Data: 8|GameObjectData, Assembly-CSharp
+      Data: 9|GameObjectData, Assembly-CSharp
     - Name: value
       Entry: 10
       Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: 10|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: Some strong plated boots
     - Name: 
       Entry: 8
       Data: 
@@ -162,7 +193,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   id: 32db552f-4b68-497c-844a-c604f9434c18
-  testString: boot3
+  testName: default
   categoryParent: {fileID: 11400000, guid: 5797dbf29df95fb4a882fd356a74cfd6, type: 2}
   isStackable: 0
   maxStack: 1

@@ -40,7 +40,7 @@ public class PlayerLocomotion : MonoBehaviour
     [Header("References")]
     //REFERENCES
     [SerializeField]
-    private CharacterController controller;
+    public CharacterController controller;
 
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform groundCheck;
@@ -48,7 +48,6 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private InputManager inputManager;
 
 
-    private PlayerManager playerManager;
     private Stamina playerStamina;
     private Vector3 moveDirection;
     private Vector3 moveVelocity;
@@ -61,6 +60,7 @@ public class PlayerLocomotion : MonoBehaviour
     private Vector2 movementInput;
     private bool sprintInput;
     private bool blockInput;
+    private bool isRayGrounded;
 
     public float WalkMoveSpeed
     {
@@ -78,14 +78,22 @@ public class PlayerLocomotion : MonoBehaviour
     public float BaseWalkSpeed => baseWalkSpeed;
     public float BaseJumpHeight => baseJumpHeight;
 
+
+    private CharacterAnimator playerAnimator;
+
     private void Start()
     {
-        playerManager = GetComponent<PlayerManager>();
+        playerAnimator = GetComponent<CharacterAnimator>();
         playerStamina = GetComponent<Stamina>();
         walkMoveSpeed = baseWalkSpeed;
         jumpHeight = baseJumpHeight;
         currentJumpTimeout = jumpTimeout;
         //playerManager.isGrounded = false;
+        // SetupInput();
+    }
+
+    private void OnEnable()
+    {
         SetupInput();
     }
 
@@ -101,6 +109,18 @@ public class PlayerLocomotion : MonoBehaviour
         inputManager.blockCancelledAction += OnBlockCancel;
     }
 
+
+    private void OnDisable()
+    {
+        inputManager.jumpAction -= HandleJump;
+        inputManager.rollAction -= HandleRoll;
+        inputManager.moveAction -= OnMove;
+        inputManager.sprintStartAction -= OnSprintStart;
+        inputManager.sprintCancelledAction -= OnSprintCancel;
+        inputManager.blockActionStart -= OnBlockStart;
+        inputManager.blockCancelledAction -= OnBlockCancel;
+    }
+
     private void Update()
     {
         SetMoveDirection();
@@ -113,14 +133,14 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void HandleRotation()
     {
-        if (playerManager.PlayerAnimator.IsRolling) return;
-        if (playerManager.IsAiming || playerManager.PlayerAnimator.GetCanRotate())
+        if (playerAnimator.IsRolling) return;
+        if (playerAnimator.IsAiming || playerAnimator.GetCanRotate())
         {
             RotateToCameraDirection();
         }
         else
         {
-            if (playerManager.IsInteracting) return;
+            if (playerAnimator.IsInteracting) return;
             RotateToMovementDirection();
         }
     }
@@ -134,7 +154,7 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection = Vector3.zero;
 
         //don't calculate move if interacting
-        if (playerManager.IsInteracting)
+        if (playerAnimator.IsInteracting)
             return;
 
         if (!(direction.magnitude > 0))
@@ -158,6 +178,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     //here we use controller.isGrounded for resetting fall exactly when we touch the ground so we fall constantly at the right speed
     //and playerManager.isGrounded for checking things just before they touch the ground
+
+    private bool isFalling = false;
     private void HandleFalling()
     {
         //Handle gravity. Reset if grounded.
@@ -168,11 +190,11 @@ public class PlayerLocomotion : MonoBehaviour
         inAirTime += Time.deltaTime;
 
 
-        var isFalling = false;
+        // var isFalling = false;
         //play fall animation if not grounded and in air for more than x seconds
-        if (!playerManager.isGrounded && inAirTime > airTimeToBeginFall)
+        if (!isRayGrounded && inAirTime > airTimeToBeginFall && !isFalling)
         {
-            playerManager.PlayerAnimator.PlayAnimation("Falling", false, false);
+            playerAnimator.PlayAnimation(CharacterAnimator.Falling, false, .3f);
             isFalling = true;
         }
 
@@ -184,18 +206,19 @@ public class PlayerLocomotion : MonoBehaviour
             layerMask))
         {
             //play land animation if player was previously not grounded and falling
-            if (!playerManager.isGrounded && isFalling)
+            if (!isRayGrounded && isFalling)
             {
-                playerManager.PlayerAnimator.PlayAnimation("Landing", true);
+                isFalling = false;
+                playerAnimator.PlayAnimation(CharacterAnimator.Landing, true);
             }
 
-            playerManager.isGrounded = true;
+            isRayGrounded = true;
             //reset air time if grounded
             inAirTime = 0;
         }
         else
         {
-            playerManager.isGrounded = false;
+            isRayGrounded = false;
         }
     }
 
@@ -217,7 +240,7 @@ public class PlayerLocomotion : MonoBehaviour
             playerStamina.Damage(sprintStaminaCost * Time.deltaTime);
         }
 
-        if (playerManager.IsAiming)
+        if (playerAnimator.IsAiming)
             currentAimSpeedMultiplier = blockingSpeedMultiplier;
 
         moveSpeed = walkMoveSpeed * currentSprintSpeedMultiplier * currentAirSpeedMultiplier *
@@ -236,21 +259,21 @@ public class PlayerLocomotion : MonoBehaviour
         if (controller.isGrounded)
             currentJumpTimeout = -1;
 
-        if (!playerManager.isGrounded || currentJumpTimeout >= 0.0f) return;
+        if (!isRayGrounded || currentJumpTimeout >= 0.0f) return;
         currentJumpTimeout = jumpTimeout;
         verticalVelocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
-        playerManager.PlayerAnimator.PlayAnimation("Jump", false);
+        playerAnimator.PlayAnimation(CharacterAnimator.Jump, false);
     }
 
 
     [SerializeField] private float rollingStaminaCost = 20f;
+
     private void HandleRoll()
     {
-        
         if (playerStamina.CurrentStamina <= 0) return;
         if (moveDirection.magnitude < .1f) return;
-        playerManager.PlayerAnimator.PlayAnimation("Roll", true);
-        playerManager.PlayerAnimator.IsRolling = true;
+        playerAnimator.PlayAnimation(CharacterAnimator.Roll, true);
+        playerAnimator.IsRolling = true;
 
         var dir = moveDirection;
         dir.y = 0;
@@ -258,7 +281,7 @@ public class PlayerLocomotion : MonoBehaviour
         transform.rotation = targetRotation;
         playerStamina.Damage(rollingStaminaCost);
     }
-    
+
     private void RotateToMovementDirection()
     {
         //rotate only if moving
@@ -274,33 +297,22 @@ public class PlayerLocomotion : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    private void HandleLocomotionAnimation() // todo -  move this to another class?
+    private void HandleLocomotionAnimation()
     {
         var moveAmount = Mathf.Clamp01(Mathf.Abs(movementInput.x) + Mathf.Abs(movementInput.y));
 
         if (sprintInput && moveAmount != 0 && playerStamina.CurrentStamina > 0)
             moveAmount = 2f;
 
-        if (playerManager.IsAiming)
+        if (playerAnimator.IsAiming)
         {
-            playerManager.PlayerAnimator.UpdateLocomotionAnimation(movementInput.y, movementInput.x);
+            playerAnimator.UpdateLocomotionAnimation(movementInput.y, movementInput.x);
         }
         else
         {
-            playerManager.PlayerAnimator.UpdateLocomotionAnimation(moveAmount, 0);
+            playerAnimator.UpdateLocomotionAnimation(moveAmount, 0);
         }
     }
-
-    public void EnableCanRotate()
-    {
-        playerManager.PlayerAnimator.SetCanRotate(true);
-    }
-
-    public void DisableCanRotate()
-    {
-        playerManager.PlayerAnimator.SetCanRotate(false);
-    }
-
 
     private void OnMove(Vector2 input) => movementInput = input;
     private void OnSprintStart() => sprintInput = true;

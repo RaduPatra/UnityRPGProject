@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -22,7 +23,7 @@ public class HealthUI : MonoBehaviour
 
     private void UpdateHealth(float amount)
     {
-        healthStatText.text = "Health: " + amount;
+        healthStatText.text = "" + (int)amount;
         healthSlider.value = maxHealth != 0 ? amount / maxHealth : 0;
     }
 
@@ -31,3 +32,16 @@ public class HealthUI : MonoBehaviour
         maxHealth = max;
     }
 }
+
+/*public class EnemyManager : MonoBehaviour
+{
+    private List<GameObject> enemyGOs;
+    private void Awake()
+    {
+        for (var i = 0; i < transform.childCount; i++)
+        {
+            enemyGOs.Add(transform.GetChild(i).gameObject);
+        }
+
+    }
+}*/

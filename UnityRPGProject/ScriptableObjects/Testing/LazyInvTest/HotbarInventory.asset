@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00baca5374846968ef6a14a9ee520a3, type: 3}
+  m_Name: HotbarInventory
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: lazyInventoryContainer
+      Entry: 7
+      Data: 0|LazyValueTest`1[[InventoryContainer, Assembly-CSharp]], Assembly-CSharp
+    - Name: _value
+      Entry: 7
+      Data: 1|InventoryContainer, Assembly-CSharp
+    - Name: itemList
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[InventorySlot, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 3|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 33261c17-de3d-481a-bfa5-0451da1b9599
+    - Name: itemStack
+      Entry: 7
+      Data: 4|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: a92d7b52-909f-4d0d-87ee-88a29ab4f360
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 0380cade-35c8-45f7-a29b-adb0adeb5f37
+    - Name: itemStack
+      Entry: 7
+      Data: 6|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 2947d67c-1795-4baf-9d7f-6bd4c7933932
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: afe94f05-cef8-433c-bee4-c3100008e7ab
+    - Name: itemStack
+      Entry: 7
+      Data: 8|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 5a22632f-f591-4581-a4d1-4598a1b1d09d
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: acfaacf7-9017-41e3-bc6c-4f5577e35741
+    - Name: itemStack
+      Entry: 7
+      Data: 10|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 414615f6-4c16-42f6-a35a-6666a5733d46
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 8c25ded5-b20a-4cb7-bc39-a870c83029bd
+    - Name: itemStack
+      Entry: 7
+      Data: 12|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 0
+    - Name: id
+      Entry: 1
+      Data: 7b5d6eb3-89ab-4f55-b754-8478860ccb1b
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|InventorySlot, Assembly-CSharp
+    - Name: id
+      Entry: 1
+      Data: 832e9fb9-9964-45df-9be9-797132c647d0
+    - Name: itemStack
+      Entry: 7
+      Data: 14|ItemStack, Assembly-CSharp
+    - Name: item
+      Entry: 6
+      Data: 
+    - Name: itemId
+      Entry: 1
+      Data: 
+    - Name: quantity
+      Entry: 3
+      Data: 1
+    - Name: id
+      Entry: 1
+      Data: a30f8c0c-eac5-453c-a4ca-0ab760df5663
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: slotCategory
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  inventoryCategory: {fileID: 11400000, guid: 644e20a72064e8840849d0c1a66df8b0, type: 2}

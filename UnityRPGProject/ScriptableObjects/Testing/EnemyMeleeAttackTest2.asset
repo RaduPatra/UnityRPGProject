@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbd935965754bbe89bb3f26d989f4d6, type: 3}
+  m_Name: EnemyMeleeAttackTest2
+  m_EditorClassIdentifier: 
+  attackMinRange: 0
+  attackMaxRange: 3
+  attackAngle: 180
+  animTransitionTime: 0.2
+  attackAnimStateName: Attack2
+  attackHandType: {fileID: 11400000, guid: ecc15c08461097842919ae2b383f9b6f, type: 2}
+  nextComboAttack: {fileID: 11400000, guid: 5f67dc9d6e8a2ec448f7c2974bc60190, type: 2}
+  overrideController: {fileID: 22100000, guid: babd2bb8d88d1e341ae0cd1693d19b50, type: 2}
+  clipToOverride: {fileID: 7400000, guid: 724cd218cab0eb1498eefb2ca19a8006, type: 2}
+  overrideClip: {fileID: 7400000, guid: 724cd218cab0eb1498eefb2ca19a8006, type: 2}

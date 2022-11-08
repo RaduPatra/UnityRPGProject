@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0853a859b915f43b70329caa2dfb9d, type: 3}
+  m_Name: Ch1_Q1_Step3
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: c439f876c87848245ba0964cc12cb132, type: 2}
+    - {fileID: 11400000, guid: 8db4e91d57a0f92409703c6a390a633d, type: 2}
+    - {fileID: 11400000, guid: accdefbbcc7404e4780680bb06fefee1, type: 2}
+    - {fileID: 11400000, guid: fe856d541e03ca24cb926ee2b98d2edc, type: 2}
+    - {fileID: 11400000, guid: c459df9dbdfdab94fb80e10e57ed1bcc, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: questEntityToInteractWith
+      Entry: 10
+      Data: 0
+    - Name: stepInteractions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[InteractionType, Assembly-CSharp],[QuestStepComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InteractionType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|QuestStepComponent, Assembly-CSharp
+    - Name: condition
+      Entry: 10
+      Data: 1
+    - Name: action
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stepCompletionInteractions
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[InteractionType, Assembly-CSharp],[QuestStepComponent,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 1
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 4|QuestStepComponent, Assembly-CSharp
+    - Name: condition
+      Entry: 10
+      Data: 3
+    - Name: action
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  stepInstructions: step3

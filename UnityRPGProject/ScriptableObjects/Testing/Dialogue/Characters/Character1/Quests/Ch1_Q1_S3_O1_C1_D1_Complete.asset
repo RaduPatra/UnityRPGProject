@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f03bfb069e43e296cf6a15f1a1b7b5, type: 3}
+  m_Name: Ch1_Q1_S3_O1_C1_D1_Complete
+  m_EditorClassIdentifier: 
+  dialogueText: Nice!
+  dialogueOptions: []
+  nextDialogue: {fileID: 11400000, guid: 064de24d34b1bdc4cb5d7dd623182d81, type: 2}
+  dialogueNodeStartEvent: {fileID: 0}
+  dialogueNodeEndEvent: {fileID: 0}
+  <Id>k__BackingField: 09ee96c3-7c32-4d68-b961-c59ef8a9be69

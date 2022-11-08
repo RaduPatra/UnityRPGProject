@@ -30,6 +30,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7b6193cbcc3833b48936d3c3eddff588, type: 2}
     - {fileID: 11400000, guid: a956195cf6fc3e14e8a84ff3b5cfd002, type: 2}
     - {fileID: 11400000, guid: 5a455833b1cd3724ea51b794a17a572f, type: 2}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -48,7 +49,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 10
     - Name: 
       Entry: 7
       Data: 
@@ -118,7 +119,7 @@ MonoBehaviour:
       Data: 6|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Shield2
+      Data: Steel Shield
     - Name: 
       Entry: 8
       Data: 
@@ -234,13 +235,31 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 14
+    - Name: $v
+      Entry: 7
+      Data: 13|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A powerful shield
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   id: db03b895-ec5b-43e9-b9d8-f7c21757ee7f
-  testString: SHIELD2
+  testName: default
   categoryParent: {fileID: 11400000, guid: f5ef371d8fbddaf40a6092765800c507, type: 2}
   isStackable: 0
   maxStack: 1

@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerExitHandler
 {
     private EquipmentUI EquipmentUI { get; set; }
-    public ItemType slotItemType;
+    // public ItemType slotItemType;
     public ItemCategory slotCategory;
     [SerializeField] private Image itemIcon;
     [SerializeField] private Image panelBackground;
@@ -41,11 +41,11 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerExitHandler
         }
     }
 
-    private void Awake()
+    public void Initialize(EquipmentUI equipmentUI)
     {
-        EquipmentUI = GetComponentInParent<EquipmentUI>();
+        // EquipmentUI = GetComponentInParent<EquipmentUI>();
+        EquipmentUI = equipmentUI;
     }
-
     public void UpdateUISlot(InventorySlot slot)
     {
         // Debug.Log("updated slot " + transform.name + " --- " + slot.itemStack);
@@ -113,4 +113,6 @@ public class EquipmentSlotUI : MonoBehaviour, ISlot, IPointerExitHandler
         EquipmentUI.uiManager.ItemInfoUI.HideItemInfo();
         panelBackground.color = defaultColor;
     }
+
+    
 }

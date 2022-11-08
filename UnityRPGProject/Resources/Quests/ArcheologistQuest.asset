@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de5d8347822476ba1b5b720053ce223, type: 3}
+  m_Name: ArcheologistQuest
+  m_EditorClassIdentifier: 
+  questName: The Ancient Skull
+  questSteps:
+  - {fileID: 11400000, guid: b208ac107b456274d832f541522c7922, type: 2}
+  - {fileID: 11400000, guid: 981ec7b6419610a42aef8c6270be897f, type: 2}
+  rewardItems:
+  - {fileID: 11400000, guid: fc1ef20e14f5e724abbec4838d791c68, type: 2}
+  <Id>k__BackingField: 75a2d67a-2bee-447f-81a5-dd1097b8aad3

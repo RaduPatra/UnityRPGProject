@@ -23,6 +23,7 @@ MonoBehaviour:
     - {fileID: 2290540312554670874, guid: ded41eceff10b7f4b86d40140542e173, type: 3}
     - {fileID: 11400000, guid: 8f44a76c42dd7c9468411bc320f78feb, type: 2}
     - {fileID: 11400000, guid: 819e50e8298080f48ae315c630b04643, type: 2}
+    - {fileID: 11400000, guid: b158064d961263c41afa5da071bf05a4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -41,7 +42,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -53,7 +54,7 @@ MonoBehaviour:
       Data: 2|StringAttributeData, Assembly-CSharp
     - Name: value
       Entry: 1
-      Data: Speed cons
+      Data: Speed Potion
     - Name: 
       Entry: 8
       Data: 
@@ -127,15 +128,33 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 7|StringAttributeData, Assembly-CSharp
+    - Name: value
+      Entry: 1
+      Data: A potion that makes you run faster
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   id: 5c54a053-8fa1-440d-ad18-a132c8cc2b9c
-  testString: CONS1
+  testName: default
   categoryParent: {fileID: 11400000, guid: c85b97f8b364dd046b537a0d13d8439d, type: 2}
   isStackable: 1
-  maxStack: 3
+  maxStack: 11
   attrToGetTest: {fileID: 0}
   categToGetTest: {fileID: 0}

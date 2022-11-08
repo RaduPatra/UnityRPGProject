@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: JumpEffect
   m_EditorClassIdentifier: 
   effectExpireTime: 5
+  effectParticlePrefab: {fileID: 198587703769245278, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+  effectColor: {r: 0.40685207, g: 0.8018868, b: 0.2904948, a: 1}
   jumpModifier: 5

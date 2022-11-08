@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GroundItemLoader : MonoBehaviour
@@ -10,9 +11,15 @@ public class GroundItemLoader : MonoBehaviour
         SaveSystem.OnLoad += LoadItems;
     }
 
+    private void OnDestroy()
+    {
+        SaveSystem.OnLoad -= LoadItems;
+
+    }
+
     private void LoadItems(SaveData saveData)
     {
-        var droppedItems = saveData.droppedGroundItems;
+        var droppedItems = saveData.sceneData.droppedGroundItems;
         var db = SaveSystemManager.Instance.itemDb;
         foreach (var item in droppedItems)
         {

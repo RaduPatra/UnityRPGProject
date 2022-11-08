@@ -22,7 +22,7 @@ public class SingletonTesting : Singleton<SingletonTesting>
     [ContextMenu("Save Data Test")]
     public void Save()
     {
-        SaveSystem.Save(saveData);
+        // SaveSystem.Save(saveData);
     }
 
     [ContextMenu("Load Data Test")]
@@ -34,11 +34,6 @@ public class SingletonTesting : Singleton<SingletonTesting>
         saveData = loadedData;
     }
 
-    // [ContextMenu("Reset Event Test")]
-    public void ResetTest()
-    {
-        SaveSystem.Reset();
-    }
 
     [ContextMenu("Debug Test")]
     public void DebugTest()

@@ -197,7 +197,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7ea3422a-855a-497f-8983-a88858c40698"",
-                    ""path"": ""<Keyboard>/alt"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -309,6 +309,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""PauseMenu"",
+            ""id"": ""14a7171a-e7ed-4778-9a2a-a3c72bb6b1d3"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""3726c6f6-ea75-4c18-87b9-05e014f96455"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ad7ddc42-0bab-4923-882f-09d51128e44e"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""General"",
             ""id"": ""3fa43944-b329-495f-90f9-a9fd7d167b95"",
             ""actions"": [
@@ -324,6 +351,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""ToggleUI"",
                     ""type"": ""Button"",
                     ""id"": ""2342be97-14a5-4d9c-982a-bd3ca26a607b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa7b973c-50b8-4c2c-94e3-bd7db0bb9423"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -387,12 +422,34 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ab21f9eb-a916-4e91-9c75-b9808945b3bf"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": ""Hotbar(valueShift=5)"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2465b9cb-ff01-45d7-ac91-e982a0e3f046"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c0da344-6bb2-427c-b3d4-9e9ac33e6ff0"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -422,6 +479,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""11b7cd7c-ccb5-408c-b722-42ff43ead2e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DialogueInteractTest"",
+                    ""type"": ""Button"",
+                    ""id"": ""87d16b35-40e3-45cc-bc44-42756c74de9e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -458,6 +523,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63558d8d-cbfa-4399-bfbb-b6835cdac52e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueInteractTest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -567,15 +643,20 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerAttack = asset.FindActionMap("Player Attack", throwIfNotFound: true);
         m_PlayerAttack_Attack = m_PlayerAttack.FindAction("Attack", throwIfNotFound: true);
         m_PlayerAttack_Hotbar = m_PlayerAttack.FindAction("Hotbar", throwIfNotFound: true);
+        // PauseMenu
+        m_PauseMenu = asset.FindActionMap("PauseMenu", throwIfNotFound: true);
+        m_PauseMenu_Pause = m_PauseMenu.FindAction("Pause", throwIfNotFound: true);
         // General
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_Hotbar = m_General.FindAction("Hotbar", throwIfNotFound: true);
         m_General_ToggleUI = m_General.FindAction("ToggleUI", throwIfNotFound: true);
+        m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Newaction = m_Interaction.FindAction("New action", throwIfNotFound: true);
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
         m_Interaction_Cancel = m_Interaction.FindAction("Cancel", throwIfNotFound: true);
+        m_Interaction_DialogueInteractTest = m_Interaction.FindAction("DialogueInteractTest", throwIfNotFound: true);
         // Testing
         m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
         m_Testing_Newaction = m_Testing.FindAction("New action", throwIfNotFound: true);
@@ -757,17 +838,52 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     }
     public PlayerAttackActions @PlayerAttack => new PlayerAttackActions(this);
 
+    // PauseMenu
+    private readonly InputActionMap m_PauseMenu;
+    private IPauseMenuActions m_PauseMenuActionsCallbackInterface;
+    private readonly InputAction m_PauseMenu_Pause;
+    public struct PauseMenuActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PauseMenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_PauseMenu_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_PauseMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseMenuActions instance)
+        {
+            if (m_Wrapper.m_PauseMenuActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_PauseMenuActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PauseMenuActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PauseMenuActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_PauseMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public PauseMenuActions @PauseMenu => new PauseMenuActions(this);
+
     // General
     private readonly InputActionMap m_General;
     private IGeneralActions m_GeneralActionsCallbackInterface;
     private readonly InputAction m_General_Hotbar;
     private readonly InputAction m_General_ToggleUI;
+    private readonly InputAction m_General_Pause;
     public struct GeneralActions
     {
         private @PlayerControls m_Wrapper;
         public GeneralActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Hotbar => m_Wrapper.m_General_Hotbar;
         public InputAction @ToggleUI => m_Wrapper.m_General_ToggleUI;
+        public InputAction @Pause => m_Wrapper.m_General_Pause;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -783,6 +899,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @ToggleUI.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnToggleUI;
                 @ToggleUI.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnToggleUI;
                 @ToggleUI.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnToggleUI;
+                @Pause.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -793,6 +912,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @ToggleUI.started += instance.OnToggleUI;
                 @ToggleUI.performed += instance.OnToggleUI;
                 @ToggleUI.canceled += instance.OnToggleUI;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -804,6 +926,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Interaction_Newaction;
     private readonly InputAction m_Interaction_Interact;
     private readonly InputAction m_Interaction_Cancel;
+    private readonly InputAction m_Interaction_DialogueInteractTest;
     public struct InteractionActions
     {
         private @PlayerControls m_Wrapper;
@@ -811,6 +934,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Newaction => m_Wrapper.m_Interaction_Newaction;
         public InputAction @Interact => m_Wrapper.m_Interaction_Interact;
         public InputAction @Cancel => m_Wrapper.m_Interaction_Cancel;
+        public InputAction @DialogueInteractTest => m_Wrapper.m_Interaction_DialogueInteractTest;
         public InputActionMap Get() { return m_Wrapper.m_Interaction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -829,6 +953,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Cancel.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnCancel;
+                @DialogueInteractTest.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnDialogueInteractTest;
+                @DialogueInteractTest.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnDialogueInteractTest;
+                @DialogueInteractTest.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnDialogueInteractTest;
             }
             m_Wrapper.m_InteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -842,6 +969,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @DialogueInteractTest.started += instance.OnDialogueInteractTest;
+                @DialogueInteractTest.performed += instance.OnDialogueInteractTest;
+                @DialogueInteractTest.canceled += instance.OnDialogueInteractTest;
             }
         }
     }
@@ -911,16 +1041,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnHotbar(InputAction.CallbackContext context);
     }
+    public interface IPauseMenuActions
+    {
+        void OnPause(InputAction.CallbackContext context);
+    }
     public interface IGeneralActions
     {
         void OnHotbar(InputAction.CallbackContext context);
         void OnToggleUI(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IInteractionActions
     {
         void OnNewaction(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnDialogueInteractTest(InputAction.CallbackContext context);
     }
     public interface ITestingActions
     {
