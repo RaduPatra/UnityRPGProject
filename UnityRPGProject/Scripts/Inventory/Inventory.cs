@@ -8,18 +8,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventories/InventoryTestLazy", order = 1)]
 public class Inventory : InventoryBase
 {
-    public LazyValueTest<InventoryContainer> lazyInventoryContainer = new LazyValueTest<InventoryContainer>();
+    [SerializeField]
+    private LazyValue<InventoryContainer> lazyInventoryContainer;
     public List<InventorySlot> ItemList => lazyInventoryContainer.value.itemList;
 
     public ItemCategory inventoryCategory;
+    public InventoryContainer defaultInventory;
+
 
     [NonSerialized]
     public Action<ItemWithAttributes> OnPickup;
 
     public void Init(InventoryContainer inventoryContainer) //called in on before load
     {
-        lazyInventoryContainer.Init(() => InitContainer(inventoryContainer));
-
+        lazyInventoryContainer = new LazyValue<InventoryContainer>(() => InitContainer(inventoryContainer));
         InventoryContainer InitContainer(InventoryContainer saveDataInv)
         {
             var newInv = saveDataInv;
@@ -78,7 +80,7 @@ public class Inventory : InventoryBase
     [ContextMenu("Load item ids")]
     public void LoadItemIds()
     {
-        foreach (var slot in ItemList)
+        foreach (var slot in defaultInventory.itemList)
         {
             var stack = slot.itemStack;
             if (stack == null) continue;

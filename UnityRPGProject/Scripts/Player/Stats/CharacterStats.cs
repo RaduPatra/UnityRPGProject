@@ -50,19 +50,18 @@ public class CharacterStats : SerializedMonoBehaviour
 
     public float CalculateDamageReduction(float damage,StatType statType = StatType.Defence)//Valheim like damage reduction
     {
-        Debug.Log("Initial Damage " + damage);
+        // Debug.Log("Initial Damage " + damage);
         var defenceBonus = ActiveModifiers[statType];
 
         if (defenceBonus < damage / 2)
         {
             damage -= defenceBonus;
-            Debug.Log("First Damage Reduction" + damage);
+            // Debug.Log("First Damage Reduction" + damage);
         }
         else
         {
             damage = Mathf.Clamp01(damage / (defenceBonus * 4)) * damage;
-            Debug.Log("Second Damage Reduction" + damage);
-
+            // Debug.Log("Second Damage Reduction" + damage);
         }
 
         return damage;

@@ -65,14 +65,16 @@ public class EquipmentManager : SerializedMonoBehaviour, IEquipment
 
     private void InitLoadEquipment(SaveData saveData)
     {
-        equipmentArmorInventory.equipmentSlots.Init(InitArmorTest);
-        equipmentWeaponInventory.equipmentSlots.Init(InitWeaponTest);
+        equipmentArmorInventory.equipmentSlots = new LazyValue<Dictionary<ItemCategory, InventorySlot>>(InitArmorTest);
+        equipmentWeaponInventory.equipmentSlots = new LazyValue<Dictionary<ItemCategory, InventorySlot>>(InitWeaponTest);
 
         Dictionary<ItemCategory, InventorySlot> InitArmorTest()
         {
-            // saveData = SaveSystem.GetDataFromFile();
             if (!armorFirstLoad)
             {
+                //this was done when I was doing the loading without reloading the scene so the if is never hit
+                //- keep for now if for some reason I decide to do it like that again?
+                
                 foreach (var itemInfo in equipmentArmorInventory.equipmentSlots.ValueNoInit)
                 {
                     var item = itemInfo.Value.GetItem();
@@ -150,11 +152,10 @@ public class EquipmentManager : SerializedMonoBehaviour, IEquipment
     private void InitSaveData()
     {
         Debug.Log("eq man OnBeforeLoadTest");
-
-        foreach (var armor in equipmentArmorInventory.equipmentSlots.ValueNoInit)
+        foreach (var armor in equipmentArmorInventory.DefaultEquipmentSlots)
             SaveData.Current.equipmentArmorSave[armor.Key.Id] = armor.Value;
 
-        foreach (var weapon in equipmentWeaponInventory.equipmentSlots.ValueNoInit)
+        foreach (var weapon in equipmentWeaponInventory.DefaultEquipmentSlots)
             SaveData.Current.equippedWeaponSave[weapon.Key.Id] = weapon.Value;
     }
 

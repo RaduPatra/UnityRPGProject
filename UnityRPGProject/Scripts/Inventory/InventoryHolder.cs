@@ -18,10 +18,14 @@ public class InventoryHolder : MonoBehaviour
     [SerializeField] private Inventory mainInventory;
     [SerializeField] private Inventory hotbarInventory;
 
+
+    [SerializeField] private Inventory defaultMainInventory;
+    [SerializeField] private Inventory defaultHotbarInventory;
+
     private float currentInvFullTimer;
 
     [SerializeField] private float hideInvFullTime = 3f;
-    
+
     /*public Inventory MainInventory => mainInventory;
     public Inventory HotbarInventory => hotbarInventory;*/
 
@@ -64,8 +68,9 @@ public class InventoryHolder : MonoBehaviour
     private void InitSaveData()
     {
         Debug.Log("inv holder OnBeforeLoadTest");
-        SaveData.Current.inventorySaveData = mainInventory.lazyInventoryContainer.ValueNoInit;
-        SaveData.Current.hotbarInventorySaveData = hotbarInventory.lazyInventoryContainer.ValueNoInit;
+        SaveData.Current.inventorySaveData = mainInventory.defaultInventory;
+        SaveData.Current.hotbarInventorySaveData = hotbarInventory.defaultInventory;
+        
     }
 
     public Action<ItemWithAttributes> OnPickup;
@@ -108,7 +113,7 @@ public class InventoryHolder : MonoBehaviour
 
         if (attr != null && attr.value != null)
         {
-            var droppedObject = Instantiate(attr.value, dropTransform.position + new Vector3(0,dropYOffset,0),
+            var droppedObject = Instantiate(attr.value, dropTransform.position + new Vector3(0, dropYOffset, 0),
                 attr.value.transform.rotation);
             var groundItem = droppedObject.GetComponent<GroundItem>();
             var objectId = droppedObject.GetComponent<GameObjectId>();
