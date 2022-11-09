@@ -44,7 +44,6 @@ Currently there is only a main and secondary mission that try to showcase all th
 to be added
 
 ### Bugs:
-- inventory items not resseting when starting new game without restarting the game (in progress)
 -
 
 ### Other Info:
