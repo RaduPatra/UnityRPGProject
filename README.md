@@ -1,5 +1,4 @@
 # Dungeon Adventure (Final Project)
-
 A proof of concept third person Role-Playing Game inspired by Dark Souls, Legend of Zelda and other classic RPGs.
 The goal of this project was to implement the most common features of a classic fantasy RPG. This was made for my final university project but it will remain a personal project that I will try to release on Steam in the future.
 
