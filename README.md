@@ -37,8 +37,11 @@ Currently there is only a main and secondary mission that try to showcase all th
 ### To Be Added:
 - More camera improvements such as screen shake, zooming while aiming
 - Cutscenes
--
-
+- Character creation
+- Shops & currency
+- Two handed swords with animation rigging
+- Sound effects & music
+- Skills and leveling system
 ### To Remake/Refactor:
 to be added
 
