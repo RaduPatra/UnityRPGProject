@@ -42,8 +42,6 @@ Currently there is only a main and secondary mission that try to showcase all th
 - Two handed swords with animation rigging
 - Sound effects & music
 - Skills and leveling system
-### To Remake/Refactor:
-to be added
 
 ### Bugs:
 - The selected quest visual in the journal doesn't always corresepond to the active step list when starting a new quest or completing a new step. This has something to do with how Unity handles toggle groups for disabled object. I plan to remake/change the behavior of the quest log anyway.
