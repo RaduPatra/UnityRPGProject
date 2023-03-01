@@ -51,7 +51,7 @@ Currently there is only a main and secondary mission that try to showcase all th
 ### Known Bugs:
 - The selected quest visual in the journal doesn't always corresepond to the active step list when starting a new quest or completing a new step. This has something to do with how Unity handles toggle groups for disabled object. I plan to remake/change the behavior of the quest log, so for now its not a priority.
 - If the player enters the cave and kills the monsters before starting the first quest, they may get stuck if they decide to start the quest later. Although blocking the entrance until the quest is started or removing the "kill monsters" step would solve the problem, it would make the quests more linear than they already are. I intend to rework the quest system to accommodate non-linear completion of certain steps (as in The Witcher 3), while also ensuring that the player's quest-related actions are reflected in the journal.
-- In very rare ocasions, combo melee hits are not getting registed. This is because animation events can get called in the middle of transitions as well. So sometimes the DisableCollider animation event from the previous animation can get called right after EnableCollider from the new animation. We can get animation info related to an event so a possible fix would be to disable the collider only if the animation weight is < 1(in the middle of a transition).
+- In very rare ocasions, combo melee hits are not getting registed. This is because animation events can get called in the middle of transitions as well. So sometimes the DisableCollider animation event from the previous animation can get called right after EnableCollider from the new animation.
 
 
 
