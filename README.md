@@ -4,7 +4,7 @@ The goal of this project was to implement the most common features of a classic 
 
 Download/Screenshots: https://soulzhd.itch.io/dungeon-adventure  
 Gameplay Demo : https://www.youtube.com/watch?v=nRF46DjXM1w  
-
+Trello : https://trello.com/b/vYOOrIYk/final-project-game
 
 
 ### Implemented Features:
