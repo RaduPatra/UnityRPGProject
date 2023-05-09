@@ -4,7 +4,7 @@ The goal of this project was to implement the most common features of a classic 
 
 Download/Screenshots: https://soulzhd.itch.io/dungeon-adventure  
 Gameplay Demo : https://www.youtube.com/watch?v=nRF46DjXM1w  
-Trello : https://trello.com/b/vYOOrIYk/final-project-game 
+Trello : https://trello.com/b/vYOOrIYk/final-project-game  
 Bachelor Thesis (Romanian), includes documentation  : https://docs.google.com/document/d/19FW7lRtb4r-OE3Wjal5gFXiBBldQoU8unKMLcGJddA8/
 
 
