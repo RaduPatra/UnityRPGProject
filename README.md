@@ -14,9 +14,9 @@ Bachelor Thesis (Romanian), includes documentation  : https://docs.google.com/do
 - Inventory & Equipment System
 - Character Stats System (Current stats: Melee attack, Magic attack, Defence, Poise)
 - Souls-Like Combat System - Light/Heavy Attacks, Health, Stamina, Stagger Bar
-- Component-based item system that allows designers to create and customize item categories and attributes. Implemented custom editor tools, that ease the process of creating an item.
-Current important types of items : Consumables (speed, health, attack boost potions), Armor, Shields, Melee items, wands that can charge and shoot projectiles, Keys, quest items
-- Custom Editor Showcase video : To Be Added
+- Component-based item system that allows designers to create and customize item categories and attributes. Implemented custom editor tools, that ease the process of creating an item.  
+Current important types of items : Consumables (speed, health, attack boost potions), Armor, Shields, Melee items, wands that can charge and shoot projectiles, Keys, quest items  
+- Item System Showcase video : https://www.youtube.com/watch?v=Ym4j1KXVeA0  
 - Enemy AI using a state machine that can execute various state actions such as: Idle, Patrol, Search Target, Chase, Strafe, Combat Decisions, Attack, Death
 
 - Interactables: 
